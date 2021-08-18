@@ -38,4 +38,7 @@ export default {
 #footer a.router-link-exact-active {
   color: #1FA7FF;
 } 
+ul,li,dl,ol{
+  list-style: none;
+}
 </style>
