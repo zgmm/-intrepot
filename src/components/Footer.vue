@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ul id="footer">
+    <!-- <div>{{$route}}</div> -->
+    <ul id="footer" v-show="$route.meta.isturn">
         <li>
             <router-link to='/takeaway'>
                 <span class="iconfont icon-eliaomo"></span>
