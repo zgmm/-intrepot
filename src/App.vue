@@ -26,6 +26,20 @@ div#app {
   color: #666666;
   font-size: 0.15rem;
 }
+body,html{
+  width: 100%;
+  height: 100%;
+}
+ #app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* text-align: center; */
+  color: #666666;
+  font-size: .15rem;
+  width: 100%;
+  height: 100%;
+}
 /*
 #nav {
   padding: 30px;
@@ -36,6 +50,9 @@ div#app {
   color: #2c3e50;
 }
 */
+#footer{
+  text-align: center;
+}
 #footer a.router-link-exact-active {
   color: #1fa7ff;
 }
@@ -57,5 +74,13 @@ body {
 * {
   padding: 0;
   margin: 0;
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+html,body{
+  width: 100%;
+  height: 100%;
 }
 </style>
