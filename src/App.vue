@@ -16,14 +16,15 @@ export default {
 };
 </script>
 <style>
-
- #app {
+div#app {
+  width: 100% !important ;
+}
+#app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #666666;
-  font-size: .15rem;
+  font-size: 0.15rem;
 }
 /*
 #nav {
@@ -36,9 +37,25 @@ export default {
 }
 */
 #footer a.router-link-exact-active {
-  color: #1FA7FF;
-} 
-ul,li,dl,ol{
+  color: #1fa7ff;
+}
+ul,
+li,
+dl,
+ol {
   list-style: none;
+}
+a {
+  text-decoration: none;
+  color: #000;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+* {
+  padding: 0;
+  margin: 0;
 }
 </style>
