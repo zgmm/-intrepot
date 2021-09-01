@@ -71,7 +71,9 @@
         </ul>
       </div>
       <div v-show="num == 1">
-        <p class="txt-con2"><span class="iconfont icon-wenhao"></span>商家代金券</p>
+        <p class="txt-con2">
+          <span class="iconfont icon-wenhao"></span>商家代金券
+        </p>
         <div class="txt-con3">
           <span class="iconfont icon-not-found"></span>
           <p>无法使用代金券</p>
@@ -110,7 +112,7 @@ export default {
   color: #fff;
   padding: 0.15rem;
   position: relative;
-  font-size: 0.3rem;
+  font-size: 0.4rem;
   box-sizing: border-box;
   background-color: #3190e8;
   box-sizing: border-box;
@@ -119,6 +121,7 @@ export default {
   position: absolute;
   top: 0.15rem;
   left: 0.1rem;
+  font-size: 0.4rem;
 }
 .sec-tab {
   font-size: 0.25rem;
@@ -225,39 +228,39 @@ export default {
   box-sizing: border-box;
   font-size: 0.35rem;
 }
-.txt-con2{
-    color: #3190e8;
-    float: right;
-    padding: .2rem;
+.txt-con2 {
+  color: #3190e8;
+  float: right;
+  padding: 0.2rem;
 }
-.txt-con2 span{
-    vertical-align: bottom;
+.txt-con2 span {
+  vertical-align: bottom;
 }
-.txt-con3{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    text-align: center;
-    width: 3rem;
-    line-height: .4rem;
-    color: #898989;
+.txt-con3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 3rem;
+  line-height: 0.4rem;
+  color: #898989;
 }
-.txt-con3 span{
-    font-size: 1.2rem;
-    color: #3190e8;
+.txt-con3 span {
+  font-size: 1.2rem;
+  color: #3190e8;
 }
-.txt-con3 p:nth-child(2){
-    font-size: .3rem;
+.txt-con3 p:nth-child(2) {
+  font-size: 0.3rem;
 }
-.txt-con3 button{
-    padding: .1rem;
-    margin-top: .1rem;
-    color: #fff;
-    font-size: .3rem;
-    background-color: #56D176;
-    border: none;
-    outline: none;
-    border-radius: .05rem;
+.txt-con3 button {
+  padding: 0.1rem;
+  margin-top: 0.1rem;
+  color: #fff;
+  font-size: 0.3rem;
+  background-color: #56d176;
+  border: none;
+  outline: none;
+  border-radius: 0.05rem;
 }
 </style>

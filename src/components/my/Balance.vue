@@ -41,7 +41,7 @@ export default {
     width: 100%;
     background-color: #3190E8;
     box-sizing: border-box;
-    height: 3.1rem;
+    height: 3.5rem;
 }
 .top{
     text-align: center;
@@ -49,17 +49,19 @@ export default {
     color: #fff;
     padding: .15rem;
     position: relative;
-    font-size: .3rem;
+    font-size: .4rem;
     box-sizing: border-box;
 }
 .top span{
     position: absolute;
     top: .15rem;
     left: .1rem;
+      font-size: .4rem;
 }
 .top-cont{
     width: 97%;
     margin:.1rem;
+    margin-top: 0;
     background-color: #fff;
     box-sizing: border-box;
     border-radius: .05rem;
