@@ -84,26 +84,25 @@ header {
     font-size: 0.18rem;
 }
 
-.shopList {
+.swiper-container {
     width: 100%;
 }
 
-.list {
-    width: 600rem;
-    text-align: left;
+.swiper-wrapper {
     padding-left: 0.25rem;
-    display: flex;
 }
 
-.list a {
-    display: block;
+.swiper-slide {
     width: 1.7rem;
-    height: 1.7rem;
     margin-right: 0.15rem;
 }
 
-.list li img {
-    width: 100%;
+.swiper-slide:last-child {
+    margin-right: 0.25rem;
+}
+
+.swiper-slide li img {
+    width: 1.7rem;
 }
 
 .gray p {
