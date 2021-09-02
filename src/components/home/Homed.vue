@@ -18,27 +18,21 @@
     <section>
       <ul class="sec-con1">
         <li @click="balance">
-          <router-link to="">
             <p><span>0.00</span>元</p>
             <p>我的金额</p>
-          </router-link>
         </li>
         <li @click="discounts">
-          <router-link to="">
             <p><span>3</span>个</p>
             <p>我的优惠</p>
-          </router-link>
         </li>
         <li @click="integral">
-          <router-link to="">
             <p><span>0</span>分</p>
             <p>我的积分</p>
-          </router-link>
         </li>
       </ul>
       <ul class="sec-con2">
         <li>
-          <router-link to="">
+          <router-link to="/indent">
             <span class="iconfont icon-icon-"></span>
             我的订单
             <span class="iconfont icon-right"></span>
@@ -92,12 +86,15 @@ export default {
     };
   },
   methods: {
+    // 跳转到余额
     balance(){
       this.$router.push("/balance")
     },
+    // 跳转到优惠
     discounts(){
       this.$router.push("/discounts")
     },
+    // 跳转到积分
     integral(){
       this.$router.push("/integral")
     }
@@ -122,12 +119,13 @@ export default {
     position: relative;
     color: #fff;
     padding-top: .1rem;
-    font-size: .28rem;
+    font-size: .3rem;
 }
 .top-con1 span{
     position: absolute;
     left: .05rem;
     top: .1rem;
+    font-size: .3rem;
 }
 
 .top-con2::after{
@@ -198,9 +196,11 @@ section{
     display: block;
     clear: both;
 }
-.sec-con2 li{
+.sec-con2 li a{
     padding:.2rem .1rem;
     border-bottom: 1px solid #f5f5f5;
+    display: block;
+    color: #000;
 }
 .sec-con2 li span:nth-child(2){
     float: right;
@@ -222,9 +222,11 @@ section{
     display: block;
     clear: both;
 }
-.sec-con3 li{
+.sec-con3 li a{
     padding:.2rem .1rem;
     border-bottom: 1px solid #f5f5f5;
+     display: block;
+    color: #000;
 }
 .sec-con3 li span:nth-child(2){
     float: right;
