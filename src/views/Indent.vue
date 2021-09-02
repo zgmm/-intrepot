@@ -14,22 +14,149 @@
           <span>最近常买</span>
           <span>查看更多商家></span>
         </p>
-        <div class="shopList">
-          <ul class="list">
-            <a href="#" v-for="shop in shopList" :key="shop.lenght">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
               <li>
-                <img :src="shop.url" alt="" />
+                <img src="/images/俏九州.jpeg" alt="" />
                 <div class="gray">
-                  <p>{{ shop.title }}</p>
-                  <p>
-                    <span>{{ shop.time }}</span
-                    >个月前买过
-                  </p>
+                  <p>俏九州小炒黄牛肉</p>
+                  <p><span>1</span>个月前买过</p>
                 </div>
               </li>
-            </a>
-          </ul>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img src="/images/品正品.png" alt="" />
+                <div class="gray">
+                  <p>品正品港式</p>
+                  <p><span>2</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img src="/images/大浪淘沙.jpg" alt="" />
+                <div class="gray">
+                  <p>大浪淘沙哈哈哈</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img src="/images/御蝶坊.jpg" alt="" />
+                <div class="gray">
+                  <p>御蝶坊老婆饼</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img src="/images/思密达.jpg" alt="" />
+                <div class="gray">
+                  <p>思密达榴莲千层</p>
+                  <p><span>2</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img src="/images/愿者上钩.jpg" alt="" />
+                <div class="gray">
+                  <p>愿者上钩烤鱼</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img src="/images/首脑.jpg" alt="" />
+                <div class="gray">
+                  <p>首脑花式发型</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img src="/images/俏九州.jpeg" alt="" />
+                <div class="gray">
+                  <p>俏九州小炒黄牛肉</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img src="/images/汤鲜生.jpg" alt="" />
+                <div class="gray">
+                  <p>汤鲜生牛杂五味汤</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img src="/images/汉阳廷.jpeg" alt="" />
+                <div class="gray">
+                  <p>汉阳廷烤鱼</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img src="/images/桂小厨.jpg" alt="" />
+                <div class="gray">
+                  <p>桂小厨螺蛳粉</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+          </div>
         </div>
+        <!-- <div class="swiper-container">
+          <ul class="swiper-wrapper">
+            <div
+              class="swiper-slide"
+              v-for="shop in shopList"
+              :key="shop.lenght"
+            >
+                <li>
+                  <img :src="shop.url" alt="" />
+                  <div class="gray">
+                    <p>{{ shop.title }}</p>
+                    <p>
+                      <span>{{ shop.time }}</span
+                      >个月前买过
+                    </p>
+                  </div>
+                </li>
+                aaa
+            </div>
+          </ul>
+        </div> -->
+        <!-- <van-swipe :autoplay="3000" class="swiper-slide">
+          <van-swipe-item
+            v-for="shop in shopList"
+            :key="shop.lenght"
+            style="float: left"
+            class="swiper-slide"
+          >
+            <li>
+              <img :src="shop.url" alt="" />
+              <div class="gray">
+                <p>{{ shop.title }}</p>
+                <p>
+                  <span>{{ shop.time }}</span
+                  >个月前买过
+                </p>
+              </div>
+            </li>
+          </van-swipe-item>
+        </van-swipe> -->
       </div>
     </section>
     <section class="order">
@@ -221,6 +348,9 @@
 </template>
 
 <script>
+import "swiper/dist/css/swiper.css";
+import Swiper from "swiper";
+
 export default {
   name: "",
   props: [],
@@ -247,6 +377,11 @@ export default {
   computed: {},
   mounted() {
     this.getIndent();
+    new Swiper(".swiper-container", {
+      slidesPerView: 3,
+      spaceBetween: 15,
+      freeMode: true,
+    });
   },
 };
 </script>
