@@ -13,6 +13,8 @@ import {
     SwipeItem
 } from 'vant';
 
+import './plugins/vant'
+import 'vant/lib/index.css'
 import VueLazyload from 'vue-lazyload'
 
 Vue.use(VueLazyload, {

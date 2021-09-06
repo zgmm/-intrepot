@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="box">
         <header>
             <div>&lt;</div>
             <p>选择地址</p>
@@ -41,6 +41,9 @@ export default {
 }
 </script>
 <style scoped>
+.box{
+    text-align: center;
+}
     header{
         width: 100%;
         height: .8rem;

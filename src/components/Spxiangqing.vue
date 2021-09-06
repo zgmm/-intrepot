@@ -20,6 +20,9 @@
   </div>
 </template>
 <style scoped>
+.box{
+  text-align: center;
+}
 header {
   width: 100%;
   height: 2rem;

@@ -487,7 +487,9 @@ export default {
 };
 </script>
 <style scoped>
+
 .box {
+  text-align: center;
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -496,6 +498,7 @@ export default {
 .nav {
   width: 25%;
   position: relative;
+  margin-bottom: 1rem;
 }
 .erxiao,
 .zhekou,
@@ -532,13 +535,13 @@ export default {
   right: 0.1rem;
 }
 .nav a {
-  height: 1.5rem;
-  line-height: 1.5rem;
+  height: 2rem;
+  line-height: 2rem;
   padding: 0;
   border-bottom: 1px solid #ededed;
 }
 .van-sidebar-item--select::before {
-  height: 1rem;
+  height: 1.4rem;
   background-color: #3190e8;
   width: 0.1rem;
 }
@@ -571,11 +574,11 @@ export default {
   background-color: #434144;
   color: white;
   width: 2.9rem;
-  height: 0.5rem;
+  height: 0.8rem;
   border-radius: 10px;
   font-size: 0.23rem;
   font-weight: 200;
-  line-height: 0.5rem;
+  line-height: 0.8rem;
   text-align: center;
   padding: 0;
 }
@@ -596,7 +599,7 @@ export default {
 }
 .nav-text-cd > li {
   width: 100%;
-  height: 2rem;
+  height: 2.3rem;
   border-bottom: 1px solid #f8f8f8;
   padding: 0.15rem 0;
 }
@@ -619,7 +622,6 @@ export default {
 }
 .cd-text > h3 {
   font-size: 0.28rem;
-  margin: 0.15rem 0 0 0;
   letter-spacing: 1px;
 }
 .cd-text > h3 > span {
@@ -632,7 +634,7 @@ export default {
 }
 
 .cd-text p {
-  margin: 0.1rem 0 0 0;
+  margin: .05rem 0 0 0;
 }
 .cd-text .cd-caixi {
   color: #b5b5b5;

@@ -87,6 +87,7 @@
 }
 .pf-right p{
     font-size: .23rem;
+    margin-top: .15rem;
 }
 .pf-right p>img{
     margin: 0 .3rem;
@@ -142,9 +143,10 @@
 }
 .pl-box{
     width: 90%;
-    height: 3.5rem;
+    height: 3.7rem;
     margin-left: 5%;
     border-bottom: 1px solid #f1f1f1;
+    padding-bottom: .2rem;
 }
 .pl-box .pl-tx{
     float: left;

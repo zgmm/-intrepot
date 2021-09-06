@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="box">
         <header>
             <div>&lt;</div>
             <p>添加地址</p>
@@ -91,6 +91,12 @@ export default {
 }
 </script>
 <style scoped>
+    p{
+        margin-top: .2rem;
+    }
+.box{
+    text-align: center;
+}
     header{
         width: 100%;
         height: .8rem;
@@ -109,6 +115,7 @@ export default {
     }
     header p{
         line-height: .8rem;
+        margin: 0;
     }
     form{
         margin-top: .3rem;

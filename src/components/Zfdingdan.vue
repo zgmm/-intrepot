@@ -93,6 +93,9 @@ export default {
 };
 </script>
 <style scoped>
+.box{
+  text-align: center;
+}
 p {
   margin: 0;
 }
