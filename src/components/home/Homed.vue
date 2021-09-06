@@ -7,7 +7,7 @@
         <span class="iconfont icon-icon-copy top-text1"></span>
         <div class="top-text2">
           <!-- 接收登录数据 -->
-          <p>{{login.userNme}}</p>
+          <p>{{login.userName}}</p>
           <p><span class="iconfont icon-shouji"></span>暂无绑定手机</p>
         </div>
         <router-link to="/acountInfo">
@@ -46,7 +46,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="">
+          <router-link to="/vip">
             <span class="iconfont icon-huangguan"></span>
             饿了么会员卡
             <span class="iconfont icon-right"></span>
@@ -77,18 +77,18 @@
 <script>
 export default {
   name: "homed",
+  components:{},
   data() {
     return {
       login:{
-        userNme:"12345",
-        password:""
+        userName:"12345"
       }
     };
   },
   methods: {
     // 跳转到余额
     balance(){
-      this.$router.push("/balance")
+      this.$router.push({path:"/balance"})
     },
     // 跳转到优惠
     discounts(){
@@ -101,7 +101,9 @@ export default {
 
   },
   computed: {},
-  mounted() {},
+  mounted() {
+    window.sessionStorage.setItem('login',JSON.stringify(this.login))
+  },
 };
 </script>
 
@@ -159,7 +161,7 @@ section{
     width: 100%;
     height: 100%;
     background-color: #f5f5f5;
-    padding-bottom:4rem;
+    /* padding-bottom:4rem; */
 }
 .sec-con1{
     width: 100%;

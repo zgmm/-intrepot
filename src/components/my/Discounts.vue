@@ -14,7 +14,7 @@
         <div class="txt1">
           <p class="txt1-l">有<span>3</span>个红包即将过期</p>
           <p class="txt1-r">
-            <span class="iconfont icon-wenhao"></span>余额说明
+            <span class="iconfont icon-wenhao"></span>红包说明
           </p>
         </div>
         <div class="txt2">
@@ -156,6 +156,8 @@ export default {
 .tab-cont .txt1-r {
   float: right;
   color: #3190e8;
+  position: relative;
+  top: -.08rem;
 }
 .txt2 {
   border-top: 1px solid #ff5340;

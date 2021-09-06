@@ -2,7 +2,7 @@
   <div class="account">
     <!-- 头部 -->
     <header>
-      <span class="iconfont icon-AS" @click="$router.back(-1)"></span>
+      <span class="iconfont icon-AS" @click="$router.push('/')"></span>
       <p>账户信息</p>
     </header>
     <!-- 页面主题 -->
@@ -16,7 +16,7 @@
                 <input
                   id="upload"
                   type="file"
-                  style="display:none"
+                  style="display: none"
                   accept="image/gif,image/jpeg,image/png,image/jpg"
                   @change="freshImg"
                 />
@@ -28,11 +28,11 @@
             </div>
           </li>
         </a>
-        <a href="#">
+        <a href="javascript:void(0)" @click="midify">
           <li>
             <p>用户名</p>
             <div class="right">
-              <span class="font">{{ userName }}</span>
+              <span class="font">{{ login.userName }}</span>
               <span class="iconfont icon-right"></span>
             </div>
           </li>
@@ -46,8 +46,8 @@
           </li>
         </a>
         <li class="binding">账号绑定</li>
-        <a href="#">
-          <li @click="phone">
+        <a href="javascript:void(0)">
+          <li @click="phone" class="phon">
             <p>
               <span class="iconfont icon-shouji"></span>
               手机
@@ -68,25 +68,25 @@
           </li>
         </a>
       </ul>
-      <button class="exit">退出登录</button>
-      <div class='alert-phone'></div>
-      <div class='alert-exit'></div>
+      <button class="exit" @click="outLogin">退出登录</button>
+      <div class="alert-phone"></div>
+      <div class="alert-exit"></div>
     </section>
   </div>
 </template>
-
 
 <script>
 export default {
   name: "",
   data() {
     return {
-      userName: "122233",//获取用户名
+      userName: "122233", //获取用户名
       imgsrc: require("../../../public/images/登录 用户.png"), //用户没有上传图片的默认头像
-      headTip: "点击上传",//提示文字
-      alertPhone:false,
-      alertEexit:false,
-    }
+      headTip: "点击上传", //提示文字
+      alertPhone: false,
+      alertEexit: false,
+      login:{}
+    };
   },
   methods: {
     // 上传头像的点击事件
@@ -105,40 +105,63 @@ export default {
       fr.readAsDataURL(_this.imgObj); //将读取到的文件编码成Data URL
       _this.headTip = ""; // 清空我的提示
     },
+    midify() {
+      this.$router.push("/midifyUser");
+    },
     // 上传手机号弹框
-    phone(){
-
-    }
+    phone() {
+      this.$dialog
+        .alert({
+          title: "系统提示",
+          message: "请前往app绑定",
+        })
+    },
+    // 退出登录
+    outLogin() {
+      this.$dialog
+        .confirm({
+          title: "系统提示",
+          message: "确定要退出吗？",
+        })
+        .then(() => {
+          this.$router.push("/homei");
+        })
+        .catch(() => {
+         this.$dialog.close()
+        });
+    },
   },
-  mounted() {},
+  mounted() {
+    this.login =JSON.parse(window.sessionStorage.getItem('login'))
+  },
 };
 </script>
 
 <style scoped>
-header{
+header {
   width: 100%;
   height: 1rem;
-  background-color: #3190E8;
-  font-size: .4rem;
+  background-color: #3190e8;
+  font-size: 0.4rem;
   color: #fff;
-  padding: .2rem;
-  line-height: .45rem;
+  padding: 0.2rem;
+  line-height: 0.45rem;
 }
 .account {
   text-align: center;
 }
 
 .icon-AS {
-  width: 1.3rem;
-  font-size: 0.5rem;
+  width: 0.3rem;
+  font-size: 0.4rem;
   position: absolute;
-  right: 0.3rem;
+  right: 0.5rem;
   left: 0rem;
   font-weight: normal;
 }
 
 .box {
-  margin-top: .2rem;
+  margin-top: 0.2rem;
   width: 100%;
   height: 100%;
   background: #f7f7f7;
@@ -243,8 +266,8 @@ header{
 }
 .border {
   display: inline-block;
-  width:.8rem;
-  height:.8rem;
+  width: 0.8rem;
+  height: 0.8rem;
   border-radius: 50%;
   border: 1px solid #c3c3c3;
   overflow: hidden;
@@ -253,9 +276,9 @@ header{
   text-align: center;
   position: relative;
   z-index: 10;
-  margin-top: .3rem;
+  margin-top: 0.3rem;
   color: #000;
-  font-size: .1rem;
+  font-size: 0.1rem;
 }
 .imgDiv {
   width: 100%;

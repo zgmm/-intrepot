@@ -3,76 +3,76 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [{
-        path: '/',
+        path: '/', //一级路由我的页面
         component: () =>
-            import ('../views/Home.vue'),
-        children: [{
+            import('../views/Home.vue'),
+        children: [{ //二级路由
                 path: '',
-                redirect: 'homei',
-                meta: {
-                    isturn: true
-                }
-            },
-            {
-                path: 'homei',
-                component: () =>
-                    import ('../components/home/Homei.vue'),
-                meta: {
+                redirect: 'homed', //默认显示登录前页面
+                meta: { //用来判断一级路由是否显示在底部 true显示；false不显示
                     isturn: true
                 }
             },
             {
                 path: 'homed',
                 component: () =>
-                    import ('../components/home/Homed.vue'),
+                    import('../components/home/Homed.vue'),
                 meta: {
                     isturn: true
                 }
             },
             {
-                path: 'acountInfo',
+                path: 'homei', //登录后的页面
                 component: () =>
-                    import ('../components/my/AccountInfo.vue'),
+                    import('../components/home/Homei.vue'),
                 meta: {
-                    isturn: false
+                    isturn: true
                 }
             },
             {
-                path: 'balance',
+                path: 'acountInfo', //账户信息
                 component: () =>
-                    import ('../components/my/Balance.vue'),
-                meta: {
-                    isturn: false
-                }
+                    import('../components/my/AccountInfo.vue'),
             },
             {
-                path: 'integral',
+                path: 'balance', //我的余额
                 component: () =>
-                    import ('../components/my/Integral.vue'),
-                meta: {
-                    isturn: false
-                }
+                    import('../components/my/Balance.vue'),
             },
             {
-                path: 'discounts',
+                path: 'integral', //我的积分
                 component: () =>
-                    import ('../components/my/Discounts.vue'),
-                meta: {
-                    isturn: false
-                }
+                    import('../components/my/Integral.vue'),
             },
             {
-                path: '/product',
+                path: 'discounts', //我的优惠
+                component: () =>
+                    import('../components/my/Discounts.vue'),
+            },
+            {
+                path: 'product', //产品列表
                 name: 'Product',
                 component: () =>
-                    import ('../components/product/ProductList.vue')
-            }
+                    import('../components/product/ProductList.vue')
+            },
+            {
+                path: 'midifyUser', //修改用户名
+                name: 'MidifyUser',
+                component: () =>
+                    import('../components/my/MidifyUser.vue')
+            },
+            {
+                path: 'vip', //vip
+                name: 'Vip',
+                component: () =>
+                    import('../components/my/Vip.vue')
+            },
         ],
     },
     {
         path: '/indent',
         component: () =>
-            import ('../views/Indent.vue'),
+            import('../views/Indent.vue'),
         meta: {
             isturn: true
         }
@@ -80,7 +80,7 @@ const routes = [{
     {
         path: '/search',
         component: () =>
-            import ('../views/Search.vue'),
+            import('../views/Search.vue'),
         meta: {
             isturn: true
         }
@@ -89,7 +89,7 @@ const routes = [{
         path: '/takeaway',
         name: 'Takeaway',
         component: () =>
-            import ('../views/Takeaway.vue'),
+            import('../views/Takeaway.vue'),
         meta: {
             isturn: true
         }

@@ -2,7 +2,7 @@
     
   <div>
     <header class="top">
-      <p class="top-con1"><span class="iconfont icon-AS" @click="index"></span>我的</p>
+      <p class="top-con1"><span class="iconfont icon-AS" @click="$router.push('/takeaway')"></span>我的</p>
       <div class="top-con2">
         <span class="iconfont icon-icon-copy top-text1"></span>
         <div class="top-text2">
@@ -18,15 +18,15 @@
     </header>
     <section>
        <ul class="sec-con1">
-        <li @click="balance">
+        <li @click="$router.push('/balance')">
             <p><span>0.00</span>元</p>
             <p>我的金额</p>
         </li>
-        <li @click="discounts">
+        <li @click="$router.push('/discounts')">
             <p><span>3</span>个</p>
             <p>我的优惠</p>
         </li>
-        <li @click="integral">
+        <li @click="$router.push('/integral')">
             <p><span>0</span>分</p>
             <p>我的积分</p>
         </li>
@@ -82,20 +82,19 @@ export default {
     return {};
   },
   methods: {
-    balance() {
-      this.$router.push("/balance");
-    },
-    discounts() {
-      this.$router.push("/discounts");
-    },
-    integral() {
-      this.$router.push("/integral");
-    },
-    index(){
-      this.$router.replace("/takeaway");
-    },
     account(){
-      this.$router.push("/acountInfo");
+      this.$dialog.confirm({
+        title:"",
+        message:"请前往登录页面登录"
+      })
+       .then(() => {
+          // on confirm
+          this.$router.push('/homed')
+        })
+        .catch(() => {
+          // on cancel
+          return;
+        });
     }
   },
   computed: {},
@@ -157,7 +156,7 @@ section {
   width: 100%;
   height: 100%;
   background-color: #f5f5f5;
-  padding-bottom: 4rem;
+  /* padding-bottom: 4rem; */
 }
 .sec-con1 {
   width: 100%;
