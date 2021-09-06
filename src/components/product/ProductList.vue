@@ -39,7 +39,7 @@
             href="javascript:void(0)"
           >
             <div class="pic">
-              <img :src="list.src" alt="" />
+              <img v-lazy="list.src"/>
             </div>
             <div class="middle">
               <p class="title">
@@ -76,7 +76,7 @@
         <div class="box-left">
           <ul>
             <li>
-              <a href="javascript:void(0)"
+              <a href="javascript:void(0)" @click="loading()"
                 >异国料理<span class="num">3910</span></a
               >
             </li>
@@ -174,45 +174,47 @@
           <div class="food" v-show="num == 0">
             <ul>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >简餐<span class="shu">2857</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >盖浇饭<span class="shu">95</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >米饭面馆<span class="shu">75</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >包子粥店<span class="shu">30</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >香锅砂锅<span class="shu">15</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >麻辣烫<span class="shu">2</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >饺子混沌<span class="shu">2</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)">汉堡<span class="shu">4</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >汉堡<span class="shu">4</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >生煎锅贴<span class="shu">5</span></a
                 >
               </li>
@@ -221,49 +223,57 @@
           <div id="food" v-show="num == 1">
             <ul>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >小龙虾<span class="shu">39</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >地方小吃<span class="shu">69</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >烧烤<span class="shu">114</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >炸鸡炸串<span class="shu">15</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >鸭脖卤味<span class="shu">3</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)">零食<span class="shu">3</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >零食<span class="shu">3</span></a
+                >
               </li>
             </ul>
           </div>
           <div id="food" v-show="num == 2">
             <ul>
               <li>
-                <a href="javascript:void(0)">水果<span class="shu">31</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >水果<span class="shu">31</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)">生鲜<span class="shu">19</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >生鲜<span class="shu">19</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)">蔬菜<span class="shu">24</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >蔬菜<span class="shu">24</span></a
+                >
               </li>
               <li>
                 <a href="javascript:void(0)"
-                  >海鲜水产<span class="shu">34</span></a
+                  >海鲜水产<span class="shu" @click="loading()">34</span></a
                 >
               </li>
             </ul>
@@ -271,90 +281,106 @@
           <div id="food" v-show="num == 3">
             <ul>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >川湘菜<span class="shu">8</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >其他菜系<span class="shu">23</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >江浙菜<span class="shu">13</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)">粤菜<span class="shu">17</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >粤菜<span class="shu">17</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)">海鲜<span class="shu">13</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >海鲜<span class="shu">13</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >火锅烤鱼<span class="shu">2</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >东北菜<span class="shu">1</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >西北菜<span class="shu">3</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >云南菜<span class="shu">3</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >新疆菜<span class="shu">0</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)">鲁菜<span class="shu">3</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >鲁菜<span class="shu">3</span></a
+                >
               </li>
             </ul>
           </div>
           <div id="food" v-show="num == 4">
             <ul>
               <li>
-                <a href="javascript:void(0)">超市<span class="shu">25</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >超市<span class="shu">25</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >便利店<span class="shu">13</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >名酒坊<span class="shu">7</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >零食饮料<span class="shu">3</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)">水站<span class="shu">4</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >水站<span class="shu">4</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)">茶<span class="shu">1</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >茶<span class="shu">1</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)">奶站<span class="shu">0</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >奶站<span class="shu">0</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)">粮油<span class="shu">1</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >粮油<span class="shu">1</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)"
+                <a href="javascript:void(0)" @click="loading()"
                   >美妆母婴<span class="shu">3</span></a
                 >
               </li>
@@ -363,13 +389,19 @@
           <div id="food" v-show="num == 5">
             <ul>
               <li>
-                <a href="javascript:void(0)">鲜花<span class="shu">20</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >鲜花<span class="shu">20</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)">蛋糕<span class="shu">11</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >蛋糕<span class="shu">11</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)">面包<span class="shu">8</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >面包<span class="shu">8</span></a
+                >
               </li>
             </ul>
           </div>
@@ -377,89 +409,144 @@
             <ul>
               <li>
                 <a href="javascript:void(0)"
-                  >奶茶果汁<span class="shu">30</span></a
+                  >奶茶果汁<span class="shu" @click="loading()">30</span></a
                 >
               </li>
               <li>
-                <a href="javascript:void(0)">甜品<span class="shu">15</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >甜品<span class="shu">15</span></a
+                >
               </li>
               <li>
-                <a href="javascript:void(0)">咖啡<span class="shu">10</span></a>
+                <a href="javascript:void(0)" @click="loading()"
+                  >咖啡<span class="shu">10</span></a
+                >
               </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-    <div class="box-o" v-show="index === 2 && isShow">
+    <div class="box box-o" v-show="index === 2 && isShow">
       <ul class="box-os">
         <li>
-          <a href="javascript:void(0)"
+          <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-paixu"></span>智能排序</a
           >
         </li>
         <li>
-          <a href="javascript:void(0)"
+          <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-location"></span>距离最近</a
           >
         </li>
         <li>
-          <a href="javascript:void(0)"
+          <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-huangguan"></span>销量最高</a
           >
         </li>
         <li>
-          <a href="javascript:void(0)"
+          <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-jiage"></span>起送价最低</a
           >
         </li>
         <li>
-          <a href="javascript:void(0)"
+          <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-zhongs"></span>配送速度最快</a
           >
         </li>
         <li>
-          <a href="javascript:void(0)"
+          <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-xing"></span>评分最高</a
           >
         </li>
       </ul>
     </div>
-    <div class="box-t" v-show="index === 3 && isShow">
+    <div class="box box-t" v-show="index === 3 && isShow">
       <div class="box-ts">
-        <p>配送方式</p>
-        <ul>
-          <li class="list fengniao" @click="check($event)">
-            <span class="iconfont icon-fengniao"></span>蜂鸟专送
-          </li>
-        </ul>
-        <p>商家属性（可以多选）</p>
-        <ul class="box-list">
-          <li class="list" @click="check($event)">
-            <span class="kuang">品</span>品牌商家
-          </li>
-          <li class="list" @click="check($event)">
-            <span class="kuang">保</span>外卖保
-          </li>
-          <li class="list" @click="check($event)">
-            <span class="kuang">准</span>准时达
-          </li>
-          <li class="list" @click="check($event)">
-            <span class="kuang">新</span>新店
-          </li>
-          <li class="list" @click="check($event)">
-            <span class="kuang">付</span>在线支付
-          </li>
-          <li class="list" @click="check($event)">
-            <span class="kuang">票</span>开发票
-          </li>
-        </ul>
+        <div class="xuanze">
+          <p>配送方式</p>
+          <div class="radio-label">
+            <span class="iconfont icon-fengniao"></span>
+            <input
+              type="checkbox"
+              id="color1"
+              name="color"
+              @click="jiancha()"
+            />
+            <label for="color1">蜂鸟专送</label>
+          </div>
+          <p>商家属性（可以多选）</p>
+          <div class="radio-label">
+            <span>品</span>
+            <input
+              type="checkbox"
+              id="color2"
+              name="color"
+              @click="jiancha()"
+            />
+            <label for="color2">品牌商家</label>
+          </div>
+          <div class="radio-label">
+            <span>保</span>
+            <input
+              type="checkbox"
+              id="color3"
+              name="color"
+              @click="jiancha()"
+            />
+            <label for="color3">外卖保</label>
+          </div>
+          <div class="radio-label">
+            <span>准</span>
+            <input
+              type="checkbox"
+              id="color4"
+              name="color"
+              @click="jiancha()"
+            />
+            <label for="color4">准时达</label>
+          </div>
+          <div class="radio-label">
+            <span>新</span>
+            <input
+              type="checkbox"
+              id="color5"
+              name="color"
+              @click="jiancha()"
+            />
+            <label for="color5">新店</label>
+          </div>
+          <div class="radio-label">
+            <span>付</span>
+            <input
+              type="checkbox"
+              id="color6"
+              name="color"
+              @click="jiancha()"
+            />
+            <label for="color6">在线付</label>
+          </div>
+          <div class="radio-label">
+            <span>票</span>
+            <input
+              type="checkbox"
+              id="color7"
+              name="color"
+              @click="jiancha()"
+            />
+            <label for="color7">开发票</label>
+          </div>
+        </div>
         <div class="btn-box">
-          <button>清空</button>
-          <button>确定 <span class="sum">{{ counts }}</span></button>
+          <button @click="eliminate()">清空</button>
+          <button @click="loading()">
+            确定 <span class="sum">（{{ counts }}）</span>
+          </button>
         </div>
       </div>
     </div>
+    <!-- 加载动画 -->
+    <div class="loading"></div>
   </div>
 </template>
 <script>
@@ -471,8 +558,7 @@ export default {
       isShow: false,
       dropdown: "md-arrow-dropdown",
       list: [],
-      checked: false,
-      counts: [],
+      counts: 0,
     };
   },
   methods: {
@@ -487,23 +573,46 @@ export default {
         this.list = res.data;
       });
     },
-    check(e) {
-      let list = document.querySelectorAll(".list");
-      for (let i = 0; i < list.length; i++) {
-        this.checked = !this.checked;
-        if (this.checked) {
-          e.target.style.border = "1px solid #3190e8";
-          e.target.style.color = "#3190e8";
-        } else {
-          this.checked = false;
-          e.target.style.border = "1px solid #ccc";
-          e.target.style.color = "#666";
+    jiancha() {
+      var xxx = document.getElementsByName("color");
+      var chenck = xxx.length;
+      var chestr = 0;
+      for (var i = 0; i < chenck; i++) {
+        if (xxx[i].checked == true) {
+          chestr++;
+          this.counts = chestr;
         }
+      }
+      let sum = document.querySelector(".sum");
+      if (this.counts <= 0) {
+        sum.setAttribute("style", "display:none");
+      } else {
+        sum.setAttribute("style", "display:contents");
+      }
+    },
+    eliminate() {
+      let sum = document.querySelector(".sum");
+      var xxx = document.getElementsByName("color");
+      for (var i = 0; i < xxx.length; i++) {
+        xxx[i].checked = false;
+      }
+      sum.setAttribute("style", "display:none");
+    },
+    loading() {
+      let loading = document.querySelector(".loading");
+      let box = document.querySelectorAll(".box");
+      loading.setAttribute("style", "display:block");
+      setTimeout(function () {
+        loading.setAttribute("style", "display:none");
+      }, 2000);
+      for (let i = 0; i < box.length; i++) {
+        box[i].setAttribute("style", "display:none");
       }
     },
   },
   mounted() {
     this.getList();
+    this.jiancha();
   },
   /* 创建前显示的样式 */
   beforeCreate() {

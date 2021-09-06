@@ -14,21 +14,108 @@
           <span>最近常买</span>
           <span>查看更多商家></span>
         </p>
-        <div class="shopList">
-          <ul class="list">
-            <a href="#" v-for="shop in shopList" :key="shop.lenght">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
               <li>
-                <img :src="shop.url" alt="" />
+                <img v-lazy="img.j" />
                 <div class="gray">
-                  <p>{{ shop.title }}</p>
-                  <p>
-                    <span>{{ shop.time }}</span
-                    >个月前买过
-                  </p>
+                  <p>俏九州小炒黄牛肉</p>
+                  <p><span>1</span>个月前买过</p>
                 </div>
               </li>
-            </a>
-          </ul>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img v-lazy="img.a" alt="" />
+                <div class="gray">
+                  <p>品正品港式</p>
+                  <p><span>2</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img v-lazy="img.b" alt="" />
+                <div class="gray">
+                  <p>大浪淘沙哈哈哈</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img v-lazy="img.c" alt="" />
+                <div class="gray">
+                  <p>御蝶坊老婆饼</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img v-lazy="img.d" alt="" />
+                <div class="gray">
+                  <p>思密达榴莲千层</p>
+                  <p><span>2</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img v-lazy="img.e" alt="" />
+                <div class="gray">
+                  <p>愿者上钩烤鱼</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img v-lazy="img.f" alt="" />
+                <div class="gray">
+                  <p>首脑花式发型</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img v-lazy="img.j" alt="" />
+                <div class="gray">
+                  <p>俏九州小炒黄牛肉</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img v-lazy="img.g" alt="" />
+                <div class="gray">
+                  <p>汤鲜生牛杂五味汤</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img v-lazy="img.h" alt="" />
+                <div class="gray">
+                  <p>汉阳廷烤鱼</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+            <div class="swiper-slide">
+              <li>
+                <img v-lazy="img.i" alt="" />
+                <div class="gray">
+                  <p>桂小厨螺蛳粉</p>
+                  <p><span>1</span>个月前买过</p>
+                </div>
+              </li>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -61,7 +148,7 @@
           <a href="" v-for="com in getCom" :key="com.lenght">
             <div class="orderAll">
               <div class="tou">
-                <img :src="com.src" alt="" />
+                <img v-lazy="com.src" />
                 <div class="orderInfo">
                   <p>{{ com.title }}></p>
                   <div class="discounts">
@@ -77,13 +164,13 @@
               <div class="center">
                 <div class="one">
                   <div class="pic">
-                    <img :src="com.cuisine" alt="" />
+                    <img v-lazy="com.cuisine" />
                   </div>
                   <p>{{ com.comtitle }}</p>
                 </div>
                 <div class="two">
                   <div class="pic">
-                    <img :src="com.cuisine" alt="" />
+                    <img v-lazy="com.cuisine" />
                   </div>
                   <p>{{ com.comtitle }}</p>
                 </div>
@@ -197,7 +284,7 @@
       <ul class="nominate">
         <a href="#" v-for="recom in recom" :key="recom.lenght">
           <li>
-            <img :src="recom.cuisine" alt="" />
+            <img v-lazy="recom.cuisine" />
             <div class="minBox">
               <p id="titles">{{ recom.title }}</p>
               <p>
@@ -221,6 +308,9 @@
 </template>
 
 <script>
+import "swiper/dist/css/swiper.css";
+import Swiper from "swiper";
+
 export default {
   name: "",
   props: [],
@@ -230,6 +320,18 @@ export default {
       shopList: [],
       getCom: [],
       recom: [],
+      img: {
+        j: "/images/俏九州.jpeg",
+        a: "/images/品正品.png",
+        b: "/images/大浪淘沙.jpg",
+        c: "/images/御蝶坊.jpg",
+        d: "/images/思密达.jpg",
+        e: "/images/愿者上钩.jpg",
+        f: "/images/首脑.jpg",
+        g: "/images/汤鲜生.jpg",
+        h: "/images/汉阳廷.jpeg",
+        i: "/images/桂小厨.jpg",
+      },
     };
   },
   methods: {
@@ -247,6 +349,11 @@ export default {
   computed: {},
   mounted() {
     this.getIndent();
+    new Swiper(".swiper-container", {
+      slidesPerView: 3,
+      spaceBetween: 15,
+      freeMode: true,
+    });
   },
 };
 </script>
