@@ -12,6 +12,12 @@ import {
     Swipe,
     SwipeItem
 } from 'vant';
+import './plugins/vant'
+
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+Vue.use(Vant);
 
 import './plugins/vant'
 import 'vant/lib/index.css'
