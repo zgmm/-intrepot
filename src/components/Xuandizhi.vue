@@ -1,13 +1,13 @@
 <template>
     <div class="box">
         <header>
-            <div>&lt;</div>
+            <div @click="fanhui">&lt;</div>
             <p>选择地址</p>
         </header>
         <div class="text">
             <ul>
                 <li v-for="val in dizhi" :key="val.id" class="text-li">
-                    <div v-if="val.show">
+                    <div v-if="val.show" @click="getID(val.id)">
                         <p class="name">{{val.name}}<span>({{val.sex}})</span><span>{{val.phone}}</span></p>
                         <p class="address">{{val.address}}</p>
                         <p class="bq"><span>{{val.bq}}</span></p>
@@ -30,12 +30,17 @@ export default {
     methods: {
         add(){
             this.$router.push('/tiandizhi')
+        },
+        fanhui(){
+            this.$router.push('/zfdingdan')
+        },
+        getID(id){
+            this.$router.push({path:'/zfdingdan',query:{id:id}});
         }
     },
     mounted() {
         this.axios.get("http://localhost:3000/dizhi").then((res)=>{
             this.dizhi=res.data;
-            console.log(this.dizhi);
         })
     },
 }
@@ -73,13 +78,16 @@ export default {
         overflow: hidden;
         padding: 0;
         margin-left: 5%;
+        border: 1px solid #d3d2d2;
+        box-shadow: 1px 1px 5px gray;
     }
     .text-li{
-        border-bottom: 1px solid #f5f5f5;
+        border-bottom: 1px solid #e0dfdf;
     }
     .text-li>div{
-        width: 100%;
+        width: 90%;
         height: 100%;
+        margin-left: 5%;
     }
     .text .name{
         font-weight: bold;

@@ -96,7 +96,7 @@ const routes = [{
 },
     ,
 {
-    path: '/xuandizhi',
+    path: '/xuandizhi', //选择地址
     name: 'Xuandizhi',
     component: () => import('../components/Xuandizhi.vue'),
     meta: {
@@ -104,7 +104,7 @@ const routes = [{
     }
 },
 {
-    path: '/tiandizhi',
+    path: '/tiandizhi', //添加地址
     name: 'Tiandizhi',
     component: () => import('../components/Tiandizhi.vue'),
     meta: {
@@ -112,7 +112,7 @@ const routes = [{
     }
 },
 {
-    path: '/zfdingdan',
+    path: '/zfdingdan', //支付订单
     name: 'Zfdingdan',
     component: () => import('../components/Zfdingdan.vue'),
     meta: {
@@ -120,19 +120,19 @@ const routes = [{
     }
 },
 {
-    path: '/spxiangqing',
+    path: '/spxiangqing', // 商品详情
     component: () => import('../components/Spxiangqing.vue'),
     children: [
         {
-            path: "/",
+            path: "/", // 二级路由 =>商品
             component: () => import('../components/Shangpin.vue'),
         },
         {
-            path: 'shangpin',
+            path: 'shangpin',// 二级路由 =>商品
             component: () => import('../components/Shangpin.vue'),
         },
         {
-            path: 'pingjia',
+            path: 'pingjia',// 二级路由 =>评价
             component: () => import('../components/Pingjia.vue'),
         },
     ],
