@@ -37,7 +37,7 @@
             </div>
           </li>
         </a>
-        <a href="#">
+        <a href="javascript:viod(0)" @click="$router.push('/xuandizhi')">
           <li>
             <p>收货地址</p>
             <div class="right">

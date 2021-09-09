@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <header>
-            <div>&lt;</div>
+            <div @click="$router.replace('/xuandizhi')">&lt;</div>
             <p>添加地址</p>
         </header>
         <form>

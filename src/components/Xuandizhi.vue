@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <header>
-            <div>&lt;</div>
+            <div @click="$router.back(-1)">&lt;</div>
             <p>选择地址</p>
         </header>
         <div class="text">
