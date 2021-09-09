@@ -41,7 +41,7 @@ header {
     background: #fff;
 }
 
-.menuList .classify {
+.menuList div {
     width: 33%;
     height: 100%;
     line-height: .6rem;
@@ -109,7 +109,8 @@ header {
     height: auto;
 }
 
-.active {
+.box-left ul li .active {
+    color: #3190e8;
     background: #fff;
 }
 
@@ -178,15 +179,6 @@ header {
     height: auto;
     margin-bottom: 5rem;
     background: #fff;
-}
-
-.box-os li {
-    width: 100%;
-    height: 1rem;
-}
-
-.box-os li.active {
-    background: #acd4f8;
 }
 
 .box-os li a {
@@ -352,7 +344,6 @@ header {
 
 .individual {
     display: flex;
-    background: #fff;
     width: 100%;
     height: 2rem;
     align-items: center;

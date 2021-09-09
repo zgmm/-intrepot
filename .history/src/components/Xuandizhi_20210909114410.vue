@@ -41,7 +41,12 @@ export default {
   },
   methods: {
     add() {
-      this.$router.replace("/tiandizhi");
+      this.$router.push("/tiandizhi");
+    },
+    methods: {
+      add() {
+        this.$router.replace("/tiandizhi");
+      },
     },
     getID(id) {
       this.$router.push({ path: "/zfdingdan", query: { id: id } });
@@ -150,7 +155,6 @@ footer {
   height: 1rem;
   color: #1296db;
   border-top: 1px solid gray;
-  background: #fff;
 }
 footer p {
   margin: 0;

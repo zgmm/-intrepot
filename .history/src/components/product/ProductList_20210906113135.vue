@@ -37,7 +37,6 @@
             :key="list.length"
             class="individual"
             href="javascript:void(0)"
-            @click="enterShop()"
           >
             <div class="pic">
               <img v-lazy="list.src" />
@@ -430,33 +429,33 @@
     </div>
     <div class="box box-o" v-show="index === 2 && isShow">
       <ul class="box-os">
-        <li @click="clickli(0)" :class="{active:categoryIndex==0}">
-          <a href="javascript:void(0)" @click="sorting()"
+        <li>
+          <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-paixu"></span>智能排序</a
           >
         </li>
-        <li  @click="clickli(1)" :class="{active:categoryIndex==1}">
-          <a href="javascript:void(0)" @click="recently()"
+        <li>
+          <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-location"></span>距离最近</a
           >
         </li>
-        <li  @click="clickli(2)" :class="{active:categoryIndex==2}">
-          <a href="javascript:void(0)" @click="sales()"
+        <li>
+          <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-huangguan"></span>销量最高</a
           >
         </li>
-        <li  @click="clickli(3)" :class="{active:categoryIndex==3}">
+        <li>
           <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-jiage"></span>起送价最低</a
           >
         </li>
-        <li  @click="clickli(4)" :class="{active:categoryIndex==4}">
-          <a href="javascript:void(0)" @click="speed()"
+        <li>
+          <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-zhongs"></span>配送速度最快</a
           >
         </li>
-        <li  @click="clickli(5)" :class="{active:categoryIndex==5}">
-          <a href="javascript:void(0)" @click="grade()"
+        <li>
+          <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-xing"></span>评分最高</a
           >
         </li>
@@ -560,15 +559,17 @@ export default {
       dropdown: "md-arrow-dropdown",
       list: [],
       counts: 0,
-      categoryIndex:7,
     };
   },
   computed:{
-
+    sortList(){
+      return this.list.minites.sort(sortNumber)
+      console.log(list)
+    }
   },
   methods: {
-    clickli(index){
-      this.categoryIndex = index
+    sortNumber(){
+      return a-b;
     },
     show(value) {
       this.index === value
@@ -618,45 +619,6 @@ export default {
       }
       this.eliminate();
       this.show();
-    },
-        //进入商家
-    enterShop(){
-      this.$router.replace("/spxiangqing")
-    },
-    //销量最高
-    sales(){
-      this.loading()
-      this.axios.get("http://localhost:3000/protuctList?_order=desc&_sort=num").then((res) => {
-        this.list = res.data;
-      });
-    },
-    //评分最高
-    grade(){
-      this.loading()
-      this.axios.get("http://localhost:3000/protuctList?_order=desc&_sort=grade").then((res) => {
-        this.list = res.data;
-      });
-    },
-    //智能排序
-    sorting(){
-      this.loading();
-      this.speed();
-      this.recently();
-      this.grade();
-    },
-    //速度最快
-    speed(){
-      this.loading()
-      this.axios.get("http://localhost:3000/protuctList?_order=asc&_sort=house").then((res) => {
-        this.list = res.data;
-      });
-    },
-    //距离最近
-    recently(){
-      this.loading()
-      this.axios.get("http://localhost:3000/protuctList?_order=asc&_sort=distance").then((res) => {
-        this.list = res.data;
-      });
     },
   },
   mounted() {

@@ -621,6 +621,7 @@ export default {
     },
         //进入商家
     enterShop(){
+      this.loading();
       this.$router.replace("/spxiangqing")
     },
     //销量最高

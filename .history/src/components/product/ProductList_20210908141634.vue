@@ -37,7 +37,6 @@
             :key="list.length"
             class="individual"
             href="javascript:void(0)"
-            @click="enterShop()"
           >
             <div class="pic">
               <img v-lazy="list.src" />
@@ -618,10 +617,6 @@ export default {
       }
       this.eliminate();
       this.show();
-    },
-        //进入商家
-    enterShop(){
-      this.$router.replace("/spxiangqing")
     },
     //销量最高
     sales(){

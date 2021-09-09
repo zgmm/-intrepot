@@ -113,6 +113,10 @@ header {
     background: #fff;
 }
 
+.show {
+    background: #eee;
+}
+
 .num {
     display: inline-block;
     padding: 0 0.1rem;
@@ -178,15 +182,6 @@ header {
     height: auto;
     margin-bottom: 5rem;
     background: #fff;
-}
-
-.box-os li {
-    width: 100%;
-    height: 1rem;
-}
-
-.box-os li.active {
-    background: #acd4f8;
 }
 
 .box-os li a {
@@ -352,7 +347,6 @@ header {
 
 .individual {
     display: flex;
-    background: #fff;
     width: 100%;
     height: 2rem;
     align-items: center;

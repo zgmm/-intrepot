@@ -18,10 +18,8 @@
         <div class="dizhi-bottom"><img src="../../public/images/bg.jpg" /></div>
       </div>
       <div class="dizhi-two" v-if="dizhi_two">
-        <p class="two-dz">{{ dizhi.address }}</p>
-        <p class="two-name">
-          {{ dizhi.name }} ({{ dizhi.sex }})<span>{{ dizhi.phone }}</span>
-        </p>
+        <p class="two-dz">{{dizhi.address}}</p>
+        <p class="two-name">{{dizhi.name}} ({{dizhi.sex}})<span>{{dizhi.phone}}</span></p>
         <span class="xuanze" @click="xuanze">></span>
         <div class="dizhi-bottom"><img src="../../public/images/bg.jpg" /></div>
       </div>
@@ -92,8 +90,8 @@ export default {
       dizhi: {},
       show: false,
       active: false,
-      dizhi_one: true,
-      dizhi_two: false,
+      dizhi_one:true,
+      dizhi_two:false
     };
   },
   computed: {
@@ -130,14 +128,14 @@ export default {
       .then((res) => {
         this.dizhi = res.data;
       });
-    console.log(this.$route.query.id);
-    if (this.$route.query.id > 1) {
-      this.dizhi_two = true;
-      this.dizhi_one = false;
-    } else {
-      this.dizhi_two = false;
-      this.dizhi_one = true;
-    }
+      console.log(this.$route.query.id);
+      if(this.$route.query.id>1){
+        this.dizhi_two=true;
+        this.dizhi_one=false;
+      }else{
+        this.dizhi_two=false;
+        this.dizhi_one=true;
+      }
   },
 };
 </script>
@@ -185,7 +183,7 @@ header #wode {
   background-color: #fff;
   position: relative;
 }
-.dizhi .dizhi-one {
+.dizhi .dizhi-one{
   width: 100%;
   height: 100%;
   position: absolute;
@@ -213,43 +211,43 @@ header #wode {
   position: absolute;
   bottom: 0;
 }
-.dizhi-bottom img {
+.dizhi-bottom img{
   float: left;
 }
-.dizhi .dizhi-two {
+.dizhi .dizhi-two{
   width: 100%;
   height: 100%;
   position: 0;
   top: 0;
   left: 0;
 }
-.dizhi-two p {
+.dizhi-two p{
   text-indent: 20px;
 }
-.dizhi-two .two-dz {
-  font-size: 0.3rem;
+.dizhi-two .two-dz{
+  font-size: .3rem;
   font-weight: bold;
   width: 100%;
   overflow: hidden;
   float: left;
-  margin-top: 0.2rem;
+  margin-top: .2rem;
 }
-.dizhi-two .two-name {
-  font-size: 0.23rem;
+.dizhi-two .two-name{
+  font-size: .23rem;
   color: gray;
   width: 100%;
   float: left;
-  margin-top: 0.1rem;
+  margin-top: .1rem;
 }
-.two-name span {
-  margin-left: 0.15rem;
+.two-name span{
+  margin-left: .15rem;
 }
-.dizhi-two .xuanze {
+.dizhi-two .xuanze{
   display: block;
-  font-size: 0.35rem;
+  font-size: .35rem;
   position: absolute;
-  right: 0.3rem;
-  top: 0.4rem;
+  right: .3rem;
+  top:.4rem;
   padding: 0.01rem 0.02rem;
 }
 .time {
@@ -370,8 +368,6 @@ header #wode {
   color: white;
   font-size: 0.32rem;
   line-height: 1rem;
-  position: fixed;
-  bottom: 0;
 }
 .sum .sum-lf {
   width: 70%;
