@@ -1,7 +1,7 @@
 <template>
     <div class="box">
         <header>
-            <div>&lt;</div>
+            <div @click="$router.replace('/xuandizhi')">&lt;</div>
             <p>添加地址</p>
         </header>
         <form>
@@ -82,7 +82,7 @@ export default {
             this.axios.post("http://localhost:3000/dizhi",this.dizhi).then((res)=>{
                 alert("添加成功")
             });
-            this.$router.push('/xuandizhi');
+            this.$router.replace('/xuandizhi');
         },
         yincang(){
             this.show=false
