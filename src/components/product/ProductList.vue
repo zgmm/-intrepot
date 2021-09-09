@@ -2,8 +2,11 @@
   <div id="#app">
     <!-- 头部 -->
     <header>
-      <span class="iconfont icon-AS"></span>
-      <p>甜品饮品</p>
+      <span
+        class="iconfont icon-AS"
+        @click="$router.replace('/takeaway')"
+      ></span>
+      <p>{{ page }}</p>
     </header>
     <!-- 下拉菜单 -->
     <div class="menuList">
@@ -430,32 +433,32 @@
     </div>
     <div class="box box-o" v-show="index === 2 && isShow">
       <ul class="box-os">
-        <li @click="clickli(0)" :class="{active:categoryIndex==0}">
+        <li @click="clickli(0)" :class="{ active: categoryIndex == 0 }">
           <a href="javascript:void(0)" @click="sorting()"
             ><span class="iconfont icon-paixu"></span>智能排序</a
           >
         </li>
-        <li  @click="clickli(1)" :class="{active:categoryIndex==1}">
+        <li @click="clickli(1)" :class="{ active: categoryIndex == 1 }">
           <a href="javascript:void(0)" @click="recently()"
             ><span class="iconfont icon-location"></span>距离最近</a
           >
         </li>
-        <li  @click="clickli(2)" :class="{active:categoryIndex==2}">
+        <li @click="clickli(2)" :class="{ active: categoryIndex == 2 }">
           <a href="javascript:void(0)" @click="sales()"
             ><span class="iconfont icon-huangguan"></span>销量最高</a
           >
         </li>
-        <li  @click="clickli(3)" :class="{active:categoryIndex==3}">
+        <li @click="clickli(3)" :class="{ active: categoryIndex == 3 }">
           <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-jiage"></span>起送价最低</a
           >
         </li>
-        <li  @click="clickli(4)" :class="{active:categoryIndex==4}">
+        <li @click="clickli(4)" :class="{ active: categoryIndex == 4 }">
           <a href="javascript:void(0)" @click="speed()"
             ><span class="iconfont icon-zhongs"></span>配送速度最快</a
           >
         </li>
-        <li  @click="clickli(5)" :class="{active:categoryIndex==5}">
+        <li @click="clickli(5)" :class="{ active: categoryIndex == 5 }">
           <a href="javascript:void(0)" @click="grade()"
             ><span class="iconfont icon-xing"></span>评分最高</a
           >
@@ -560,15 +563,18 @@ export default {
       dropdown: "md-arrow-dropdown",
       list: [],
       counts: 0,
-      categoryIndex:7,
+      categoryIndex: 7,
+      page: "",
     };
   },
-  computed:{
 
-  },
+  computed: {},
   methods: {
-    clickli(index){
-      this.categoryIndex = index
+    getRouterData() {
+      this.page = this.$route.query.title;
+    },
+    clickli(index) {
+      this.categoryIndex = index;
     },
     show(value) {
       this.index === value
@@ -619,49 +625,59 @@ export default {
       this.eliminate();
       this.show();
     },
-        //进入商家
-    enterShop(){
-      this.$router.replace("/spxiangqing")
+    //进入商家
+    enterShop() {
+      this.$router.replace("/spxiangqing");
     },
     //销量最高
-    sales(){
-      this.loading()
-      this.axios.get("http://localhost:3000/protuctList?_order=desc&_sort=num").then((res) => {
-        this.list = res.data;
-      });
+    sales() {
+      this.loading();
+      this.axios
+        .get("http://localhost:3000/protuctList?_order=desc&_sort=num")
+        .then((res) => {
+          this.list = res.data;
+        });
     },
     //评分最高
-    grade(){
-      this.loading()
-      this.axios.get("http://localhost:3000/protuctList?_order=desc&_sort=grade").then((res) => {
-        this.list = res.data;
-      });
+    grade() {
+      this.loading();
+      this.axios
+        .get("http://localhost:3000/protuctList?_order=desc&_sort=grade")
+        .then((res) => {
+          this.list = res.data;
+        });
     },
     //智能排序
-    sorting(){
+    sorting() {
       this.loading();
       this.speed();
       this.recently();
       this.grade();
     },
     //速度最快
-    speed(){
-      this.loading()
-      this.axios.get("http://localhost:3000/protuctList?_order=asc&_sort=house").then((res) => {
-        this.list = res.data;
-      });
+    speed() {
+      this.loading();
+      this.axios
+        .get("http://localhost:3000/protuctList?_order=asc&_sort=house")
+        .then((res) => {
+          this.list = res.data;
+        });
     },
     //距离最近
-    recently(){
-      this.loading()
-      this.axios.get("http://localhost:3000/protuctList?_order=asc&_sort=distance").then((res) => {
-        this.list = res.data;
-      });
+    recently() {
+      this.loading();
+      this.axios
+        .get("http://localhost:3000/protuctList?_order=asc&_sort=distance")
+        .then((res) => {
+          this.list = res.data;
+        });
     },
   },
   mounted() {
+    this.getRouterData();
     this.getList();
     this.jiancha();
+
   },
   /* 创建前显示的样式 */
   beforeCreate() {

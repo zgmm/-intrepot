@@ -16,71 +16,31 @@ export default {
 };
 </script>
 <style>
-div#app {
-  width: 100% !important ;
-}
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #666666;
-  font-size: 0.15rem;
-}
-body,html{
-  width: 100%;
-  height: 100%;
-}
- #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* text-align: center; */
-  color: #666666;
-  font-size: .15rem;
-  width: 100%;
-  height: 100%;
-}
-/*
-#nav {
-  padding: 30px;
-}
+  body{
+    background: #f5f5f5;
+  }
+  #app {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #666666;
+    font-size: .15rem;
+  }
+  /*
+  #nav {
+    padding: 30px;
+  }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-*/
-#footer{
-  text-align: center;
-}
-#footer a.router-link-exact-active {
-  color: #1fa7ff;
-}
-ul,
-li,
-dl,
-ol {
-  list-style: none;
-}
-a {
-  text-decoration: none;
-  color: #000;
-}
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
-* {
-  padding: 0;
-  margin: 0;
-}
-*{
-  margin: 0;
-  padding: 0;
-}
-html,body{
-  width: 100%;
-  height: 100%;
-}
+  #nav a {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  */
+  #footer a.router-link-exact-active {
+    color: #1FA7FF;
+  } 
+  ul,li,dl,ol{
+    list-style: none;
+  }
 </style>

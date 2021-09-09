@@ -7,8 +7,12 @@
         "build": "vue-cli-service build"
     },
     "dependencies": {
+        "animate": "^1.0.0",
+        "animate.css": "^4.1.1",
+        "animated": "^0.2.2",
         "axios": "^0.21.1",
         "core-js": "^3.6.5",
+        "element-ui": "^2.15.6",
         "load-vue": "0.0.6",
         "mockjs": "^1.1.0",
         "normalize": "^0.3.1",
