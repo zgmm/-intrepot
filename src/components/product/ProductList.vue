@@ -571,7 +571,12 @@ export default {
   computed: {},
   methods: {
     getRouterData() {
-      this.page = this.$route.query.title;
+      console.log(this.$route.query.title)
+      if (this.$route.query.title != undefined) {
+        this.page = this.$route.query.title;
+      } else{
+        this.page = '商品列表'
+      }
     },
     clickli(index) {
       this.categoryIndex = index;

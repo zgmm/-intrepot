@@ -130,7 +130,7 @@ export default {
                 this.$router.push({
                     path: '/home',
                     query: {
-                        id:this.loginUser.id
+                        username:this.loginUser.username
                     }
                     // 从路由获取id
                     // this.$route.query.id
@@ -143,7 +143,7 @@ export default {
                 this.$router.push({
                     path: '/home',
                     query: {
-                        id: res.data.id   
+                        username: res.data.username   
                     }
                     // 从路由获取id
                     // this.$route.query.id
