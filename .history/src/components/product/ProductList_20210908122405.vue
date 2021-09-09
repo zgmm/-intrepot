@@ -37,7 +37,6 @@
             :key="list.length"
             class="individual"
             href="javascript:void(0)"
-            @click="enterShop()"
           >
             <div class="pic">
               <img v-lazy="list.src" />
@@ -430,32 +429,32 @@
     </div>
     <div class="box box-o" v-show="index === 2 && isShow">
       <ul class="box-os">
-        <li @click="clickli(0)" :class="{active:categoryIndex==0}">
+        <li>
           <a href="javascript:void(0)" @click="sorting()"
             ><span class="iconfont icon-paixu"></span>智能排序</a
           >
         </li>
-        <li  @click="clickli(1)" :class="{active:categoryIndex==1}">
+        <li>
           <a href="javascript:void(0)" @click="recently()"
             ><span class="iconfont icon-location"></span>距离最近</a
           >
         </li>
-        <li  @click="clickli(2)" :class="{active:categoryIndex==2}">
+        <li>
           <a href="javascript:void(0)" @click="sales()"
             ><span class="iconfont icon-huangguan"></span>销量最高</a
           >
         </li>
-        <li  @click="clickli(3)" :class="{active:categoryIndex==3}">
+        <li @click="clickli(index)" :class="{show:categoryIndex == index}">
           <a href="javascript:void(0)" @click="loading()"
             ><span class="iconfont icon-jiage"></span>起送价最低</a
           >
         </li>
-        <li  @click="clickli(4)" :class="{active:categoryIndex==4}">
+        <li>
           <a href="javascript:void(0)" @click="speed()"
             ><span class="iconfont icon-zhongs"></span>配送速度最快</a
           >
         </li>
-        <li  @click="clickli(5)" :class="{active:categoryIndex==5}">
+        <li>
           <a href="javascript:void(0)" @click="grade()"
             ><span class="iconfont icon-xing"></span>评分最高</a
           >
@@ -560,7 +559,7 @@ export default {
       dropdown: "md-arrow-dropdown",
       list: [],
       counts: 0,
-      categoryIndex:7,
+      categoryIndex:0,
     };
   },
   computed:{
@@ -618,10 +617,6 @@ export default {
       }
       this.eliminate();
       this.show();
-    },
-        //进入商家
-    enterShop(){
-      this.$router.replace("/spxiangqing")
     },
     //销量最高
     sales(){

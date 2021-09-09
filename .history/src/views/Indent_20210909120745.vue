@@ -282,7 +282,7 @@
     </section>
     <section class="recommendList">
       <ul class="nominate">
-        <a href="javascript:void(0)" v-for="recom in recom" :key="recom.lenght" @click="again()">
+        <a href="#" v-for="recom in recom" :key="recom.lenght">
           <li>
             <img v-lazy="recom.cuisine" />
             <div class="minBox">

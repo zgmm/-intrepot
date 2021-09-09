@@ -24,7 +24,7 @@ import 'vant/lib/index.css'
 import VueLazyload from 'vue-lazyload'
 
 Vue.use(VueLazyload, {
-    loading: require('../public/images/zcool.gif'), //加载中图片，一定要有，不然会一直重复加载占位图
+    loading: require('../public/images/zcool.jpg'), //加载中图片，一定要有，不然会一直重复加载占位图
 });
 
 Vue.use(VueAxios, axios)

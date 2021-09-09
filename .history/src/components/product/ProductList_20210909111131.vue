@@ -567,6 +567,11 @@ export default {
 
   },
   methods: {
+    //进入商家
+    enterShop(){
+      this.loading()
+      this.$router.replace("http://localhost:8080/shangpin")
+    },
     clickli(index){
       this.categoryIndex = index
     },
@@ -618,10 +623,6 @@ export default {
       }
       this.eliminate();
       this.show();
-    },
-        //进入商家
-    enterShop(){
-      this.$router.replace("/spxiangqing")
     },
     //销量最高
     sales(){

@@ -12,7 +12,7 @@
       <div class="often">
         <p class="title">
           <span>最近常买</span>
-          <span @click="more()">查看更多商家></span>
+          <span>查看更多商家></span>
         </p>
         <div class="swiper-container">
           <div class="swiper-wrapper">
@@ -145,12 +145,12 @@
       </p>
       <div class="orderList">
         <div class="orderListBox" v-show="0 === number">
-          <a href="javascript:void(0)" v-for="com in getCom" :key="com.lenght">
+          <a href="" v-for="com in getCom" :key="com.lenght">
             <div class="orderAll">
               <div class="tou">
                 <img v-lazy="com.src" />
                 <div class="orderInfo">
-                  <p @click="again()">{{ com.title }}></p>
+                  <p>{{ com.title }}></p>
                   <div class="discounts">
                     <div>
                       <span>{{ com.ssows }}</span>
@@ -180,7 +180,7 @@
                 </div>
               </div>
               <div class="right">
-                <button @click="again()">再来一单</button>
+                <button>再来一单</button>
                 <button>小问卷</button>
                 <button>评价得40金豆</button>
               </div>
@@ -188,12 +188,12 @@
           </a>
         </div>
         <div class="orderEvaluate" v-show="1 === number">
-          <a href="javascript:void(0)">
+          <a href="">
             <div class="orderAll">
               <div class="tou">
                 <img src="/images/俏九州.jpeg" alt="" />
                 <div class="orderInfo">
-                  <p @click="again()">俏九州香辣湖南菜（龙华店）></p>
+                  <p>俏九州香辣湖南菜（龙华店）></p>
                   <div class="discounts">
                     <div>
                       <span>19减17</span>|
@@ -224,18 +224,18 @@
                 </div>
               </div>
               <div class="right">
-                <button @click="again()">再来一单</button>
+                <button>再来一单</button>
               </div>
             </div>
           </a>
         </div>
         <div class="orderFefund" v-show="2 === number">
-          <a href="javascript:void(0)">
+          <a href="">
             <div class="orderAll">
               <div class="tou">
                 <img src="/images/俏九州.jpeg" alt="" />
                 <div class="orderInfo">
-                  <p @click="again()">俏九州香辣湖南菜（龙华店）></p>
+                  <p>俏九州香辣湖南菜（龙华店）></p>
                   <div class="discounts">
                     <div>
                       <span>19减17</span>|
@@ -267,7 +267,7 @@
               </div>
               <div class="right">
                 <button>退款详情</button>
-                <button @click="again()">再来一单</button>
+                <button>再来一单</button>
               </div>
             </div>
           </a>
@@ -282,7 +282,7 @@
     </section>
     <section class="recommendList">
       <ul class="nominate">
-        <a href="javascript:void(0)" v-for="recom in recom" :key="recom.lenght" @click="again()">
+        <a href="#" v-for="recom in recom" :key="recom.lenght">
           <li>
             <img v-lazy="recom.cuisine" />
             <div class="minBox">
@@ -332,6 +332,7 @@ export default {
         h: "/images/汉阳廷.jpeg",
         i: "/images/桂小厨.jpg",
       },
+      show:true,
     };
   },
   methods: {
@@ -345,12 +346,6 @@ export default {
         this.recom = res.data[0].recom;
       });
     },
-    again(){
-      this.$router.replace("/spxiangqing")
-    },
-    more(){
-      this.$router.replace("/product")
-    }
   },
   computed: {},
   mounted() {

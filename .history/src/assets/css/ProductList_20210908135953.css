@@ -185,10 +185,6 @@ header {
     height: 1rem;
 }
 
-.box-os li.active {
-    background: #acd4f8;
-}
-
 .box-os li a {
     margin: 0 auto;
     display: block;

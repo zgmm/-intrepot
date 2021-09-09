@@ -150,7 +150,7 @@
               <div class="tou">
                 <img v-lazy="com.src" />
                 <div class="orderInfo">
-                  <p @click="again()">{{ com.title }}></p>
+                  <p>{{ com.title }}></p>
                   <div class="discounts">
                     <div>
                       <span>{{ com.ssows }}</span>
@@ -193,7 +193,7 @@
               <div class="tou">
                 <img src="/images/俏九州.jpeg" alt="" />
                 <div class="orderInfo">
-                  <p @click="again()">俏九州香辣湖南菜（龙华店）></p>
+                  <p>俏九州香辣湖南菜（龙华店）></p>
                   <div class="discounts">
                     <div>
                       <span>19减17</span>|
@@ -235,7 +235,7 @@
               <div class="tou">
                 <img src="/images/俏九州.jpeg" alt="" />
                 <div class="orderInfo">
-                  <p @click="again()">俏九州香辣湖南菜（龙华店）></p>
+                  <p>俏九州香辣湖南菜（龙华店）></p>
                   <div class="discounts">
                     <div>
                       <span>19减17</span>|
@@ -282,7 +282,7 @@
     </section>
     <section class="recommendList">
       <ul class="nominate">
-        <a href="javascript:void(0)" v-for="recom in recom" :key="recom.lenght" @click="again()">
+        <a href="#" v-for="recom in recom" :key="recom.lenght">
           <li>
             <img v-lazy="recom.cuisine" />
             <div class="minBox">

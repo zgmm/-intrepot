@@ -150,7 +150,6 @@ footer {
   height: 1rem;
   color: #1296db;
   border-top: 1px solid gray;
-  background: #fff;
 }
 footer p {
   margin: 0;

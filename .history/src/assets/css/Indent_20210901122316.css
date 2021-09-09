@@ -187,11 +187,6 @@ header {
     justify-content: space-around;
 }
 
-img[lazy="loading"] {
-    width: 1rem;
-    height: 1rem;
-}
-
 .orderAll img {
     width: 0.8rem;
     height: 0.8rem;
