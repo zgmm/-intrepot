@@ -564,7 +564,7 @@ export default {
       list: [],
       counts: 0,
       categoryIndex: 7,
-      page: "",
+      page: "商品列表",
     };
   },
 
@@ -677,6 +677,7 @@ export default {
     this.getRouterData();
     this.getList();
     this.jiancha();
+    this.page;
   },
   /* 创建前显示的样式 */
   beforeCreate() {

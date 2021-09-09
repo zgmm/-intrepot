@@ -28,6 +28,9 @@ Vue.use(animated)
 Vue.use(ElementUI)
 Vue.use(VueAxios, axios)
 Vue.use(view)
+import view from 'view-design'
+import 'view-design/dist/styles/iview.css'
+Vue.use(view)
 
 new Vue({
     router,

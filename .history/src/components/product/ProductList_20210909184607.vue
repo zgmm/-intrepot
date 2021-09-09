@@ -564,7 +564,7 @@ export default {
       list: [],
       counts: 0,
       categoryIndex: 7,
-      page: "",
+      page: "商品列表",
     };
   },
 
