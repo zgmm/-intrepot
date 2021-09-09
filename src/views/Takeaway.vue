@@ -10,7 +10,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <ul> 
-                        <li v-for="item in taHead1" :key="item.id" @click="Tahead1(item.id)">
+                        <li v-for="item in taHead1" :key="item.length" @click="Tahead1(item.id)">
                             <img :src="item.cuisine" alt="">
                             <p>{{item.title}}</p>
                         </li>
@@ -110,7 +110,7 @@ export default {
         },
         Tahead1(id) {
             this.$router.push({
-                path: '/food',
+                path: '/product',
                 query: {
                     id:id
                 }
@@ -120,7 +120,7 @@ export default {
         // this.$route.query.id
         Tahead2(id) {
              this.$router.push({
-                path: '/food',
+                path: '/product',
                 query: {
                     id:id
                 }
@@ -128,7 +128,7 @@ export default {
         },
         Business(id) {
              this.$router.push({
-                path: '/shop',
+                path: '/product',
                 query: {
                     id:id
                 }
@@ -153,6 +153,10 @@ export default {
 </script>
 
 <style scoped>
+.Takeaway{
+    text-align: center;
+    /* padding: .1rem; */
+}
     .Takeaway header{
         width: 100%;
         z-index: 2;
@@ -185,7 +189,7 @@ export default {
     .Takeaway .swiper-container .swiper-wrapper .swiper-slide ul{
         overflow: hidden;
         width: 6.26rem;
-        margin-left: -0.55rem;
+        /* margin-left: -0.55rem; */
     }
     .Takeaway .swiper-container .swiper-wrapper .swiper-slide ul li{
         width: .86rem;
@@ -221,7 +225,7 @@ export default {
     .Takeaway .business ul li {
         position: relative;
         width: 6.41rem;
-        margin-left: -0.69rem;
+        /* margin-left: -0.69rem; */
         height: 1.81rem;
         padding-top: .34rem;
         border-bottom: 1px solid #ebebeb;
@@ -299,7 +303,7 @@ export default {
         border: 1px solid #3190e8;
     }
     .Takeaway .business ul li .brand p:nth-child(4){
-        padding-left: .26rem;
+        padding:.2rem .26rem;
         position: relative;
     }
     .Takeaway .business ul li .brand p:nth-child(4)>span:nth-child(2){

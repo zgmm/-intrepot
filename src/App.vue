@@ -23,7 +23,7 @@ export default {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    text-align: center;
+    /* text-align: center; */
     color: #666666;
     font-size: .15rem;
   }
@@ -42,5 +42,12 @@ export default {
   } 
   ul,li,dl,ol{
     list-style: none;
+  }
+  a{
+    text-decoration: none;
+  }
+  *{
+    margin: 0;
+    padding: 0;
   }
 </style>

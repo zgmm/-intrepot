@@ -2,7 +2,7 @@
   <div class="account">
     <!-- 头部 -->
     <header>
-      <span class="iconfont icon-AS" @click="$router.push('/')"></span>
+      <span class="iconfont icon-AS" @click="$router.push('/home')"></span>
       <p>账户信息</p>
     </header>
     <!-- 页面主题 -->
@@ -124,7 +124,7 @@ export default {
           message: "确定要退出吗？",
         })
         .then(() => {
-          this.$router.push("/homei");
+          this.$router.push("/home/homei");
         })
         .catch(() => {
          this.$dialog.close()

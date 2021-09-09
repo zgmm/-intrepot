@@ -70,7 +70,7 @@ export default {
     methods:{
         // 返回我的页面
         backHome() {
-            this.$router.push('/home')
+            this.$router.back(-1)
         },
         // 切换密码是否显示
         toggle() {
