@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <ul id="footer">
+  <div >
+    <ul id="footer" v-show="$route.meta.isturn">
         <li>
             <router-link to='/takeaway'>
                 <span class="iconfont icon-eliaomo"></span>
@@ -56,11 +56,12 @@ mounted() {
         display: flex;
         justify-content: space-around;
         position: fixed;
-        bottom: -0.16rem;
+        bottom: 0rem;
         left: 0;
         padding: .1rem;
         background-color: #fff;
         z-index: 99;
+        text-align: center;
     }
     a{
         text-decoration: none;

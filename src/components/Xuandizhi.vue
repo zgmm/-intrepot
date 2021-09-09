@@ -1,33 +1,26 @@
 <template>
-  <div class="box">
-    <header>
-      <div @click="$router.back(-1)">&lt;</div>
-      <p>选择地址</p>
-    </header>
-    <div class="text">
-      <ul>
-        <li v-for="val in dizhi" :key="val.id" class="text-li">
-          <div v-if="val.show">
-            <p class="name">
-              {{ val.name }}<span>({{ val.sex }})</span
-              ><span>{{ val.phone }}</span>
-            </p>
-            <p class="address">{{ val.address }}</p>
-            <p class="bq">
-              <span>{{ val.bq }}</span>
-            </p>
-          </div>
-        </li>
-      </ul>
-    </div>
+    <div class="box">
+        <header>
+            <div @click="$router.back(-1)">&lt;</div>
+            <p>选择地址</p>
+        </header>
+        <div class="text">
+            <ul>
+                <li v-for="val in dizhi" :key="val.id" class="text-li">
+                    <div v-if="val.show">
+                        <p class="name">{{val.name}}<span>({{val.sex}})</span><span>{{val.phone}}</span></p>
+                        <p class="address">{{val.address}}</p>
+                        <p class="bq"><span>{{val.bq}}</span></p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <footer>
+            <p @click="add"><img src="../../public/images/tianjia.png">新增收货地址</p>
+        </footer>
     <div class="daiti" v-if="show">
       <img src="../../public/images/zanwushuju.png" />暂无地址...
     </div>
-    <footer>
-      <p @click="add">
-        <img src="../../public/images/tianjia.png" />新增收货地址
-      </p>
-    </footer>
   </div>
 </template>
 <script>

@@ -30,6 +30,18 @@ Vue.use(VueAxios, axios)
 Vue.use(view)
 Vue.config.productionTip = false
 
+import Vant from 'vant'
+import 'vant/lib/index.css'
+Vue.use(Vant)
+
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload,{
+  loading:require('../public/images/zcool.gif')
+})
+import view from 'view-design'
+import 'view-design/dist/styles/iview.css'
+Vue.use(view)
+
 new Vue({
     router,
     store,

@@ -7,9 +7,13 @@
         "build": "vue-cli-service build"
     },
     "dependencies": {
+<<<<<<< HEAD
         "animate": "^1.0.0",
         "animate.css": "^4.1.1",
         "animated": "^0.2.2",
+=======
+        "animate.css": "^4.1.1",
+>>>>>>> eaf9c1fb467c5b1757014128b990bf36cbef3d42
         "axios": "^0.21.1",
         "core-js": "^3.6.5",
         "element-ui": "^2.15.6",

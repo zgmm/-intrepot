@@ -10,7 +10,7 @@
           <p>{{login.userName}}</p>
           <p><span class="iconfont icon-shouji"></span>暂无绑定手机</p>
         </div>
-        <router-link to="/acountInfo">
+        <router-link to="/home/acountInfo">
           <span class="iconfont icon-right top-text3"></span>
         </router-link>
       </div>
@@ -32,7 +32,7 @@
       </ul>
       <ul class="sec-con2">
         <li>
-          <router-link to="/indent">
+          <router-link to="/home/indent">
             <span class="iconfont icon-icon-"></span>
             我的订单
             <span class="iconfont icon-right"></span>
@@ -46,7 +46,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/vip">
+          <router-link to="/home/vip">
             <span class="iconfont icon-huangguan"></span>
             饿了么会员卡
             <span class="iconfont icon-right"></span>
@@ -88,15 +88,15 @@ export default {
   methods: {
     // 跳转到余额
     balance(){
-      this.$router.push({path:"/balance"})
+      this.$router.push({path:"/home/balance"})
     },
     // 跳转到优惠
     discounts(){
-      this.$router.push("/discounts")
+      this.$router.push("/home/discounts")
     },
     // 跳转到积分
     integral(){
-      this.$router.push("/integral")
+      this.$router.push("/home/integral")
     }
 
   },
