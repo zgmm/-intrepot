@@ -1,9 +1,15 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import login from '../views/login.vue'
+
 Vue.use(VueRouter)
 
 const routes = [{
-        path: '/', //一级路由我的页面
+        path: '/',
+        redirect: '/login'
+    },
+    {
+        path: 'home', //一级路由我的页面
         component: () => import('../views/Home.vue'),
         children: [{ //二级路由
                 path: '',
@@ -136,11 +142,32 @@ const routes = [{
         meta: {
             isturn: false
         },
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: login
+    },
+    {
+        path: '/forget',
+        name: 'forget',
+        component: () => import('../views/forget.vue'),
     }
 ]
+
 const router = new VueRouter({
-    mode: 'history',
-    base: process.env.BASE_URL,
     routes
+})
+
+router.beforeEach((to, from, next) => {
+    if (to.path == '/' || to.path == '/login' || to.path == '/forget') {
+        next();
+    } else {
+        if (window.sessionStorage.getItem("token")) {
+            next();
+        } else {
+            next("/login");
+        }
+    }
 })
 export default router

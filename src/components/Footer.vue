@@ -1,7 +1,6 @@
 <template>
   <div>
-    <!-- <div>{{$route}}</div> -->
-    <ul id="footer" v-show="$route.meta.isturn">
+    <ul id="footer">
         <li>
             <router-link to='/takeaway'>
                 <span class="iconfont icon-eliaomo"></span>
@@ -21,7 +20,7 @@
             </router-link>
         </li>
         <li>
-            <router-link to="/">
+            <router-link to="/home">
                 <span class="iconfont icon-mine-active"></span>
                 <div>我的</div>
             </router-link>
@@ -57,7 +56,7 @@ mounted() {
         display: flex;
         justify-content: space-around;
         position: fixed;
-        bottom: 0;
+        bottom: -0.16rem;
         left: 0;
         padding: .1rem;
         background-color: #fff;

@@ -1,0 +1,494 @@
+* {
+    overflow: hidden;
+}
+
+header {
+    width: 100%;
+    height: 0.9rem;
+    line-height: 0.9rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: 0.3rem;
+    font-weight: bold;
+    background: #3190e8;
+    color: #fff;
+    z-index: 100;
+    text-align: center;
+}
+
+.icon-AS {
+    width: 1.3rem;
+    font-size: 0.5rem;
+    position: absolute;
+    right: 0.3rem;
+    left: 0rem;
+    font-weight: normal;
+}
+
+.menuList {
+    width: 100%;
+    height: .6rem;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin-top: 0.9rem;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background: #fff;
+}
+
+.menuList .classify {
+    width: 33%;
+    height: 100%;
+    line-height: .6rem;
+    text-align: center;
+    font-size: 0.21rem;
+    border-right: 1px solid #ccc;
+}
+
+.menuList .active {
+    color: #3190e8;
+}
+
+.menuList div:last-child {
+    border: none;
+}
+
+.down {
+    font-size: 0.28rem;
+}
+
+.box {
+    margin-top: 1.5rem;
+    width: 100%;
+    height: auto;
+    background: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+.vessel {
+    width: 100%;
+    height: 5.4rem;
+    background: #fff;
+    margin-bottom: 6rem;
+}
+
+.box-left {
+    width: 50%;
+    height: auto;
+    background: #F1F1F1;
+    float: left;
+}
+
+.box-left ul li a {
+    display: block;
+    width: 100%;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    padding: 0 0.2rem;
+    box-sizing: border-box;
+    color: #666;
+    position: relative;
+}
+
+.box-left ul li a .iconfont {
+    font-size: 0.3rem;
+    margin-right: .05rem;
+    color: #F18383;
+}
+
+.box-left ul li a .box-right {
+    width: 50%;
+    height: auto;
+}
+
+.active {
+    background: #fff;
+}
+
+.num {
+    display: inline-block;
+    padding: 0 0.1rem;
+    height: 0.3rem;
+    line-height: 0.32rem;
+    background: #ccc;
+    border-radius: 0.18rem;
+    position: absolute;
+    right: .4rem;
+    top: 0.15rem;
+}
+
+.jiantou {
+    position: absolute;
+    top: 0.2rem;
+    right: .1rem;
+    color: #ccc;
+    font-size: 0.23rem;
+}
+
+.box-right {
+    width: 50%;
+    height: 5.4rem;
+    float: right;
+    overflow: auto;
+}
+
+.food {
+    width: 100%;
+    height: 100%;
+}
+
+.box-right a {
+    color: #888;
+    display: block;
+    width: 100%;
+    padding: 0 0.25rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    border-bottom: 1px solid #eee;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.shu {
+    position: absolute;
+    right: 0.3rem;
+}
+
+.box-o {
+    margin-top: 1.5rem;
+    width: 100%;
+    height: auto;
+    background: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+.box-os {
+    width: 100%;
+    height: auto;
+    margin-bottom: 5rem;
+    background: #fff;
+}
+
+.box-os li {
+    width: 100%;
+    height: 1rem;
+}
+
+.box-os li.active {
+    background: #f0cccc;
+}
+
+.box-os li a {
+    margin: 0 auto;
+    display: block;
+    padding: 0 0.25rem;
+    width: 95%;
+    height: 1rem;
+    line-height: 1rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+    color: #666;
+}
+
+.box-os li a .iconfont {
+    font-size: 0.3rem;
+    margin-right: 0.3rem;
+}
+
+.box-t {
+    margin-top: 1.5rem;
+    width: 100%;
+    height: auto;
+    background: rgba(0, 0, 0, .3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+.box-ts {
+    width: 100%;
+    height: auto;
+    margin-bottom: 5.5rem;
+    background: #fff;
+    padding-left: 0.2rem;
+    box-sizing: border-box;
+}
+
+.box-ts .iconfont {
+    position: absolute;
+    top: .05rem;
+    border: none;
+}
+
+.box-ts span {
+    position: absolute;
+    height: 0.3rem;
+    width: 0.3rem;
+    line-height: 0.3rem;
+    top: .09rem;
+    left: .1rem;
+    border: 1px solid #F18383;
+    text-align: center;
+}
+
+.radio-label,
+.radio-check {
+    display: inline-block;
+    position: relative;
+}
+
+.radio-label input[type="checkbox"] {
+    appearance: none;
+    /*清楚默认样式*/
+    -webkit-appearance: none;
+    /* opacity: 0; */
+    outline: none;
+    position: absolute;
+    z-index: 2;
+    width: 6px;
+    height: 6px;
+    top: 10px;
+    left: 10px;
+    border-radius: 50%;
+}
+
+.radio-label label {
+    display: inline-block;
+    width: 1.8rem;
+    height: .5rem;
+    line-height: .5rem;
+    text-align: center;
+    border-radius: .05rem;
+    color: #444;
+    background-color: #eee;
+    margin-right: 0.12rem;
+}
+
+.radio-label input[type="checkbox"]:checked {
+    opacity: 0;
+}
+
+.radio-label input[type="checkbox"]:checked+label {
+    color: #fff;
+    background-color: #3597db;
+}
+
+.iconq {
+    font-size: .25rem;
+    position: absolute;
+    right: -.11rem;
+    bottom: -.11rem;
+    z-index: 1;
+    opacity: 0;
+}
+
+.tou {
+    line-height: .7rem;
+    border: 0;
+}
+
+.fengniao {
+    display: block;
+    width: 1.5rem;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    text-align: center;
+    border: 1px solid #ccc;
+    color: #666;
+}
+
+.xuanze p {
+    line-height: 0.75rem;
+}
+
+.btn-box {
+    width: 103%;
+    height: 1rem;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-left: -0.2rem;
+}
+
+.btn-box button {
+    width: 45%;
+    height: 0.65rem;
+    font-size: 0.28rem;
+    font-family: "微软雅黑";
+    border-radius: 0.2rem;
+}
+
+.btn-box button:nth-child(1) {
+    background: #fff;
+    border: none;
+    color: #000;
+}
+
+.btn-box button:nth-child(2) {
+    background: #56D176;
+    border: none;
+    color: #fff;
+}
+
+.menus {
+    margin-top: 1.3rem;
+    width: 100%;
+    height: auto;
+    padding: 0.2rem 0.1rem;
+}
+
+.individual {
+    display: flex;
+    background: #fff;
+    width: 100%;
+    height: 2rem;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 1px solid #eee;
+}
+
+.individual .pic {
+    width: 1.5rem;
+    height: 1.4rem;
+}
+
+.individual .pic img {
+    width: 100%;
+    height: 1.4rem;
+}
+
+.middle {
+    width: 2.5rem;
+    margin-left: 0.1rem;
+}
+
+.middle .title {
+    font-size: 0.25rem;
+    color: #333;
+    font-family: "微软雅黑";
+    font-weight: bold;
+}
+
+.middle .title .brand {
+    display: inline-block;
+    font-size: 0.2rem;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    background: #FFD930;
+    border-radius: .05rem;
+    vertical-align: middle;
+    margin-bottom: .05rem;
+    margin-right: 0.1rem;
+    font-weight: normal;
+}
+
+.middle .stra {
+    font-size: 0.12rem;
+    line-height: 0.55rem;
+    color: #666;
+}
+
+.middle .stra .xing {
+    color: #FF9A0D;
+    font-size: 0.2rem;
+}
+
+.middle .stra .score {
+    color: #FF6000;
+    margin: 0 .05rem;
+}
+
+.middle .stra .yue {
+    display: inline-block;
+    font-size: 0.18rem;
+    transform: scale(0.8);
+    vertical-align: middle;
+}
+
+.delivery {
+    color: #666;
+    font-size: 0.2rem;
+}
+
+.surely {
+    text-align: right;
+}
+
+.surely p:nth-child(1) {
+    display: inline-block;
+    border: 1px solid #eee;
+    text-align: center;
+    padding: 0 0.1rem;
+    font-size: 0.2rem;
+    transform: scale(0.8);
+    color: #888;
+}
+
+.surely p:nth-child(2) {
+    line-height: 0.55rem;
+}
+
+.surely p:nth-child(2) span:nth-child(1) {
+    background: #3190e8;
+    color: #fff;
+    font-size: 0.2rem;
+    transform: scale(0.8);
+    display: inline-block;
+    height: 0.3rem;
+    line-height: 0.3rem;
+}
+
+.surely p:nth-child(2) span:nth-child(2) {
+    background: #fff;
+    color: #3190e8;
+    font-size: 0.2rem;
+    transform: scale(0.8);
+    display: inline-block;
+    height: 0.3rem;
+    line-height: 0.3rem;
+    border: #3190e8 1px solid;
+}
+
+.surely p:nth-child(3) {
+    color: #888;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.surely p:nth-child(3) span {
+    color: #3190e8;
+}
+
+.box-ts .sum {
+    position: relative;
+    border: none;
+    display: none;
+    top: -.08rem;
+    vertical-align: middle;
+}
+
+.loading {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    background: url(../../../public/images//loading.gif);
+    background-size: cover;
+    display: none;
+}
