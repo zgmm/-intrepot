@@ -6,7 +6,7 @@
       会员中心
     </header>
     <section class="sec">
-      <p class="con1">为账户<span>{{login.userName}}</span>购买会员</p>
+      <p class="con1">为账户<span>{{login.username}}</span>购买会员</p>
       <ul class="con2">
         <li class="txt1">
           <p>会员特权</p>
@@ -48,14 +48,26 @@ export default {
   name: "",
   data() {
     return {
-        login:{}
+        login:{},
+        loginId:1
     };
   },
-  methods: {},
+  methods: {
+    showUsername() {
+      this.loginId = window.sessionStorage.getItem('token')
+      this.axios
+        .get("http://localhost:3000/login/" + this.loginId)
+        .then((res) => {
+          this.login = res.data;
+          console.log(this.login);
+        });
+    },
+  },
   computed: {},
   mounted() {
+    this.showUsername()
     // 获取保存在sessionstorage里面的user
-      this.login = JSON.parse(window.sessionStorage.getItem('login'))
+    // this.login = JSON.parse(window.sessionStorage.getItem('login'))
   },
 };
 </script>

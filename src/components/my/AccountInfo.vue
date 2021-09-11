@@ -32,7 +32,7 @@
           <li>
             <p>用户名</p>
             <div class="right">
-              <span class="font">{{ login.userName }}</span>
+              <span class="font">{{ login.username }}</span>
               <span class="iconfont icon-right"></span>
             </div>
           </li>
@@ -59,7 +59,7 @@
         </a>
         <li class="binding">安全设置</li>
         <a href="#">
-          <li style="border-botton">
+          <li style="border-botton" @click="$router.push('/forget')">
             <p>登录密码</p>
             <div class="right">
               <span class="font">修改</span>
@@ -80,7 +80,6 @@ export default {
   name: "",
   data() {
     return {
-      userName: "122233", //获取用户名
       imgsrc: require("../../../public/images/登录 用户.png"), //用户没有上传图片的默认头像
       headTip: "点击上传", //提示文字
       alertPhone: false,
@@ -106,7 +105,7 @@ export default {
       _this.headTip = ""; // 清空我的提示
     },
     midify() {
-      this.$router.push("/midifyUser");
+      this.$router.push("/home/midifyUser");
     },
     // 上传手机号弹框
     phone() {
@@ -124,15 +123,25 @@ export default {
           message: "确定要退出吗？",
         })
         .then(() => {
-          this.$router.push("/home/homei");
+          this.$router.replace("/home/homei");
         })
         .catch(() => {
          this.$dialog.close()
         });
     },
+    showUsername() {
+      this.loginId = window.sessionStorage.getItem('token')
+      this.axios
+        .get("http://localhost:3000/login/" + this.loginId)
+        .then((res) => {
+          this.login = res.data;
+          console.log(this.login);
+        });
+    }
   },
   mounted() {
-    this.login =JSON.parse(window.sessionStorage.getItem('login'))
+    this.showUsername()
+    // this.login =JSON.parse(window.sessionStorage.getItem('login'))
   },
 };
 </script>
@@ -140,9 +149,10 @@ export default {
 <style scoped>
 header {
   width: 100%;
-  height: 1rem;
+  height: 0.9rem;
   background-color: #3190e8;
-  font-size: 0.4rem;
+  font-size: 0.3rem;
+  font-weight: bold;
   color: #fff;
   padding: 0.2rem;
   line-height: 0.45rem;
@@ -156,7 +166,7 @@ header {
   font-size: 0.4rem;
   position: absolute;
   right: 0.5rem;
-  left: 0rem;
+  left: 0.1rem;
   font-weight: normal;
 }
 

@@ -7,7 +7,7 @@
         <span class="iconfont icon-icon-copy top-text1"></span>
         <div class="top-text2">
           <!-- 接收登录数据 -->
-          <p>{{ login.userName }}</p>
+          <p>{{ login.username }}</p>
           <p><span class="iconfont icon-shouji"></span>暂无绑定手机</p>
         </div>
         <router-link to="/home/acountInfo">
@@ -80,9 +80,8 @@ export default {
   components: {},
   data() {
     return {
-      login: {
-        userName: "12345",
-      },
+      login: {},
+      loginId:1
     };
   },
   methods: {
@@ -99,19 +98,20 @@ export default {
       this.$router.push("/home/integral");
     },
 
-    showUaername() {
-      console.log(this.$route.query.userName);
-      if (this.$route.query.userName == undefined) {
-        this.login.userName = this.login.userName;
-      } else {
-        this.login.userName = this.$route.query.userName;
-      }
+    showUsername() {
+      this.axios
+        .get("http://localhost:3000/login/" + this.loginId)
+        .then((res) => {
+          this.login = res.data;
+          console.log(this.login);
+        });
     },
   },
   computed: {},
   mounted() {
-    this.showUaername();
-    window.sessionStorage.setItem("login", JSON.stringify(this.login));
+    this.loginId = window.sessionStorage.getItem('token')
+    console.log(window.sessionStorage.getItem('token'))
+    this.showUsername();
   },
 };
 </script>

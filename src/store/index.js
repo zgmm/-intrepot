@@ -28,7 +28,7 @@ export default new Vuex.Store({
     },
     getsum(state,sumber){
       state.sum=sumber+8
-    }
+    },
   },
   actions: {
   },
