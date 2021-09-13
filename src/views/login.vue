@@ -130,7 +130,7 @@ export default {
                 this.$router.push({
                     path: '/home',
                     query: {
-                        username:this.loginUser.username
+                        id:this.loginUser.id
                     }
                     // 从路由获取id
                     // this.$route.query.id
@@ -139,11 +139,11 @@ export default {
                 return;
             }
             this.axios.post("http://localhost:3000/login",this.user).then(res => {
-                window.sessionStorage.setItem("token", res.data[0]);
+                window.sessionStorage.setItem("token", res.data.id);
                 this.$router.push({
                     path: '/home',
                     query: {
-                        username: res.data.username   
+                        id: res.data.id  
                     }
                     // 从路由获取id
                     // this.$route.query.id
