@@ -4,13 +4,13 @@
     <header class="top">
       <p class="top-con1"><span class="iconfont icon-AS"></span>我的</p>
       <div class="top-con2">
-        <span class="iconfont icon-icon-copy top-text1"></span>
-        <div class="top-text2">
-          <!-- 接收登录数据 -->
-          <p>{{ login.username }}</p>
-          <p><span class="iconfont icon-shouji"></span>暂无绑定手机</p>
-        </div>
         <router-link to="/home/acountInfo">
+          <div class="top-text1"><img :src="imgsrc" alt=""></div>
+          <div class="top-text2">
+            <!-- 接收登录数据 -->
+            <p>{{ login.username }}</p>
+            <p><span class="iconfont icon-shouji"></span>暂无绑定手机</p>
+          </div>
           <span class="iconfont icon-right top-text3"></span>
         </router-link>
       </div>
@@ -32,7 +32,7 @@
       </ul>
       <ul class="sec-con2">
         <li>
-          <router-link to="/home/indent">
+          <router-link to="/indent">
             <span class="iconfont icon-icon-"></span>
             我的订单
             <span class="iconfont icon-right"></span>
@@ -81,7 +81,8 @@ export default {
   data() {
     return {
       login: {},
-      loginId:1
+      loginId: 1,
+       imgsrc: require("../../../public/images/login.png")
     };
   },
   methods: {
@@ -103,14 +104,12 @@ export default {
         .get("http://localhost:3000/login/" + this.loginId)
         .then((res) => {
           this.login = res.data;
-          console.log(this.login);
         });
     },
   },
   computed: {},
   mounted() {
-    this.loginId = window.sessionStorage.getItem('token')
-    console.log(window.sessionStorage.getItem('token'))
+    this.loginId = window.sessionStorage.getItem("token");
     this.showUsername();
   },
 };
@@ -118,14 +117,14 @@ export default {
 
 <style scoped>
 .top {
-  font-size: 0.25rem;
+  font-size: 0.3rem;
   background-color: #3190e8;
   width: 100%;
   box-sizing: border-box;
 }
 .top-con1 {
   width: 100%;
-  height: 0.5rem;
+  height: 0.6rem;
   text-align: center;
   position: relative;
   color: #fff;
@@ -134,9 +133,9 @@ export default {
 }
 .top-con1 span {
   position: absolute;
-  left: 0.05rem;
+  left: 0.1rem;
   top: 0.1rem;
-  font-size: 0.3rem;
+  font-size: 0.4rem;
 }
 
 .top-con2::after {
@@ -144,17 +143,31 @@ export default {
   display: block;
   clear: both;
 }
-.top-con2 {
+.top-con2{
+  padding-bottom: .2rem;
+}
+.top-con2 a{
+  display: block;
   color: #fff;
+
 }
 .top-con2 .top-text1 {
   font-size: 0.8rem;
   float: left;
   margin: 0.1rem 0.1rem 0.2rem 0.5rem;
+  display: inline-block;
+  width: .8rem;
+  height: 0.8rem;
+  background: #fff;
+  border-radius: 50%;
+}
+.top-con2 .top-text1 img{
+  width: 100%;
+  vertical-align: top;
 }
 .top-con2 .top-text2 {
   float: left;
-  margin: 0.1rem 0.1rem;
+  margin: 0rem 0.1rem;
   position: relative;
   top: 0.15rem;
 }
@@ -163,7 +176,7 @@ export default {
 }
 .top-con2 a .top-text3 {
   float: right;
-  margin: 0.1rem 0.1rem;
+  margin: 0.2rem 0.1rem;
   color: #fff;
 }
 section {

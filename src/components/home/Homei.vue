@@ -1,19 +1,19 @@
 <template>
     
   <div>
-    <header class="top">
+    <header class="top"  @click="account">
       <p class="top-con1"><span class="iconfont icon-AS" @click="$router.push('/home/takeaway')"></span>我的</p>
       <div class="top-con2">
         <span class="iconfont icon-icon-copy top-text1"></span>
         <div class="top-text2">
           <!-- 接收登录数据 -->
           <p>
-            <router-link to="">登录</router-link>&ensp;/&ensp;
-            <router-link to="">注册</router-link>
+            <router-link to="/">登录</router-link>&ensp;/&ensp;
+            <router-link to="/">注册</router-link>
           </p>
           <p><span class="iconfont icon-shouji"></span>暂无绑定手机</p>
         </div>
-        <span class="iconfont icon-right top-text3" @click="account"></span>
+        <span class="iconfont icon-right top-text3"></span>
       </div>
     </header>
     <section>
@@ -104,7 +104,7 @@ export default {
 
 <style scoped>
 .top {
-  font-size: 0.25rem;
+  font-size: 0.3rem;
   background-color: #3190e8;
   width: 100%;
   box-sizing: border-box;
@@ -120,9 +120,9 @@ export default {
 }
 .top-con1 span {
   position: absolute;
-  left: 0.05rem;
+  left: 0.1rem;
   top: 0.1rem;
-  font-size: 0.3rem;
+  font-size: 0.4rem;
 }
 
 .top-con2::after {
@@ -149,7 +149,7 @@ export default {
 }
 .top-con2 .top-text3 {
   float: right;
-  margin: 0.1rem 0.1rem;
+  margin: 0.2rem 0.1rem;
   color: #fff;
 }
 section {
@@ -178,7 +178,7 @@ section {
 .sec-con1 li:nth-child(1) span {
   color: #ff9900;
 }
-.sec-con1 li:nth-child(2)span {
+.sec-con1 li:nth-child(2) span {
   color: #ff5f3e;
 }
 .sec-con1 li:nth-child(3) span {

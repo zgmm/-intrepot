@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import login from '../views/login.vue'
+import blanceexplain from '../components/explain/Blanceexplain.vue' //余额说明
+import chitplain from '../components/explain/Chitplain.vue' //代金券说明
+import integralplain from '../components/explain/Integralplain.vue' //积分说明
+import packetplain from '../components/explain/Packetplain.vue' //红包说明
 
 Vue.use(VueRouter)
 
@@ -20,180 +24,53 @@ const routes = [{
                 }
             },
             {
-                path: 'homed',
-                component: () =>
-                    import ('../components/home/Homed.vue'),
-                meta: {
-                    isturn: true
-                }
+                path: 'homed',component: () =>import ('../components/home/Homed.vue'),
+                meta: {isturn: true}
             },
             {
-                path: 'homei', //登录后的页面
-                component: () =>
-                    import ('../components/home/Homei.vue'),
-                meta: {
-                    isturn: true
-                }
+                path: 'homei', component: () => import ('../components/home/Homei.vue'),//登录后的页面
+                meta: { isturn: true}
             },
-            {
-                path: 'acountInfo', //账户信息
-                component: () =>
-                    import ('../components/my/AccountInfo.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
-            {
-                path: 'balance', //我的余额
-                component: () =>
-                    import ('../components/my/Balance.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
-            {
-                path: 'integral', //我的积分
-                component: () =>
-                    import ('../components/my/Integral.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
-            {
-                path: 'discounts', //我的优惠
-                component: () =>
-                    import ('../components/my/Discounts.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
-            {
-                path: 'product', //产品列表
-                name: 'Product',
-                component: () =>
-                    import ('../components/product/ProductList.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
-            {
-                path: 'midifyUser', //修改用户名
-                name: 'MidifyUser',
-                component: () =>
-                    import ('../components/my/MidifyUser.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
-            {
-                path: 'vip', //vip
-                name: 'Vip',
-                component: () =>
-                    import ('../components/my/Vip.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
+            {path: 'acountInfo',component: () =>import ('../components/my/AccountInfo.vue')},//账户信息
+            {path: 'balance', component: () =>import ('../components/my/Balance.vue')},//我的余额
+            {path: 'integral',component: () =>import ('../components/my/Integral.vue')},//我的积分
+            {path: 'discounts',component: () =>import ('../components/my/Discounts.vue')},//我的优惠
+            {path: 'product',component: () =>import ('../components/product/ProductList.vue')}, //产品列表
+            {path: 'midifyUser',component: () =>import ('../components/my/MidifyUser.vue')},//修改用户名
+            {path: 'vip',component: () =>import ('../components/my/Vip.vue'),},//vip页面
+            {path: 'blanceexplain',component:blanceexplain},//余额说明
+            {path: 'chitplain',component:chitplain},//代金券说明
+            {path: 'integralplain',component:integralplain},//积分说明
+            {path: 'packetplain',component:packetplain},//红包说明
         ],
     },
+    {path: '/product',component: () =>import ('../components/product/ProductList.vue')},
     {
-        path: '/product',
-        component: () =>
-            import ('../components/product/ProductList.vue')
+        path: '/indent',component: () =>import ('../views/Indent.vue'),
+        meta: {isturn: true}
     },
     {
-        path: '/indent',
-        component: () =>
-            import ('../views/Indent.vue'),
-        meta: {
-            isturn: true
-        }
+        path: '/search',component: () =>import ('../views/Search.vue'),
+        meta: { isturn: true}
     },
-    {
-        path: '/search',
-        component: () =>
-            import ('../views/Search.vue'),
-        meta: {
-            isturn: true
-        }
+    {path: '/takeaway',component: () =>import ('../views/Takeaway.vue'),
+        meta: {isturn: true}
     },
-    {
-        path: '/takeaway',
-        name: 'Takeaway',
-        component: () =>
-            import ('../views/Takeaway.vue'),
-        meta: {
-            isturn: true
-        }
-    },
-    {
-        path: '/xuandizhi',
-        name: 'Xuandizhi',
-        component: () =>
-            import ('../components/Xuandizhi.vue'),
-        meta: {
-            isturn: false
-        }
-    },
-    {
-        path: '/tiandizhi',
-        name: 'Tiandizhi',
-        component: () =>
-            import ('../components/Tiandizhi.vue'),
-        meta: {
-            isturn: false
-        }
-    },
-    {
-        path: '/zfdingdan',
-        name: 'Zfdingdan',
-        component: () =>
-            import ('../components/Zfdingdan.vue'),
-        meta: {
-            isturn: false
-        }
-    },
+    {path: '/xuandizhi',component: () =>import ('../components/Xuandizhi.vue')},
+    {path: '/tiandizhi',component: () =>import ('../components/Tiandizhi.vue')},
+    {path: '/zfdingdan',component: () =>import ('../components/Zfdingdan.vue')},
     {
         path: '/spxiangqing',
         component: () =>
             import ('../components/Spxiangqing.vue'),
-        children: [{
-                path: "/",
-                component: () =>
-                    import ('../components/Shangpin.vue'),
-            },
-            {
-                path: 'shangpin',
-                component: () =>
-                    import ('../components/Shangpin.vue'),
-            },
-            {
-                path: 'pingjia',
-                component: () =>
-                    import ('../components/Pingjia.vue'),
-            },
-        ],
-        meta: {
-            isturn: false
-        },
+        children: [
+            {path: "/",component: () =>import ('../components/Shangpin.vue'),},
+            {path: 'shangpin',component: () =>import ('../components/Shangpin.vue')},
+            {path: 'pingjia',component: () =>import ('../components/Pingjia.vue')},
+        ]
     },
-    {
-        path: '/login',
-        name: 'login',
-        component: login,
-        meta: {
-            isturn: false
-        }
-    },
-    {
-        path: '/forget',
-        name: 'forget',
-        component: () =>
-            import ('../views/forget.vue'),
-        meta: {
-            isturn: false
-        }
-    }
+    {path: '/login',component: login},
+    {path: '/forget',component: () =>import ('../views/forget.vue')}
 ]
 
 const router = new VueRouter({

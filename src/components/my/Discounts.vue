@@ -1,19 +1,18 @@
 <template>
     
   <div>
-    <header class="top">
-      <span class="iconfont icon-AS" @click="$router.back(-1)"></span>
-      我的优惠
-    </header>
-    <section>
+    <Header title="我的优惠">
+      <span class="iconfont icon-AS black" slot="black" @click="$router.replace('/home')"></span>
+    </Header>
+    <section class="sec">
       <ul class="sec-tab">
-        <li @click="num = 0" :class="{ active: num == 0 }">红包</li>
-        <li @click="num = 1" :class="{ active: num == 1 }">商家代金券</li>
+        <li @click="num = 0" :class="{ active: num === 0 }">红包</li>
+        <li @click="num = 1" :class="{ active: num === 1 }">商家代金券</li>
       </ul>
-      <div v-show="num == 0" class="tab-cont">
+      <div v-if="num === 0" class="tab-cont">
         <div class="txt1">
-          <p class="txt1-l">有<span>3</span>个红包即将过期</p>
-          <p class="txt1-r">
+          <p class="txt1-l">有<span>X</span>个红包即将过期</p>
+          <p class="txt1-r" @click="$router.push('/home/packetplain')">
             <span class="iconfont icon-wenhao"></span>红包说明
           </p>
         </div>
@@ -25,8 +24,8 @@
             </div>
             <div class="txt2-cc2">
               <p>分享红包</p>
-              <p>2017-05-23到期</p>
-              <p>限收货手机号为 13681711254</p>
+              <p>XXXX-XX-XX到期</p>
+              <p>限收货手机号为 136XXXX1254</p>
             </div>
             <p class="txt2-cc3">剩3日</p>
           </div>
@@ -39,8 +38,8 @@
             </div>
             <div class="txt2-cc2">
               <p>分享红包</p>
-              <p>2017-05-23到期</p>
-              <p>限收货手机号为 13681711254</p>
+              <p>XXXX-XX-XX到期</p>
+              <p>限收货手机号为 136XXXX1254</p>
             </div>
             <p class="txt2-cc3">剩3日</p>
           </div>
@@ -53,8 +52,8 @@
             </div>
             <div class="txt2-cc2">
               <p>分享红包</p>
-              <p>2017-05-23到期</p>
-              <p>限收货手机号为 13681711254</p>
+              <p>XXXX-XX-XX到期</p>
+              <p>限收货手机号为 136XXXX1254</p>
             </div>
             <p class="txt2-cc3">剩3日</p>
           </div>
@@ -70,8 +69,8 @@
           <li>推荐有奖</li>
         </ul>
       </div>
-      <div v-show="num == 1">
-        <p class="txt-con2">
+      <div v-if="num === 1">
+        <p class="txt-con2" @click="$router.push('/home/chitplain')">
           <span class="iconfont icon-wenhao"></span>商家代金券
         </p>
         <div class="txt-con3">
@@ -87,11 +86,15 @@
 </template>
 
 <script>
+import Header from "../home/Header.vue";
 export default {
+  components: { Header },
   name: "",
+  component: {},
   data() {
     return {
       num: 0,
+      show:true
     };
   },
   methods: {},
@@ -102,26 +105,17 @@ export default {
       .querySelector("body")
       .setAttribute("style", "background-color:#f5f5f5");
   },
+  watch:{
+    change(){
+      
+    }
+  }
 };
 </script>
 
 <style scoped>
-.top {
-  text-align: center;
-  width: 100%;
-  color: #fff;
-  padding: 0.15rem;
-  position: relative;
-  font-size: 0.4rem;
-  box-sizing: border-box;
-  background-color: #3190e8;
-  box-sizing: border-box;
-}
-.top span {
-  position: absolute;
-  top: 0.15rem;
-  left: 0.1rem;
-  font-size: 0.4rem;
+.sec{
+  margin-top: .75rem;
 }
 .sec-tab {
   font-size: 0.25rem;
@@ -157,7 +151,7 @@ export default {
   float: right;
   color: #3190e8;
   position: relative;
-  top: -.08rem;
+  top: -0.08rem;
 }
 .txt2 {
   border-top: 1px solid #ff5340;
@@ -264,5 +258,18 @@ export default {
   border: none;
   outline: none;
   border-radius: 0.05rem;
+}
+/* 页面切换动画 */
+/* .v-enter,.v-leave-to{
+  opacity: 0;
+}
+.v-enter-to,.v-leave{
+  opacity: 1;
+} */
+.v-enter-active {
+  transition: all .3s ease;
+}
+.v-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
 </style>

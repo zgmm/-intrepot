@@ -1,10 +1,9 @@
 <template>
   <div class="account">
     <!-- 头部 -->
-    <header>
-      <span class="iconfont icon-AS" @click="$router.push('/home')"></span>
-      <p>账户信息</p>
-    </header>
+    <Header title="账户信息">
+      <span class="iconfont icon-AS black" @click="$router.push('/home')" slot="black"></span>
+    </Header>
     <!-- 页面主题 -->
     <section class="box">
       <ul class="list">
@@ -58,8 +57,8 @@
           </li>
         </a>
         <li class="binding">安全设置</li>
-        <a href="#">
-          <li style="border-botton" @click="$router.push('/forget')">
+        <a href="javascript:void(0)">
+          <li style="border-botton" @click="resetPassword">
             <p>登录密码</p>
             <div class="right">
               <span class="font">修改</span>
@@ -76,15 +75,17 @@
 </template>
 
 <script>
+import Header from "../home/Header.vue";
 export default {
+  components: { Header },
   name: "",
   data() {
     return {
-      imgsrc: require("../../../public/images/登录 用户.png"), //用户没有上传图片的默认头像
+      imgsrc: require("../../../public/images/login.png"), //用户没有上传图片的默认头像
       headTip: "点击上传", //提示文字
       alertPhone: false,
       alertEexit: false,
-      login:{}
+      login: {},
     };
   },
   methods: {
@@ -109,11 +110,23 @@ export default {
     },
     // 上传手机号弹框
     phone() {
+      this.$dialog.alert({
+        title: "系统提示",
+        message: "请前往app绑定",
+      });
+    },
+    // 重置密码
+    resetPassword() {
       this.$dialog
-        .alert({
-          title: "系统提示",
-          message: "请前往app绑定",
+        .confirm({
+          title: "确定要重置密码？",
         })
+        .then(() => {
+          this.$router.replace("/forget");
+        })
+        .catch(() => {
+          this.$dialog.close();
+        });
     },
     // 退出登录
     outLogin() {
@@ -126,52 +139,32 @@ export default {
           this.$router.replace("/home/homei");
         })
         .catch(() => {
-         this.$dialog.close()
+          this.$dialog.close();
         });
     },
+    // 显示用户名
     showUsername() {
-      this.loginId = window.sessionStorage.getItem('token')
+      this.loginId = window.sessionStorage.getItem("token");
       this.axios
         .get("http://localhost:3000/login/" + this.loginId)
         .then((res) => {
           this.login = res.data;
-          console.log(this.login);
+          // console.log(this.login);
         });
-    }
+    },
   },
   mounted() {
-    this.showUsername()
-    // this.login =JSON.parse(window.sessionStorage.getItem('login'))
+    this.showUsername();
   },
 };
 </script>
 
 <style scoped>
-header {
-  width: 100%;
-  height: 0.9rem;
-  background-color: #3190e8;
-  font-size: 0.3rem;
-  font-weight: bold;
-  color: #fff;
-  padding: 0.2rem;
-  line-height: 0.45rem;
-}
 .account {
   text-align: center;
 }
-
-.icon-AS {
-  width: 0.3rem;
-  font-size: 0.4rem;
-  position: absolute;
-  right: 0.5rem;
-  left: 0.1rem;
-  font-weight: normal;
-}
-
 .box {
-  margin-top: 0.2rem;
+  margin-top: 0.85rem;
   width: 100%;
   height: 100%;
   background: #f7f7f7;
