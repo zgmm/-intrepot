@@ -43,10 +43,9 @@ header {
     line-height: 0.27rem;
     font-size: 0.12rem;
     position: absolute;
-    top: .15rem;
-    right: .04rem;
+    top: 0.1rem;
+    right: -0.05rem;
     color: #eee;
-    transform: scale(0.8);
 }
 
 .recently {
@@ -174,7 +173,6 @@ header {
     text-align: left;
     background: #fff;
     margin-bottom: 0.15rem;
-    border-bottom: 1px solid #eee
 }
 
 .orderList a {
@@ -216,16 +214,14 @@ img[lazy="loading"] {
     height: 0.3rem;
     line-height: 0.3rem;
     margin-top: 0.15rem;
-    margin-left: -.35rem;
     display: flex;
-    transform: scale(0.8);
 }
 
 .discounts div {
     display: block;
     border: 1px solid #d76026;
     border-radius: .05rem;
-    margin-right: .08rem;
+    margin-right: .03rem;
     color: #d76026;
 }
 

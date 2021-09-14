@@ -4,7 +4,7 @@
       <span>我的订单</span>
       <p class="icon">
         <span class="iconfont icon-sousou" @click="$router.push('ordersearch')"></span>
-        <span class="iconfont icon-kefuzhongxin" @click="$router.push('information')"></span>
+        <span class="iconfont icon-kefuzhongxin"></span>
         <span class="red">22</span>
       </p>
     </header>
@@ -170,9 +170,9 @@
                 </div>
                 <div class="two">
                   <div class="pic">
-                    <img v-lazy="com.cuisines" />
+                    <img v-lazy="com.cuisine" />
                   </div>
-                  <p>{{ com.comtitles }}</p>
+                  <p>{{ com.comtitle }}</p>
                 </div>
                 <div class="amount">
                   <p>¥{{ com.price }}</p>

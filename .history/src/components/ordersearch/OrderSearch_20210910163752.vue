@@ -1,0 +1,240 @@
+<template>
+  <div>
+    <!-- 头部 -->
+    <header>
+      <span class="iconfont icon-AS" @click="$router.back(-1)"></span>
+      <input
+        type="text"
+        placeholder="请输入订单中的商家或商品名称"
+        class="search"
+        v-model="content"
+      />
+      <button class="ssou">搜索</button>
+    </header>
+    <!-- 展示订单部分 -->
+    <section class="indentBox">
+      <div class="without" v-show="without">
+        <p>很抱歉！无搜索结果</p>
+      </div>
+      <div class="orderList" v-show="orderList">
+        <ul>
+          <li>
+            <div class="shopinf">
+              <img src="/images/fuzhu.jpg" />
+              <div class="title">
+                <p>书亦烧仙草（龙华人民路店）></p>
+                <div class="youhui">
+                  <span>25减3</span>
+                  <span>35减5</span>
+                  <span>49减8</span>
+                  <span>8.8折起</span>
+                  <span>...</span>
+                </div>
+              </div>
+              <p class="finish">已完成</p>
+            </div>
+            <div class="details">
+              <p>杨枝甘露 等 4 件商品 <span>¥46</span></p>
+              <button class="again">再来一单</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- 历史搜索 -->
+      <div class="searchHistory" v-show="searchHistory">
+        <div class="toutou">
+          <p>历史搜索</p>
+          <span><van-icon name="delete-o" /></span>
+        </div>
+        <ul>
+          <li>123</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "",
+  computed: {},
+  props: [],
+  data() {
+    return {
+      content: [],//订单数据
+      without:false,//无结果
+      orderList:false,
+      searchHistory:false,
+
+    };
+  },
+  methods: {},
+  mounted() {},
+};
+</script>
+
+<style scoped>
+header {
+  width: 100%;
+  height: 0.9rem;
+  line-height: 0.9rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 0.3rem;
+  font-weight: bold;
+  color: #fff;
+  z-index: 100;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #3190e8;
+}
+.icon-AS {
+  display: inline-block;
+  width: 15%;
+  font-size: 0.4rem;
+  font-weight: normal;
+  text-align: center;
+}
+.search {
+  width: 70%;
+  height: 0.6rem;
+  font-size: 0.23rem;
+  font-weight: normal;
+  text-indent: 0.2rem;
+  border: none;
+  color: #666;
+  border-radius: 0.15rem;
+}
+.ssou {
+  display: inline-block;
+  width: 15%;
+  font-size: 0.25rem;
+  font-weight: normal;
+  text-align: center;
+  background: none;
+  border: none;
+}
+.indentBox {
+  margin-top: 1rem;
+}
+.orderList {
+  width: 100%;
+  height: 10.35rem;
+  background: #f1f1f1;
+  box-sizing: border-box;
+}
+.orderList ul {
+  margin: 0 auto;
+  width: 95%;
+  height: auto;
+  padding: 0.05rem 0;
+}
+.orderList li {
+  width: 100%;
+  height: 2.5rem;
+  background: #f9fcff;
+  margin: 0.1rem 0;
+  border-radius: 0.1rem;
+}
+.shopinf {
+  display: flex;
+  align-items: center;
+  height: 1rem;
+  background: #fafafa;
+  margin: 0.15rem 0;
+  border-bottom: 1px solid #ccc;
+}
+.shopinf img {
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-right: 0.2rem;
+  margin-left: 0.1rem;
+}
+.title {
+  width: 70%;
+  height: 0.8rem;
+}
+.title p {
+  font-size: 0.23rem;
+  color: #555;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: bold;
+}
+.youhui {
+  display: flex;
+}
+.youhui span {
+  display: inline-block;
+  border: 1px solid #d76026;
+  color: #d76026;
+  margin-top: 0.15rem;
+  margin-right: 0.1rem;
+  padding: 0 0.05rem;
+}
+.youhui span:last-child {
+  border: none;
+  font-weight: bold;
+}
+.finish {
+  font-size: 0.23rem;
+}
+.details {
+  width: 100%;
+  background: #fff;
+}
+.details p {
+  line-height: 0.7rem;
+  font-size: 0.23rem;
+  margin-left: 1.5rem;
+}
+.details p span {
+  margin-left: 1.7rem;
+  font-weight: bold;
+  color: #d76026;
+}
+.again {
+  text-align: center;
+  padding: 0.1rem 0.2rem;
+  margin-left: 4.6rem;
+  border: none;
+  background: #3190e8;
+  border-radius: 0.05rem;
+  font-size: 0.22rem;
+  color: #fff;
+}
+.searchHistory {
+  width: 100%;
+  height: 10.35rem;
+  background: #f1f1f1;
+}
+.toutou {
+  width: 95%;
+  margin: 0 auto;
+  height: 0.5rem;
+  line-height: 0.5rem;
+}
+.toutou p {
+  float: left;
+  font-size: 0.22rem;
+}
+.toutou span {
+  float: right;
+  font-size: 0.3rem;
+  color: #666;
+}
+.searchHistory ul {
+  display: flex;
+  flex-wrap: wrap;
+  width: 95%;
+  margin: 0 auto;
+}
+.searchHistory ul li {
+  padding: 0.1rem 0.2rem;
+  background: #fff;
+  margin: .1rem;
+}
+</style>
