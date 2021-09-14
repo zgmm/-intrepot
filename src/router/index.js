@@ -56,17 +56,49 @@ const routes = [{
     {path: '/takeaway',component: () =>import ('../views/Takeaway.vue'),
         meta: {isturn: true}
     },
-    {path: '/xuandizhi',component: () =>import ('../components/Xuandizhi.vue')},
-    {path: '/tiandizhi',component: () =>import ('../components/Tiandizhi.vue')},
-    {path: '/zfdingdan',component: () =>import ('../components/Zfdingdan.vue')},
+    {path: '/xuandizhi',component: () =>import ('../components/address/Xuandizhi.vue')}, // 选择地址
+    {path: '/tiandizhi',component: () =>import ('../components/address/Tiandizhi.vue')}, // 添加地址
+    {path: '/gaidizhi',component: () =>import ('../components/address/Gaidizhi.vue')}, // 修改地址
+    {path: '/zfdingdan',component: () =>import ('../components/Zfdingdan.vue')}, // 支付订单
+    {path: '/zfmima',component: () =>import ('../components/Zfmima.vue')}, // 支付订单
     {
-        path: '/spxiangqing',
+        path: '/spxiangqing1',  // 商品详情1
         component: () =>
-            import ('../components/Spxiangqing.vue'),
+            import ('../components/details/Spxiangqing1.vue'),
         children: [
-            {path: "/",component: () =>import ('../components/Shangpin.vue'),},
-            {path: 'shangpin',component: () =>import ('../components/Shangpin.vue')},
-            {path: 'pingjia',component: () =>import ('../components/Pingjia.vue')},
+            {path: "/",component: () =>import ('../components/details/Shangpin.vue'),}, //二级路由-默认
+            {path: 'shangpin',component: () =>import ('../components/details/Shangpin.vue')}, //二级路由-商品
+            {path: 'pingjia',component: () =>import ('../components/details/Pingjia.vue')}, //二级路由-评价
+        ]
+    },
+    {
+        path: '/spxiangqing2',  // 商品详情2
+        component: () =>
+            import ('../components/details/Spxiangqing2.vue'),
+        children: [
+            {path: "/",component: () =>import ('../components/details/Shangpin.vue'),}, //二级路由-默认
+            {path: 'shangpin',component: () =>import ('../components/details/Shangpin.vue')}, //二级路由-商品
+            {path: 'pingjia',component: () =>import ('../components/details/Pingjia.vue')}, //二级路由-评价
+        ]
+    },
+    {
+        path: '/spxiangqing3',  // 商品详情3
+        component: () =>
+            import ('../components/details/Spxiangqing3.vue'),
+        children: [
+            {path: "/",component: () =>import ('../components/details/Shangpin.vue'),}, //二级路由-默认
+            {path: 'shangpin',component: () =>import ('../components/details/Shangpin.vue')}, //二级路由-商品
+            {path: 'pingjia',component: () =>import ('../components/details/Pingjia.vue')}, //二级路由-评价
+        ]
+    },
+    {
+        path: '/spxiangqing4',  // 商品详情
+        component: () =>
+            import ('../components/details/Spxiangqing4.vue'),
+        children: [
+            {path: "/",component: () =>import ('../components/details/Shangpin.vue'),}, //二级路由-默认
+            {path: 'shangpin',component: () =>import ('../components/details/Shangpin.vue')}, //二级路由-商品
+            {path: 'pingjia',component: () =>import ('../components/details/Pingjia.vue')}, //二级路由-评价
         ]
     },
     {path: '/login',component: login},
