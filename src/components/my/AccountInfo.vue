@@ -140,6 +140,7 @@ export default {
         .then(() => {
           this.$router.replace("/home/homed");
           window.sessionStorage.removeItem("token")
+          window.sessionStorage.removeItem("rtoken")
         })
         .catch(() => {
           this.$dialog.close();
