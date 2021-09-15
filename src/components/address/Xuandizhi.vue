@@ -45,7 +45,9 @@ export default {
       this.$router.push("/tiandizhi");
     },
     getID(id) {
-      this.$router.push({ path: "/zfdingdan", query: { id: id } });
+      if(this.$route.query.id==7){
+        this.$router.push({ path: "/zfdingdan", query: { id: id } });
+      }
     },
     gai(id){
       this.$router.push({path: "/gaidizhi", query: { id: id } })
@@ -62,6 +64,7 @@ export default {
         this.active = false;
       }
     });
+    console.log(this.$route.query.id);
   },
 };
 </script>

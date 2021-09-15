@@ -8,7 +8,7 @@
       </div>
     </header>
     <div class="dizhi">
-      <div class="dizhi-one" v-if="dizhi_one" @click="xuanze">
+      <div class="dizhi-one" v-if="dizhi_one" @click="xuanze(7)">
         <p>
           <img src="../../public/images/dingwei.png" />请添加一个收货地址<span
             >></span
@@ -21,7 +21,7 @@
         <p class="two-name">
           {{ dizhi.name }} ({{ dizhi.sex }})<span>{{ dizhi.phone }}</span>
         </p>
-        <span class="xuanze" @click="xuanze">></span>
+        <span class="xuanze" @click="xuanze(7)">></span>
         <div class="dizhi-bottom"><img src="../../public/images/bg.jpg" /></div>
       </div>
     </div>
@@ -121,8 +121,9 @@ export default {
     fanhui() {
       this.$router.push("/spxiangqing1");
     },
-    xuanze() {
-      this.$router.push("/xuandizhi");
+    xuanze(sumber) {
+      this.$router.push({path:"/xuandizhi",query:{id:sumber}});
+      console.log({query:{id:sumber}});
     },
     my() {
       this.$router.push("/homed");
