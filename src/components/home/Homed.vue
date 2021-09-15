@@ -5,7 +5,7 @@
       <p class="top-con1"><span class="iconfont icon-AS"></span>我的</p>
       <div class="top-con2">
         <router-link to="/home/acountInfo">
-          <div class="top-text1"><img :src="imgsrc" alt=""></div>
+          <div class="top-text1"><img :src="imgsrc" alt="" /></div>
           <div class="top-text2">
             <!-- 接收登录数据 -->
             <p>{{ login.username }}</p>
@@ -48,7 +48,7 @@
         <li>
           <router-link to="/home/vip">
             <span class="iconfont icon-huangguan"></span>
-            饿了么会员卡
+            会员卡
             <span class="iconfont icon-right"></span>
           </router-link>
         </li>
@@ -64,7 +64,7 @@
         <li>
           <router-link to="">
             <span class="iconfont icon-eliaomo"></span>
-            下载饿了么APP
+            下载APP
             <span class="iconfont icon-right"></span>
           </router-link>
         </li>
@@ -82,13 +82,13 @@ export default {
     return {
       login: {},
       loginId: 1,
-       imgsrc: require("../../../public/images/login.png")
+      imgsrc: require("../../../public/images/login.png"),
     };
   },
   methods: {
     // 跳转到余额
     balance() {
-      this.$router.push({ path: "/home/balance" });
+      this.$router.push({ path: "/home/balance"});
     },
     // 跳转到优惠
     discounts() {
@@ -101,7 +101,7 @@ export default {
 
     showUsername() {
       this.axios
-        .get("http://localhost:3000/login/" + this.loginId)
+        .get("/login/" + this.loginId)
         .then((res) => {
           this.login = res.data;
         });
@@ -111,6 +111,11 @@ export default {
   mounted() {
     this.loginId = window.sessionStorage.getItem("token");
     this.showUsername();
+    if (window.sessionStorage.getItem("rtoken") == null) {
+      return;
+    } else {
+      this.imgsrc = window.sessionStorage.getItem("rtoken");
+    }
   },
 };
 </script>
@@ -143,27 +148,32 @@ export default {
   display: block;
   clear: both;
 }
-.top-con2{
-  padding-bottom: .2rem;
+.top-con2 {
+  padding-bottom: 0.2rem;
 }
-.top-con2 a{
+.top-con2 a {
   display: block;
   color: #fff;
-
 }
 .top-con2 .top-text1 {
   font-size: 0.8rem;
   float: left;
   margin: 0.1rem 0.1rem 0.2rem 0.5rem;
   display: inline-block;
-  width: .8rem;
+  width: 0.8rem;
   height: 0.8rem;
   background: #fff;
   border-radius: 50%;
+  position: relative;
 }
-.top-con2 .top-text1 img{
+.top-con2 .top-text1 img {
   width: 100%;
-  vertical-align: top;
+  height: 100%;
+  /* vertical-align: top; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
 }
 .top-con2 .top-text2 {
   float: left;

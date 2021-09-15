@@ -55,7 +55,7 @@ export default {
         btn.style.backgroundColor = "#3190e8";
         btn.style.color = "#fff";
         this.axios
-          .put("http://localhost:3000/login/" + this.loginid, this.login)
+          .put("/login/" + this.loginid, this.login)
           .then((res) => {
             this.$router.replace("/home/acountInfo");
           });
@@ -66,7 +66,7 @@ export default {
   mounted() {
     this.loginid = window.sessionStorage.getItem("token");
     this.axios
-      .get("http://localhost:3000/login/" + this.loginid)
+      .get("/login/" + this.loginid)
       .then((res) => {
         this.kblogin = res.data;
       });

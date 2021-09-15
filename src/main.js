@@ -35,6 +35,7 @@ Vue.use(VueAxios, axios)
 import animated from 'animate.css'
 Vue.use(animated)
 
+axios.defaults.baseURL='http://localhost:3000';
 
 
 

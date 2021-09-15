@@ -2,7 +2,11 @@
   <div class="account">
     <!-- 头部 -->
     <Header title="账户信息">
-      <span class="iconfont icon-AS black" @click="$router.push('/home')" slot="black"></span>
+      <span
+        class="iconfont icon-AS black"
+        @click="$router.push('/home')"
+        slot="black"
+      ></span>
     </Header>
     <!-- 页面主题 -->
     <section class="box">
@@ -20,7 +24,7 @@
                   @change="freshImg"
                 />
                 <div class="border" @click="uploadIMg">
-                  {{ headTip }} <img :src="imgsrc" class="imgDiv" />
+                  <img :src="imgsrc" class="imgDiv" />
                 </div>
               </div>
               <span class="iconfont icon-right"></span>
@@ -36,7 +40,7 @@
             </div>
           </li>
         </a>
-        <a href="javascript:viod(0)" @click="$router.push('/xuandizhi')">
+        <a href="javascript:void(0)" @click="$router.push('/xuandizhi')">
           <li>
             <p>收货地址</p>
             <div class="right">
@@ -82,7 +86,6 @@ export default {
   data() {
     return {
       imgsrc: require("../../../public/images/login.png"), //用户没有上传图片的默认头像
-      headTip: "点击上传", //提示文字
       alertPhone: false,
       alertEexit: false,
       login: {},
@@ -103,7 +106,6 @@ export default {
         _this.imgsrc = fr.result; // 图片文件赋值给图片标签路径
       };
       fr.readAsDataURL(_this.imgObj); //将读取到的文件编码成Data URL
-      _this.headTip = ""; // 清空我的提示
     },
     midify() {
       this.$router.push("/home/midifyUser");
@@ -146,7 +148,7 @@ export default {
     showUsername() {
       this.loginId = window.sessionStorage.getItem("token");
       this.axios
-        .get("http://localhost:3000/login/" + this.loginId)
+        .get("/login/" + this.loginId)
         .then((res) => {
           this.login = res.data;
           // console.log(this.login);
@@ -155,6 +157,14 @@ export default {
   },
   mounted() {
     this.showUsername();
+    if (window.sessionStorage.getItem("rtoken") == null) {
+      return;
+    } else {
+      this.imgsrc = window.sessionStorage.getItem("rtoken");
+    }
+  },
+  updated() {
+    window.sessionStorage.setItem("rtoken", this.imgsrc);
   },
 };
 </script>

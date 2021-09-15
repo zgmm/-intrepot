@@ -49,7 +49,7 @@
         <li>
           <router-link to="">
             <span class="iconfont icon-huangguan"></span>
-            饿了么会员卡
+            会员卡
             <span class="iconfont icon-right"></span>
           </router-link>
         </li>
@@ -65,7 +65,7 @@
         <li>
           <router-link to="">
             <span class="iconfont icon-eliaomo"></span>
-            下载饿了么APP
+            下载APP
             <span class="iconfont icon-right"></span>
           </router-link>
         </li>
