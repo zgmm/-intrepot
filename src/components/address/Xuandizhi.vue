@@ -64,7 +64,6 @@ export default {
         this.active = false;
       }
     });
-    console.log(this.$route.query.id);
   },
 };
 </script>
