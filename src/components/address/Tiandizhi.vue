@@ -129,8 +129,47 @@ export default {
         .then((res) => {});
       this.$router.push("/xuandizhi");
     },
-    yincang() {
-      this.show = false;
+    methods: {
+        yz(){
+            this.type="button"
+            if(this.dizhi.name==''){
+                this.text="请输入联系人！"
+                this.show=true;
+                return 
+            }
+            if(this.dizhi.sex==''){
+                this.text="请选择性别！"
+                this.show=true;
+                return
+            }
+            if(this.dizhi.phone==''){
+                this.text="联系电话不能为空！"
+                this.show=true;
+                return
+            }
+            if(this.dizhi.phone.length<11){
+                this.text="请输入正确的电话号码！"
+                this.show=true;
+                return
+            }
+            if(this.dizhi.address==''){
+                this.text="地址不能为空！"
+                this.show=true;
+                return
+            }
+            if(this.dizhi.bq==''){
+                this.text="请输入标签！"
+                this.show=true;
+                return
+            }
+            this.type="submit"
+            this.axios.post("/dizhi",this.dizhi).then((res)=>{
+            });
+            this.$router.replace('/xuandizhi');
+        },
+        yincang(){
+            this.show=false
+        }
     },
   },
 };

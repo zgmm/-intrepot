@@ -54,7 +54,7 @@ export default {
     }
   },
   mounted() {
-    this.axios.get("http://localhost:3000/dizhi").then((res) => {
+    this.axios.get("/dizhi").then((res) => {
       this.dizhi = res.data;
       if (this.dizhi.length > 1) {
         this.show = false;

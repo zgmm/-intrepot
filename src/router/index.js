@@ -18,18 +18,14 @@ const routes = [{
             import ('../views/Home.vue'),
         children: [{ //二级路由
                 path: '',
-                redirect: 'homed', //默认显示登录前页面
+                component: () =>import ('../components/home/Homed.vue'), //默认显示登录前页面
                 meta: { //用来判断一级路由是否显示在底部 true显示；false不显示
-                    isturn: true
+                    isturn: true,islogin:true
                 }
             },
             {
                 path: 'homed',component: () =>import ('../components/home/Homed.vue'),
-                meta: {isturn: true}
-            },
-            {
-                path: 'homei', component: () => import ('../components/home/Homei.vue'),//登录后的页面
-                meta: { isturn: true}
+                meta: {isturn: true,islogin:true}
             },
             {path: 'acountInfo',component: () =>import ('../components/my/AccountInfo.vue')},//账户信息
             {path: 'balance', component: () =>import ('../components/my/Balance.vue')},//我的余额
@@ -47,14 +43,14 @@ const routes = [{
     {path: '/product',component: () =>import ('../components/product/ProductList.vue')},
     {
         path: '/indent',component: () =>import ('../views/Indent.vue'),
-        meta: {isturn: true}
+        meta: {isturn: true,islogin:true}
     },
     {
         path: '/search',component: () =>import ('../views/Search.vue'),
-        meta: { isturn: true}
+        meta: { isturn: true,islogin:true}
     },
     {path: '/takeaway',component: () =>import ('../views/Takeaway.vue'),
-        meta: {isturn: true}
+        meta: {isturn: true,islogin:true}
     },
     {path: '/xuandizhi',component: () =>import ('../components/address/Xuandizhi.vue')}, // 选择地址
     {path: '/tiandizhi',component: () =>import ('../components/address/Tiandizhi.vue')}, // 添加地址
@@ -69,7 +65,9 @@ const routes = [{
             {path: "/",component: () =>import ('../components/details/Shangpin.vue'),}, //二级路由-默认
             {path: 'shangpin',component: () =>import ('../components/details/Shangpin.vue')}, //二级路由-商品
             {path: 'pingjia',component: () =>import ('../components/details/Pingjia.vue')}, //二级路由-评价
-        ]
+        ], meta:{
+            islogin:true
+        }
     },
     {
         path: '/spxiangqing2',  // 商品详情2
@@ -79,7 +77,9 @@ const routes = [{
             {path: "/",component: () =>import ('../components/details/Shangpin.vue'),}, //二级路由-默认
             {path: 'shangpin',component: () =>import ('../components/details/Shangpin.vue')}, //二级路由-商品
             {path: 'pingjia',component: () =>import ('../components/details/Pingjia.vue')}, //二级路由-评价
-        ]
+        ], meta:{
+            islogin:true
+        }
     },
     {
         path: '/spxiangqing3',  // 商品详情3
@@ -89,7 +89,9 @@ const routes = [{
             {path: "/",component: () =>import ('../components/details/Shangpin.vue'),}, //二级路由-默认
             {path: 'shangpin',component: () =>import ('../components/details/Shangpin.vue')}, //二级路由-商品
             {path: 'pingjia',component: () =>import ('../components/details/Pingjia.vue')}, //二级路由-评价
-        ]
+        ] ,meta:{
+            islogin:true
+        }
     },
     {
         path: '/spxiangqing4',  // 商品详情
@@ -99,10 +101,13 @@ const routes = [{
             {path: "/",component: () =>import ('../components/details/Shangpin.vue'),}, //二级路由-默认
             {path: 'shangpin',component: () =>import ('../components/details/Shangpin.vue')}, //二级路由-商品
             {path: 'pingjia',component: () =>import ('../components/details/Pingjia.vue')}, //二级路由-评价
-        ]
+        ],
+        meta:{
+            islogin:true
+        }
     },
     {path: '/login',component: login},
-    {path: '/forget',component: () =>import ('../views/forget.vue')}
+    {path: '/forget',component: () =>import ('../views/forget.vue'), meta:{islogin:true}}
 ]
 
 const router = new VueRouter({
@@ -110,7 +115,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.path == '/' || to.path == '/login' || to.path == '/forget') {
+    if (to.path == '/' || to.path == '/login' || to.path == '/forget' || to.meta.islogin) {
         next();
     } else {
         if (window.sessionStorage.getItem("token")) {

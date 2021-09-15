@@ -9,7 +9,7 @@ export default {
   name: 'Home',
   beforeCreate(){
     document.querySelector("body").setAttribute("style","background:#f5f5f5")
-  }
+  },
 }
 </script>
 

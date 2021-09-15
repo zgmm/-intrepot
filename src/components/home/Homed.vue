@@ -5,10 +5,18 @@
       <p class="top-con1"><span class="iconfont icon-AS"></span>我的</p>
       <div class="top-con2">
         <router-link to="/home/acountInfo">
-          <div class="top-text1"><img :src="imgsrc" alt=""></div>
-          <div class="top-text2">
+          <div class="top-text1"><img :src="imgsrc" alt="" /></div>
+          <div class="top1-text2" v-if="isLogin">
             <!-- 接收登录数据 -->
             <p>{{ login.username }}</p>
+            <p><span class="iconfont icon-shouji"></span>暂无绑定手机</p>
+          </div>
+          <div class="top2-text2" v-else>
+            <!-- 未登录显示 -->
+            <p>
+              <router-link to="/">登录</router-link>&ensp;/&ensp;
+              <router-link to="/">注册</router-link>
+            </p>
             <p><span class="iconfont icon-shouji"></span>暂无绑定手机</p>
           </div>
           <span class="iconfont icon-right top-text3"></span>
@@ -48,7 +56,7 @@
         <li>
           <router-link to="/home/vip">
             <span class="iconfont icon-huangguan"></span>
-            饿了么会员卡
+            会员卡
             <span class="iconfont icon-right"></span>
           </router-link>
         </li>
@@ -64,7 +72,7 @@
         <li>
           <router-link to="">
             <span class="iconfont icon-eliaomo"></span>
-            下载饿了么APP
+            下载APP
             <span class="iconfont icon-right"></span>
           </router-link>
         </li>
@@ -82,7 +90,8 @@ export default {
     return {
       login: {},
       loginId: 1,
-       imgsrc: require("../../../public/images/login.png")
+      imgsrc: require("../../../public/images/login.png"),
+      isLogin: false,
     };
   },
   methods: {
@@ -100,17 +109,27 @@ export default {
     },
 
     showUsername() {
-      this.axios
-        .get("http://localhost:3000/login/" + this.loginId)
-        .then((res) => {
-          this.login = res.data;
-        });
+      if (window.sessionStorage.getItem("token") == null) {
+        this.isLogin = false;
+        return;
+      } else {
+        this.isLogin = true;
+        this.loginId = window.sessionStorage.getItem("token");
+      }
+      this.axios.get("/login/" + this.loginId).then((res) => {
+        this.login = res.data;
+      });
     },
   },
   computed: {},
   mounted() {
-    this.loginId = window.sessionStorage.getItem("token");
+    
     this.showUsername();
+    if (window.sessionStorage.getItem("rtoken") == null) {
+      return;
+    } else {
+      this.imgsrc = window.sessionStorage.getItem("rtoken");
+    }
   },
 };
 </script>
@@ -143,35 +162,49 @@ export default {
   display: block;
   clear: both;
 }
-.top-con2{
-  padding-bottom: .2rem;
+.top-con2 {
+  padding-bottom: 0.2rem;
 }
-.top-con2 a{
+.top-con2 > a {
   display: block;
   color: #fff;
-
 }
 .top-con2 .top-text1 {
   font-size: 0.8rem;
   float: left;
   margin: 0.1rem 0.1rem 0.2rem 0.5rem;
   display: inline-block;
-  width: .8rem;
+  width: 0.8rem;
   height: 0.8rem;
   background: #fff;
   border-radius: 50%;
+  position: relative;
 }
-.top-con2 .top-text1 img{
+.top-con2 .top-text1 img {
   width: 100%;
-  vertical-align: top;
+  height: 100%;
+  /* vertical-align: top; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
 }
-.top-con2 .top-text2 {
+.top-con2 .top1-text2 {
   float: left;
   margin: 0rem 0.1rem;
   position: relative;
   top: 0.15rem;
 }
-.top-con2 .top-text2 a {
+.top-con2 .top1-text2 a {
+  color: #fff;
+}
+.top-con2 .top2-text2 {
+  float: left;
+  margin: 0.1rem 0.1rem;
+  position: relative;
+  top: 0.15rem;
+}
+.top-con2 .top2-text2 a {
   color: #fff;
 }
 .top-con2 a .top-text3 {

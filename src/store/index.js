@@ -13,7 +13,7 @@ export default new Vuex.Store({
     jiage:[], // 各菜品的价格
     count:[], // 各菜品的数量
     yeshu:0, //记录商品详情页面的页数
-    avatar:'',//头像
+    home:'homed'
   },
   mutations: {  // 方法区域==methods
     getyeshu(state,sumber){ //记录商品详情页面的页数
@@ -44,9 +44,8 @@ export default new Vuex.Store({
     getshuliang(state,sumber){ //菜品总数量
       state.shuliang=sumber
     },
-    //传入头像
-    userImg(state,avatar){
-      state.avatar = avatar
+    gethome(state,homeroute){
+      state.home = homeroute
     }
   },
   //action是对我们定义的一些操作，正常情况下，我们很少会直接调用action方法来改变state

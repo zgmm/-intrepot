@@ -60,7 +60,7 @@ export default {
     showUsername() {
       this.loginId = window.sessionStorage.getItem("token");
       this.axios
-        .get("http://localhost:3000/login/" + this.loginId)
+        .get("/login/" + this.loginId)
         .then((res) => {
           this.login = res.data;
           console.log(this.login);

@@ -1,1 +1,0 @@
-export const SAVE_AVANDER = 'SAVE_AVANDER'
