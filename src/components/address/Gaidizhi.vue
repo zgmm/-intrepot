@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <header>
-      <div @click="$router.back(-1)">&lt;</div>
+      <div @click="$router.replace('/xuandizhi')" class="iconfont icon-AS black"></div>
       <p>修改地址</p>
     </header>
     <form>
@@ -55,9 +55,9 @@ export default {
   methods: {
     xiugai() {
       this.axios
-        .put("http://localhost:3000/dizhi/" + this.$route.query.id, this.dizhi)
+        .put("/dizhi/" + this.$route.query.id, this.dizhi)
         .then((res) => {
-          this.$router.push("/xuandizhi");
+          this.$router.replace("/xuandizhi");
         });
     },
     remove() {
@@ -67,9 +67,9 @@ export default {
         })
         .then(() => {
           this.axios
-            .delete("http://localhost:3000/dizhi/" + this.$route.query.id)
+            .delete("/dizhi/" + this.$route.query.id)
             .then((res) => {
-              this.$router.push("/xuandizhi");
+              this.$router.replace("/xuandizhi");
             });
         })
         .catch(() => {
@@ -79,7 +79,7 @@ export default {
   },
   mounted() {
     this.axios
-      .get("http://localhost:3000/dizhi/" + this.$route.query.id)
+      .get("/dizhi/" + this.$route.query.id)
       .then((res) => {
         this.dizhi = res.data;
       });

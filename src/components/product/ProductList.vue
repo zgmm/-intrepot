@@ -638,7 +638,7 @@ export default {
     sales() {
       this.loading();
       this.axios
-        .get("http://localhost:3000/protuctList?_order=desc&_sort=num")
+        .get("/protuctList?_order=desc&_sort=num")
         .then((res) => {
           this.list = res.data;
         });
@@ -647,7 +647,7 @@ export default {
     grade() {
       this.loading();
       this.axios
-        .get("http://localhost:3000/protuctList?_order=desc&_sort=grade")
+        .get("/protuctList?_order=desc&_sort=grade")
         .then((res) => {
           this.list = res.data;
         });
@@ -663,7 +663,7 @@ export default {
     speed() {
       this.loading();
       this.axios
-        .get("http://localhost:3000/protuctList?_order=asc&_sort=house")
+        .get("/protuctList?_order=asc&_sort=house")
         .then((res) => {
           this.list = res.data;
         });
@@ -672,7 +672,7 @@ export default {
     recently() {
       this.loading();
       this.axios
-        .get("http://localhost:3000/protuctList?_order=asc&_sort=distance")
+        .get("/protuctList?_order=asc&_sort=distance")
         .then((res) => {
           this.list = res.data;
         });

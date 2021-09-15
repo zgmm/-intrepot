@@ -138,7 +138,8 @@ export default {
           message: "确定要退出吗？",
         })
         .then(() => {
-          this.$router.replace("/home/homei");
+          this.$router.replace("/home/homed");
+          window.sessionStorage.removeItem("token")
         })
         .catch(() => {
           this.$dialog.close();

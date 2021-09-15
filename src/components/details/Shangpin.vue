@@ -516,19 +516,19 @@ export default {
     },
   },
   mounted() {
-    this.axios.get("http://localhost:3000/deta").then((res) => {
+    this.axios.get("/deta").then((res) => {
       this.cdlist = res.data;
     });
-    this.axios.get("http://localhost:3000/deta-two").then((res) => {
+    this.axios.get("/deta-two").then((res) => {
       this.cdlist_two = res.data;
     });
-    this.axios.get("http://localhost:3000/deta-three").then((res) => {
+    this.axios.get("/deta-three").then((res) => {
       this.cdlist_three = res.data;
     });
-    this.axios.get("http://localhost:3000/deta-four").then((res) => {
+    this.axios.get("/deta-four").then((res) => {
       this.cdlist_four = res.data;
     });
-    this.axios.get("http://localhost:3000/deta-five").then((res) => {
+    this.axios.get("/deta-five").then((res) => {
       this.cdlist_five = res.data;
     });
     this.$store.commit("getshuliang",0)

@@ -70,7 +70,7 @@ export default {
     
   },
   mounted() {
-    this.axios.get("http://localhost:3000/information").then((res) => {
+    this.axios.get("/information").then((res) => {
       this.infoList = res.data;
     });
   },
