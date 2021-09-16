@@ -12,6 +12,7 @@ const routes = [{
         path: '/',
         redirect: '/login'
     },
+
     {
         path: '/home', //一级路由我的页面
         component: () =>
