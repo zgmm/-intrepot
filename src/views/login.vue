@@ -139,7 +139,7 @@ export default {
                 return;
             }
             this.axios.post("/login",this.user).then(res => {
-                window.sessionStorage.setItem("token", res.data[0]);
+                window.sessionStorage.setItem("token", res.data.id);
                 this.$router.push({
                     path: '/home',
                     query: {

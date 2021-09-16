@@ -124,7 +124,7 @@ export default {
           title: "确定要重置密码？",
         })
         .then(() => {
-          this.$router.replace("/forget");
+          this.$router.push("/forget");
         })
         .catch(() => {
           this.$dialog.close();
