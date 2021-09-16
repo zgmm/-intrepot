@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import login from '../views/login.vue'
+import blanceexplain from '../components/explain/Blanceexplain.vue' //余额说明
+import chitplain from '../components/explain/Chitplain.vue' //代金券说明
+import integralplain from '../components/explain/Integralplain.vue' //积分说明
+import packetplain from '../components/explain/Packetplain.vue' //红包说明
 
 Vue.use(VueRouter)
 
@@ -15,184 +19,207 @@ const routes = [{
             import('../views/Home.vue'),
         children: [{ //二级路由
                 path: '',
-                redirect: 'homed', //默认显示登录前页面
+                component: () => import('../components/home/Homed.vue'), //默认显示登录前页面
                 meta: { //用来判断一级路由是否显示在底部 true显示；false不显示
-                    isturn: true
+                    isturn: true,
+                    islogin: true
                 }
             },
             {
                 path: 'homed',
-                component: () =>
-                    import('../components/home/Homed.vue'),
+                component: () => import('../components/home/Homed.vue'),
                 meta: {
-                    isturn: true
+                    isturn: true,
+                    islogin: true
                 }
             },
             {
-                path: 'homei', //登录后的页面
-                component: () =>
-                    import('../components/home/Homei.vue'),
-                meta: {
-                    isturn: true
-                }
-            },
+                path: 'acountInfo',
+                component: () => import('../components/my/AccountInfo.vue')
+            }, //账户信息
             {
-                path: 'acountInfo', //账户信息
-                component: () =>
-                    import('../components/my/AccountInfo.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
+                path: 'balance',
+                component: () => import('../components/my/Balance.vue')
+            }, //我的余额
             {
-                path: 'balance', //我的余额
-                component: () =>
-                    import('../components/my/Balance.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
+                path: 'integral',
+                component: () => import('../components/my/Integral.vue')
+            }, //我的积分
             {
-                path: 'integral', //我的积分
-                component: () =>
-                    import('../components/my/Integral.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
+                path: 'discounts',
+                component: () => import('../components/my/Discounts.vue')
+            }, //我的优惠
             {
-                path: 'discounts', //我的优惠
-                component: () =>
-                    import('../components/my/Discounts.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
+                path: 'product',
+                component: () => import('../components/product/ProductList.vue')
+            }, //产品列表
             {
-                path: 'product', //产品列表
-                name: 'Product',
-                component: () =>
-                    import('../components/product/ProductList.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
+                path: 'midifyUser',
+                component: () => import('../components/my/MidifyUser.vue')
+            }, //修改用户名
             {
-                path: 'midifyUser', //修改用户名
-                name: 'MidifyUser',
-                component: () =>
-                    import('../components/my/MidifyUser.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
+                path: 'vip',
+                component: () => import('../components/my/Vip.vue'),
+            }, //vip页面
             {
-                path: 'vip', //vip
-                name: 'Vip',
-                component: () =>
-                    import('../components/my/Vip.vue'),
-                meta: {
-                    isturn: false
-                }
-            },
+                path: 'blanceexplain',
+                component: blanceexplain
+            }, //余额说明
+            {
+                path: 'chitplain',
+                component: chitplain
+            }, //代金券说明
+            {
+                path: 'integralplain',
+                component: integralplain
+            }, //积分说明
+            {
+                path: 'packetplain',
+                component: packetplain
+            }, //红包说明
         ],
     },
     {
         path: '/product',
-        component: () =>
-            import('../components/product/ProductList.vue')
+        component: () => import('../components/product/ProductList.vue')
     },
     {
         path: '/indent',
-        component: () =>
-            import('../views/Indent.vue'),
+        component: () => import('../views/Indent.vue'),
         meta: {
-            isturn: true
+            isturn: true,
+            islogin: true
         }
     },
     {
         path: '/search',
-        component: () =>
-            import('../views/Search.vue'),
+        component: () => import('../views/Search.vue'),
         meta: {
-            isturn: true
+            isturn: true,
+            islogin: true
         }
     },
     {
         path: '/takeaway',
-        name: 'Takeaway',
-        component: () =>
-            import('../views/Takeaway.vue'),
+        component: () => import('../views/Takeaway.vue'),
         meta: {
-            isturn: true
+            isturn: true,
+            islogin: true
         }
     },
     {
         path: '/xuandizhi',
-        name: 'Xuandizhi',
-        component: () =>
-            import('../components/Xuandizhi.vue'),
-        meta: {
-            isturn: false
-        }
-    },
+        component: () => import('../components/address/Xuandizhi.vue')
+    }, // 选择地址
     {
         path: '/tiandizhi',
-        name: 'Tiandizhi',
-        component: () =>
-            import('../components/Tiandizhi.vue'),
-        meta: {
-            isturn: false
-        }
-    },
+        component: () => import('../components/address/Tiandizhi.vue')
+    }, // 添加地址
+    {
+        path: '/gaidizhi',
+        component: () => import('../components/address/Gaidizhi.vue')
+    }, // 修改地址
     {
         path: '/zfdingdan',
-        name: 'Zfdingdan',
+        component: () => import('../components/Zfdingdan.vue')
+    }, // 支付订单
+    {
+        path: '/zfmima',
+        component: () => import('../components/Zfmima.vue')
+    }, // 支付订单
+    {
+        path: '/spxiangqing1', // 商品详情1
         component: () =>
-            import('../components/Zfdingdan.vue'),
+            import('../components/details/Spxiangqing1.vue'),
+        children: [{
+                path: "/",
+                component: () => import('../components/details/Shangpin.vue'),
+            }, //二级路由-默认
+            {
+                path: 'shangpin',
+                component: () => import('../components/details/Shangpin.vue')
+            }, //二级路由-商品
+            {
+                path: 'pingjia',
+                component: () => import('../components/details/Pingjia.vue')
+            }, //二级路由-评价
+        ],
         meta: {
-            isturn: false
+            islogin: true
         }
     },
     {
-        path: '/spxiangqing',
+        path: '/spxiangqing2', // 商品详情2
         component: () =>
-            import('../components/Spxiangqing.vue'),
+            import('../components/details/Spxiangqing2.vue'),
         children: [{
                 path: "/",
-                component: () =>
-                    import('../components/Shangpin.vue'),
-            },
+                component: () => import('../components/details/Shangpin.vue'),
+            }, //二级路由-默认
             {
                 path: 'shangpin',
-                component: () =>
-                    import('../components/Shangpin.vue'),
-            },
+                component: () => import('../components/details/Shangpin.vue')
+            }, //二级路由-商品
             {
                 path: 'pingjia',
-                component: () =>
-                    import('../components/Pingjia.vue'),
-            },
+                component: () => import('../components/details/Pingjia.vue')
+            }, //二级路由-评价
         ],
         meta: {
-            isturn: false
-        },
+            islogin: true
+        }
+    },
+    {
+        path: '/spxiangqing3', // 商品详情3
+        component: () =>
+            import('../components/details/Spxiangqing3.vue'),
+        children: [{
+                path: "/",
+                component: () => import('../components/details/Shangpin.vue'),
+            }, //二级路由-默认
+            {
+                path: 'shangpin',
+                component: () => import('../components/details/Shangpin.vue')
+            }, //二级路由-商品
+            {
+                path: 'pingjia',
+                component: () => import('../components/details/Pingjia.vue')
+            }, //二级路由-评价
+        ],
+        meta: {
+            islogin: true
+        }
+    },
+    {
+        path: '/spxiangqing4', // 商品详情
+        component: () =>
+            import('../components/details/Spxiangqing4.vue'),
+        children: [{
+                path: "/",
+                component: () => import('../components/details/Shangpin.vue'),
+            }, //二级路由-默认
+            {
+                path: 'shangpin',
+                component: () => import('../components/details/Shangpin.vue')
+            }, //二级路由-商品
+            {
+                path: 'pingjia',
+                component: () => import('../components/details/Pingjia.vue')
+            }, //二级路由-评价
+        ],
+        meta: {
+            islogin: true
+        }
     },
     {
         path: '/login',
-        name: 'login',
-        component: login,
-        meta: {
-            isturn: false
-        }
+        component: login
     },
     {
         path: '/forget',
-        name: 'forget',
-        component: () =>
-            import('../views/forget.vue'),
+        component: () => import('../views/forget.vue'),
         meta: {
-            isturn: false
+            islogin: true
         }
     }
 ]
@@ -202,7 +229,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    if (to.path == '/' || to.path == '/login' || to.path == '/forget') {
+    if (to.path == '/' || to.path == '/login' || to.path == '/forget' || to.meta.islogin) {
         next();
     } else {
         if (window.sessionStorage.getItem("token")) {

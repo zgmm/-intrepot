@@ -37,6 +37,7 @@
 <script>
 import Load from '@/components/Load.vue';
 
+
 export default {
     components:{
         Load

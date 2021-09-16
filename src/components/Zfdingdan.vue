@@ -1,17 +1,16 @@
 <template>
   <div class="box">
     <header>
-      <div class="fh" @click="fanhui">&lt;</div>
+      <div class="fh iconfont icon-AS" @click="fanhui" ></div>
       <p>支付订单</p>
       <div id="wode">
         <img src="../../public/images/wode.png" @click="my" />
       </div>
     </header>
     <div class="dizhi">
-      <div class="dizhi-one" v-if="dizhi_one">
+      <div class="dizhi-one" v-if="dizhi_one" @click="xuanze(7)">
         <p>
           <img src="../../public/images/dingwei.png" />请添加一个收货地址<span
-            @click="xuanze"
             >></span
           >
         </p>
@@ -22,7 +21,7 @@
         <p class="two-name">
           {{ dizhi.name }} ({{ dizhi.sex }})<span>{{ dizhi.phone }}</span>
         </p>
-        <span class="xuanze" @click="xuanze">></span>
+        <span class="xuanze" @click="xuanze(7)">></span>
         <div class="dizhi-bottom"><img src="../../public/images/bg.jpg" /></div>
       </div>
     </div>
@@ -44,9 +43,12 @@
         <p v-if="active">餐盒</p>
         <p v-if="active">配送费</p>
       </div>
+      <div class="by-center">
+        <p v-for="int in count" :key="int.id">x {{int.sumber}}</p>
+      </div>
       <div class="by-right">
         <p v-for="val in jiage" :key="val.id" class="shuliang">
-          x 1<span id="jiage">￥{{ val.sumber }}</span>
+          <span id="jiage">￥{{ val.sumber }}</span>
         </p>
         <p v-if="active"><span id="jiage">￥3</span></p>
         <p v-if="active"><span id="jiage">￥5</span></p>
@@ -69,14 +71,8 @@
           />
         </p>
         <p>
-          在线支付<input
-            type="checkbox"
-            v-model="nan"
-            value="在线支付"
-            id="alght-inp"
-          />
+          在线支付<input @click="zxzf" type="checkbox" v-model="nan" value="在线支付" id="alght-inp" />
         </p>
-        <p></p>
       </div>
     </div>
   </div>
@@ -104,24 +100,37 @@ export default {
         this.$store.commit("getsum", this.sum);
       }
     },
-    ...mapState(["sum", "name", "jiage"]),
+    ...mapState(["sum", "name", "jiage","count"]),
   },
   methods: {
     xianshi() {
-      this.show = true;
+      let that=this
+      if(Object.keys(that.dizhi).length==0){
+        that.$dialog.alert({
+          message:"请选择地址"
+        }).then(()=>{
+          return
+        })
+      }else{
+        that.show=true
+      }
     },
     yincang() {
       this.show = false;
     },
     fanhui() {
-      this.$router.push("/spxiangqing");
+      this.$router.push("/spxiangqing1");
     },
-    xuanze() {
-      this.$router.push("/xuandizhi");
+    xuanze(sumber) {
+      this.$router.push({path:"/xuandizhi",query:{id:sumber}});
+      console.log({query:{id:sumber}});
     },
     my() {
       this.$router.push("/homed");
     },
+    zxzf(){
+      this.$router.push("/zfmima")
+    }
   },
   mounted() {
     this.getshow;
@@ -130,7 +139,6 @@ export default {
       .then((res) => {
         this.dizhi = res.data;
       });
-    console.log(this.$route.query.id);
     if (this.$route.query.id > 1) {
       this.dizhi_two = true;
       this.dizhi_one = false;
@@ -166,7 +174,7 @@ header .fh {
   font-size: 0.4rem;
   height: 0.5rem;
   width: 0.4rem;
-  top: 0.2rem;
+  top: 0.1rem;
   left: 0.2rem;
 }
 header p {
@@ -337,41 +345,47 @@ header #wode {
   text-align: left;
   font-size: 0.25rem;
 }
-.by-left {
-  width: 65%;
-  overflow: hidden;
-}
-.by-left > p {
-  margin-left: 5%;
-}
-.by-right {
-  width: 35%;
-  overflow: hidden;
-}
 .by p {
   height: 0.5rem;
   line-height: 0.5rem;
   margin-top: 0.1rem;
 }
-.by-right > p {
+.by-left {
+  width: 60%;
+  overflow: hidden;
+}
+.by-left > p {
+  margin-left: 5%;
+}
+.by-center{
+  width: 20%;
+  overflow: hidden;
+}
+.by-center>p{
   color: #ff6600;
-  margin-right: 10%;
+}
+.by-right {
+  width: 20%;
+  overflow: hidden;
+  margin-bottom: 1rem;
 }
 .by-right > p > span {
   color: #666666;
 }
 .by-right > p > span {
   float: right;
+  margin-right: .25rem;
 }
 
 .sum {
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
   height: 1rem;
   color: white;
   font-size: 0.32rem;
   line-height: 1rem;
-  position: fixed;
-  bottom: 0;
 }
 .sum .sum-lf {
   width: 70%;
@@ -387,7 +401,7 @@ header #wode {
   background-color: #56d176;
 }
 .alght {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -398,15 +412,15 @@ header #wode {
   height: 75%;
   background-color: #b2b2b2;
   opacity: 0.4;
+  position: fixed;
 }
 .alght .alght-box {
   width: 100%;
   height: 25%;
   background-color: #fff;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   left: 0;
-  border: 1px solid yellow;
   font-size: 0.27rem;
 }
 .alght-box h3 {
@@ -438,4 +452,5 @@ header #wode {
 #alght #alght-inp:checked {
   background-color: #4cd964;
 }
+
 </style>
