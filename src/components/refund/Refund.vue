@@ -67,7 +67,7 @@ export default {
     getRefund() {
       this.axios.get("http://localhost:3000/indent").then((res) => {
         this.getId = this.$route.query.id;
-        var com = res.data[0].com;
+        var com = res.data.com;
         for (let i = 0; i < com.length; i++) {
           if (com[i].result == "已取消") {
             this.refundList.push(com[i]);

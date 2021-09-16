@@ -75,7 +75,7 @@ export default {
       if (this.content == "") {
         this.without = false;
         this.orderList = false;
-        this.axios.get("http://localhost:3000/searchIndent").then((res) => {
+        this.axios.get("/searchIndent").then((res) => {
           this.searchList = res.data;
           if (this.historyList == "") {
             this.searchHistory = false;
@@ -128,7 +128,7 @@ export default {
         });
     },
     again() {
-      this.$router.replace("/spxiangqing");
+      this.$router.replace("/spxiangqing1");
     },
   },
   mounted() {

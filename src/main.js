@@ -35,6 +35,7 @@ Vue.use(VueAxios, axios)
 import animated from 'animate.css'
 Vue.use(animated)
 
+axios.defaults.baseURL='http://localhost:3000';
 
 
 
@@ -42,4 +43,4 @@ new Vue({
     router,
     store,
     render: h => h(App)
-}).$mount('#app')
+}).$mount('#app') 

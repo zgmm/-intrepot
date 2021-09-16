@@ -460,12 +460,12 @@ export default {
     /* 获取所有的订单信息 */
     getIndent() {
       this.axios.get("http://localhost:3000/indent").then((res) => {
-        this.getCom = res.data[0].com; //获取所有的订单
-        this.recom = res.data[0].recom;//获取推荐的商品
+        this.getCom = res.data.com; //获取所有的订单
+        this.recom = res.data.recom;//获取推荐的商品
       });
     },
     again() {//再来一单
-      this.$router.replace("/spxiangqing");
+      this.$router.replace("/spxiangqing1");
     },
     more() {//更多商家
       this.$router.replace("/product");
@@ -473,7 +473,8 @@ export default {
     /* 判断订单状态 */
     getsesucceedList() {
       this.axios.get("http://localhost:3000/indent").then((res) => {
-        var chang = res.data[0].com;
+        var chang = res.data.com;
+        console.log(res.data.com.length)
         for (var i = 0; i < chang.length; i++) {
           if (chang[i].result == "已完成") {
             this.succeedList.push(chang[i]);

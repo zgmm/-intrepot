@@ -1,0 +1,43 @@
+<template>
+    <div>
+       <Header title="积分说明">
+           <span class="iconfont icon-AS black" slot="black" @click="$router.back(-1)"></span>
+       </Header>
+       <section class="sec">
+         <h2>Q1:怎么获取积分？</h2>
+         <p>在线支付的订单将获得订单积分奖励。</p>
+         <p>积分将在用户完成评价后获得。</p>
+         <p>可获得积分=订单金额x10（即1元=10点积分</p>
+         <p>订单金额指实际付款金额，不包含活动优惠金额。</p>
+         <p>每位用户每天最多可以获得2000积分，体验商家的订单和评价不会增加积分。</p>
+         <h2>Q2:积分用来做什么？</h2>
+         <p>可以在积分商城兑换各种礼品</p>
+         <h2>Q3:礼品兑换很多天了还没有到，该怎么办？</h2>
+         <p>礼品从兑换日起，3个工作日（周末不算）内处理发货，发货后，通常会在3个工作日左右送达</p>
+         <h2>Q4:礼品兑换中的手机充值卡兑换，怎么样进行充值，充值之前会和我电话确认吗？</h2>
+         <p>不会，手机充值卡兑换，是直接充值到您填写的手机号上，充值之前不会和您电话确认，所以您在填写电话的时候，请确认电话是否正确。</p>
+       </section>
+    </div>
+</template>
+
+<script>
+import Header from '../home/Header.vue'
+
+export default {
+  components: { Header },
+}
+</script>
+<style scoped>
+.sec{
+  font-family:'Courier New', Courier, monospace;
+  margin:.75rem .2rem;
+}
+.sec h2{
+  font-size: .35rem;
+  margin: .1rem 0;
+}
+.sec p{
+  font-size: .25rem;
+  line-height: .4rem;
+}
+</style>

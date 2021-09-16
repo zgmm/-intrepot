@@ -174,8 +174,8 @@
     <!-- 商家部分 -->
     <div class="merchant">
       <div class="hemlet">
-        <div class="picbox"><img :src="setinfosrc(getinfoId)" alt="" /></div>
-        <p>{{ setinfotitle(getinfoId) }}</p>
+        <div class="picbox"><img :src="src" alt="" /></div>
+        <p>{{ title }}</p>
         <p><input type="radio" />匿名提交</p>
       </div>
       <div class="star">
@@ -254,7 +254,8 @@ export default {
       getinfoId: 0, //获取路由传过来的id
       test: [],
       pingId: 0,
-      lis: [],
+      title:'',
+      src:'',
     };
   },
   methods: {
@@ -308,38 +309,39 @@ export default {
             theme: "round-button",
           })
           .then(() => {
-            if(this.pingId == this.test){
-            }
-            this.$router.replace("/takeaway");
+            this.shiyishi()
           });
       }
     },
     shiyishi() {
-      this.axios.get("http://localhost:3000/indent/").then((res) => {
         this.pingId = this.$route.query.id;
-        this.lis = res.data[0].com;
-        for (var i = 0; i < this.lis.length; i++) {
-          if (this.lis[i].result == "待评价") {
-            this.test.push(this.lis[i]);
+        console.log(this.pingId)
+        for (var i = 0; i < this.getinfo.com.length; i++) {
+         
+          if (this.getinfo.com[i].id == this.pingId) {
+            this.getinfo.com[i].result = "已完成";
+             console.log(0)
+             break
           }
         }
-      });
+        this.axios.put("http://localhost:3000/indent",this.getinfo).then(()=>{
+          this.$router.replace("/indent");
+        })
     },
     //设置跟路由id相同的图片路径
     setinfosrc(id) {
-      for (var i = 0; i < this.getinfo.length; i++) {
+      for (var i = 0; i < this.getinfo.com.length; i++) {
         // console.log(this.getinfo[i].id);
-        if (id == this.getinfo[i].id) {
-          return this.getinfo[i].src;
+        if (id == this.getinfo.com[i].id) {
+          this.src =  this.getinfo.com[i].src;
         }
       }
     },
     //设置跟路由id相同的标题
     setinfotitle(id) {
-      for (var i = 0; i < this.getinfo.length; i++) {
-        // console.log(this.getinfo[i].id);
-        if (id == this.getinfo[i].id) {
-          return this.getinfo[i].title;
+      for (var i = 0; i < this.getinfo.com.length; i++) {
+        if (id == this.getinfo.com[i].id) {
+          this.title =  this.getinfo.com[i].title;
         }
       }
     },
@@ -347,14 +349,14 @@ export default {
   mounted() {
     //获取com数据，并把路由id值赋予getinfoid
     this.axios.get("http://localhost:3000/indent").then((res) => {
-      this.getinfo = res.data[0].com;
+      this.getinfo = res.data;
       this.getinfoId = this.$route.query.id;
+         //调用跟路由id相同的图片路径
+      this.setinfosrc(this.getinfoId);
+      this.setinfotitle(this.getinfoId); //调用跟路由id相同的标题
+
     });
-    this.shiyishi()
-    //调用跟路由id相同的图片路径
-    this.setinfosrc(this.getinfoId);
-    this.setinfotitle(this.getinfoId); //调用跟路由id相同的标题
-  },
+   },
 };
 </script>
 
