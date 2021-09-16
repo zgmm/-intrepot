@@ -100,12 +100,11 @@ export default {
     },
 
     showUaername() {
-      console.log(this.$route.query.userName);
-      if (this.$route.query.userName == undefined) {
-        this.login.userName = this.login.userName;
-      } else {
-        this.login.userName = this.$route.query.userName;
-      }
+      console.log(this.$route.query.id);
+      this.axios.get("http://localhost:3000/login/"+ this.$route.query.id)
+      .then(res=> {
+          this.login.userName = res.data.username;
+      })
     },
   },
   computed: {},

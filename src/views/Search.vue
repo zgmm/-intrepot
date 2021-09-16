@@ -6,15 +6,16 @@
             <span>搜索</span>
         </header>
         <p class="sub">
-            <input type="search" placeholder="请输入商家或美食名称" v-model="designation">
+            <input type="text" placeholder="请输入商家或美食名称" v-model="designation">
+            <span class="iconfont icon-chahao" v-show="chahao" @click="emptyText()"></span>
             <input type="button" @click="search()" value="提交">
         </p>
         <p class="empty" v-show="emptyShow">很抱歉！无搜索结果</p>
         <div class="business" v-show="businessShow">
             <h4>商家</h4>
             <ul>
-                 <li v-for="s in searchList" :key="s.id">
-                    <img :src="s.src" alt="">
+                 <li v-for="s in searchList" :key="s.id" @click="shop(s.id)">
+                    <img v-lazy="s.src" alt="">
                     <div class="content">
                         <p>{{s.title}}<span>支付</span></p>
                         <p>月售 {{s.sales}} 单</p>
@@ -26,7 +27,7 @@
         <div class="history" v-show="historyShow">
             <h4>搜索历史</h4>
             <ul>
-                <li @click="hunt(h)" v-for="(h,index) in historyList" :key="h.length">{{h}}<span class="iconfont icon-chahao" @click="Delete(index)"></span></li>
+                <li @click="hunt(h)" v-for="(h,index) in historyList" :key="index">{{h}}<span class="iconfont icon-chahao" @click="Delete(index)"></span></li>
             </ul>
             <p @click="clear()">清空搜索历史</p>
         </div>
@@ -42,6 +43,7 @@ export default {
     },
     data() {
         return {
+            chahao: false,
             emptyShow: false,
             loadShow: true,
             businessShow: false, 
@@ -56,9 +58,10 @@ export default {
     watch:{
         designation() {
             if(this.designation==""){
+                this.chahao = false;
                 this.emptyShow = false;
                 this.businessShow = false;
-                this.axios.get("http://localhost:3000/searchList").then(res => {
+                this.axios.get("searchList").then(res => {
                 this.searchList = res.data;
                     if(this.historyList==""){
                         this.historyShow = false
@@ -66,30 +69,48 @@ export default {
                         this.historyShow = true
                     }
                 })        
+            }else{
+                this.chahao = true;
             }
         }   
     },
     methods: {
+        shop(id) {
+            this.$router.push({
+                path: '/shop',
+                query: {
+                    id:id   
+                }
+            })
+        },
+        // 清空搜索框
+        emptyText() {
+            this.designation = '';
+        },
         // 返回上一个路由
         Prev() {
             this.$router.go(-1);
         },
         // 单击提交搜索文本框中的内容
         search() {        
+            if(!this.designation){
+                return;
+            }
+            if(this.historyList.indexOf(this.designation) != -1){
+                return;
+            }
             this.historyShow = false
-            this.historyList.push(this.designation);  
+            this.historyList.unshift(this.designation);  
             this.newSearchList = [];
             this.searchList.forEach(item => {
                 if(item.title.indexOf(this.designation) == -1){
                     this.emptyShow = true;
-                }else if(this.designation == ''){
-                    return;
                 }else{
                     this.newSearchList.push(item);
-                    this.searchList = this.newSearchList;
                     // console.log(this.newSearchList);
                 }
             });
+            this.searchList = this.newSearchList;
             if(this.newSearchList.length > 0 || this.designation == ''){
                 this.emptyShow = false;
                 this.businessShow = true;
@@ -139,43 +160,42 @@ export default {
         }
     },
     mounted() {
-        this.axios.get("http://localhost:3000/searchList").then(res => {
+        this.axios.get("/searchList").then(res => {
             this.searchList = res.data;
         })    
         setTimeout(()=>{
             this.loadShow = false;
-        },1000)    
+        },500)    
     },
 }
 </script>
 
 <style scoped>
-    *{
-        margin: 0;
-        padding: 0;
+    .Search {
+        text-align: center;
     }
     .Search header{
         background: #3190e8;
         z-index: 1;
         position: fixed;
         width: 100%;
-        height: .86rem;
+        height: .9rem;
         text-align: left;
     }
     .Search header span:first-child{
         color: #fff;
         font-size: .51rem;
         position: relative;
-        top: .12rem;
+        top: .09rem;
         left: .06rem;
     }
     .Search header span:nth-child(2){
         position: relative;
-        color: #fff;
-        font-size: .37rem;
-        top: 0.06rem;
         font-weight: bold;
-        margin-left: 2.29rem;
+        color: #fff;
+        font-size: .3rem;
+        font-weight: bold;
+        margin-left: 2.38rem;
     }
     .Search p.sub{
        background: #fff;
@@ -184,19 +204,28 @@ export default {
         margin-bottom: .88rem;
         padding: .17rem;
         text-align: left;
+        position: relative;
     }
-    .Search p.sub input:nth-child(1){
+    .Search p.sub span{
+        padding: .14rem;
+        position: absolute;
+        right: 1.53rem;
+        font-size: .21rem;
+        color: #3190e8;
+        top: .26rem;
+    }
+    .Search p.sub input:nth-of-type(1){
         width: 4.71rem;
         height: .62rem;
         border-radius: .05rem;
         background: #f2f2f2;
         font-size: .28rem;
         border: none;
-        padding-right: .14rem;
         outline: none;
+        padding-right: .55rem;
         padding-left: .17rem;
     }
-    .Search p.sub input:nth-child(2){
+    .Search .sub input:nth-of-type(2){
         font-size: .28rem;
         background: #3190e8;
         color: #fff;
@@ -259,13 +288,13 @@ export default {
     .Search .business ul li{
         border-bottom: 1px solid #e4e4e4;
         position: relative;
-        height: 1.38rem;
+        height: 1.6rem;
     }
     .Search .business ul li img{
         width: .95rem;
         height: .95rem;
         left: .43rem;
-        top: .21rem;
+        top: .31rem;
         position: absolute;
     }
     .Search .business ul li .content{

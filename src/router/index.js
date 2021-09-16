@@ -11,7 +11,8 @@ const routes = [{
     {
         path: '/home', //一级路由我的页面
         component: () =>
-            import ('../views/Home.vue'),
+
+            import('../views/Home.vue'),
         children: [{ //二级路由
                 path: '',
                 redirect: 'homed', //默认显示登录前页面
@@ -22,7 +23,7 @@ const routes = [{
             {
                 path: 'homed',
                 component: () =>
-                    import ('../components/home/Homed.vue'),
+                    import('../components/home/Homed.vue'),
                 meta: {
                     isturn: true
                 }
@@ -30,7 +31,7 @@ const routes = [{
             {
                 path: 'homei', //登录后的页面
                 component: () =>
-                    import ('../components/home/Homei.vue'),
+                    import('../components/home/Homei.vue'),
                 meta: {
                     isturn: true
                 }
@@ -38,7 +39,7 @@ const routes = [{
             {
                 path: 'acountInfo', //账户信息
                 component: () =>
-                    import ('../components/my/AccountInfo.vue'),
+                    import('../components/my/AccountInfo.vue'),
                 meta: {
                     isturn: false
                 }
@@ -46,7 +47,7 @@ const routes = [{
             {
                 path: 'balance', //我的余额
                 component: () =>
-                    import ('../components/my/Balance.vue'),
+                    import('../components/my/Balance.vue'),
                 meta: {
                     isturn: false
                 }
@@ -54,7 +55,7 @@ const routes = [{
             {
                 path: 'integral', //我的积分
                 component: () =>
-                    import ('../components/my/Integral.vue'),
+                    import('../components/my/Integral.vue'),
                 meta: {
                     isturn: false
                 }
@@ -62,7 +63,7 @@ const routes = [{
             {
                 path: 'discounts', //我的优惠
                 component: () =>
-                    import ('../components/my/Discounts.vue'),
+                    import('../components/my/Discounts.vue'),
                 meta: {
                     isturn: false
                 }
@@ -71,7 +72,7 @@ const routes = [{
                 path: 'product', //产品列表
                 name: 'Product',
                 component: () =>
-                    import ('../components/product/ProductList.vue'),
+                    import('../components/product/ProductList.vue'),
                 meta: {
                     isturn: false
                 }
@@ -80,7 +81,7 @@ const routes = [{
                 path: 'midifyUser', //修改用户名
                 name: 'MidifyUser',
                 component: () =>
-                    import ('../components/my/MidifyUser.vue'),
+                    import('../components/my/MidifyUser.vue'),
                 meta: {
                     isturn: false
                 }
@@ -89,7 +90,7 @@ const routes = [{
                 path: 'vip', //vip
                 name: 'Vip',
                 component: () =>
-                    import ('../components/my/Vip.vue'),
+                    import('../components/my/Vip.vue'),
                 meta: {
                     isturn: false
                 }
@@ -99,12 +100,12 @@ const routes = [{
     {
         path: '/product',
         component: () =>
-            import ('../components/product/ProductList.vue')
+            import('../components/product/ProductList.vue')
     },
     {
         path: '/indent',
         component: () =>
-            import ('../views/Indent.vue'),
+            import('../views/Indent.vue'),
         meta: {
             isturn: true
         }
@@ -112,7 +113,7 @@ const routes = [{
     {
         path: '/search',
         component: () =>
-            import ('../views/Search.vue'),
+            import('../views/Search.vue'),
         meta: {
             isturn: true
         }
@@ -121,7 +122,7 @@ const routes = [{
         path: '/takeaway',
         name: 'Takeaway',
         component: () =>
-            import ('../views/Takeaway.vue'),
+            import('../views/Takeaway.vue'),
         meta: {
             isturn: true
         }
@@ -130,7 +131,7 @@ const routes = [{
         path: '/xuandizhi',
         name: 'Xuandizhi',
         component: () =>
-            import ('../components/Xuandizhi.vue'),
+            import('../components/Xuandizhi.vue'),
         meta: {
             isturn: false
         }
@@ -139,7 +140,7 @@ const routes = [{
         path: '/tiandizhi',
         name: 'Tiandizhi',
         component: () =>
-            import ('../components/Tiandizhi.vue'),
+            import('../components/Tiandizhi.vue'),
         meta: {
             isturn: false
         }
@@ -148,7 +149,7 @@ const routes = [{
         path: '/zfdingdan',
         name: 'Zfdingdan',
         component: () =>
-            import ('../components/Zfdingdan.vue'),
+            import('../components/Zfdingdan.vue'),
         meta: {
             isturn: false
         }
@@ -156,21 +157,21 @@ const routes = [{
     {
         path: '/spxiangqing',
         component: () =>
-            import ('../components/Spxiangqing.vue'),
+            import('../components/Spxiangqing.vue'),
         children: [{
                 path: "/",
                 component: () =>
-                    import ('../components/Shangpin.vue'),
+                    import('../components/Shangpin.vue'),
             },
             {
                 path: 'shangpin',
                 component: () =>
-                    import ('../components/Shangpin.vue'),
+                    import('../components/Shangpin.vue'),
             },
             {
                 path: 'pingjia',
                 component: () =>
-                    import ('../components/Pingjia.vue'),
+                    import('../components/Pingjia.vue'),
             },
         ],
         meta: {
@@ -189,7 +190,7 @@ const routes = [{
         path: '/forget',
         name: 'forget',
         component: () =>
-            import ('../views/forget.vue'),
+            import('../views/forget.vue'),
         meta: {
             isturn: false
         }

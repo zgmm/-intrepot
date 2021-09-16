@@ -5,33 +5,32 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: { // 相当于data
-    shuliang:0, // 定义变量
-    sum:0,
-    name:[],
-    jiage:[],
+    seat: "正在定位...",
+    shuliang: 0, // 定义变量
+    sum: 0,
+    name: [],
+    jiage: [],
   },
-  mutations: {  // 方法区域==methods
-    add(state,index){
+  mutations: { // 方法区域==methods
+    add(state, index) {
       state.shuliang++;
     },
-    jian(state,index){
+    jian(state, index) {
       state.shuliang--;
     },
-    zongjia(state,index){
-      state.sum=index;
+    zongjia(state, index) {
+      state.sum = index;
     },
-    getname(state,name){
+    getname(state, name) {
       state.name = name;
     },
-    getjiage(state,sumber){
-      state.jiage=sumber;
+    getjiage(state, sumber) {
+      state.jiage = sumber;
     },
-    getsum(state,sumber){
-      state.sum=sumber+8
+    getsum(state, sumber) {
+      state.sum = sumber + 8
     }
   },
-  actions: {
-  },
-  modules: {
-  }
+  actions: {},
+  modules: {}
 })

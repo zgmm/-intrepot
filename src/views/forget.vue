@@ -27,8 +27,8 @@
         <span @click="refreshCode()">换一张</span>
       </div>
     </form>
-    <p>
-      <button class="btn" @click="confirm()">确认修改</button>
+    <p class="btn">
+      <button @click="confirm()">确认修改</button>
     </p>
     <Spring  @close="Change()" v-show="change" :paragraph="paragraph"></Spring>
     <footer></footer>
@@ -72,7 +72,7 @@ export default {
     methods: {
       // 返回登录页面
       backLogin() {
-        this.$router.push('/login')
+        this.$router.back(-1);
       },
       // 生成随机验证码
       refreshCode() {
@@ -139,7 +139,7 @@ export default {
         }
         if(this.code == ''){
             this.paragraph = "请输验证码"
-            this.change = true
+            this.change = true;
             return;
         }
         if(this.code.toLowerCase() != this.identifyCode.toLowerCase()){
@@ -150,52 +150,51 @@ export default {
             return;
         }
         this.user.password = this.password3;
-        this.axios.put("http://localhost:3000/login/"+this.id,this.user).then(res => {
+        this.axios.put("/login/"+this.id,this.user).then(res => {
             this.$router.push("/login")
         })
       }
     },
     mounted() {
       this.refreshCode();
-      this.axios.get("http://localhost:3000/login").then(res => {
+      this.axios.get("/login").then(res => {
         this.login = res.data;
       })
       setTimeout(()=>{
           this.loadShow = false;
-      },1000)
+      },500)
     }
 }
 </script>
 <style scoped>
     .forget header{
-        background: #3190e8;
-        height: .86rem;
-        text-align: left;
-    }
+      background: #3190e8;
+      height: .9rem;
+      }
     .forget header span:first-child{
-        color: #fff;
-        font-size: .51rem;
-        position: relative;
-        top: .12rem;
-        left: .06rem;
+      color: #fff;
+      font-size: .4rem;
+      position: relative;
+      top: .16rem;
+      left: .1rem;
     }
     .forget header span:nth-child(2){
         position: relative;
         color: #fff;
-        font-size: .37rem;
-        top: 0.06rem;
+        font-size: .3rem;
+        top: .09rem;
         font-weight: bold;
-        margin-left: 2rem;
+        margin-left: 2.16rem;
     }
     .forget form{
         width: 100%;
-        margin-top: .34rem;
+        margin-top: .26rem;
         background: #fff;
     }
     .forget form p:nth-child(1){
         text-align: left;
-        border-bottom: 1px solid #dcdcdc;
-        font-size: .31rem;
+        border-bottom: 1px solid #f1f1f1;
+        font-size: .29rem;
         padding: .17rem .29rem;
     }
     .forget form p:nth-child(1) input{
@@ -203,9 +202,8 @@ export default {
     }
     .forget form p:nth-child(2){
         text-align: left;
-        border-bottom: 1px solid #dcdcdc;
-        font-size: .31rem;
-        margin-top: -0.26rem;
+        border-bottom: 1px solid #f1f1f1;
+        font-size: .29rem;
         padding: .17rem .29rem;
     }
     .forget form p:nth-child(2) input{
@@ -213,9 +211,8 @@ export default {
     }
     .forget form p:nth-child(3){
         text-align: left;
-        border-bottom: 1px solid #dcdcdc;
-        font-size: .31rem;
-        margin-top: -0.26rem;
+        border-bottom: 1px solid #f1f1f1;
+        font-size: .29rem;
         padding: .17rem .29rem;
     }
     .forget form p:nth-child(3) input{
@@ -223,9 +220,8 @@ export default {
     }
     .forget form p:nth-child(4){
         text-align: left;
-        border-bottom: 1px solid #dcdcdc;
-        font-size: .31rem;
-        margin-top: -0.26rem;
+        border-bottom: 1px solid #f1f1f1;
+        font-size: .29rem;
         padding: .17rem .29rem;
     }
     .forget form p:nth-child(4) input{
@@ -234,45 +230,47 @@ export default {
     .forget form .ver{
         position: relative;
         text-align: left;
-        border-bottom: 1px solid #dcdcdc;
-        font-size: .31rem;
-        margin-top: -0.26rem;
+        border-bottom: 1px solid #f1f1f1;
+        font-size: .29rem;
         padding: .17rem .29rem;
     }
     .forget form .ver .get-code{
         position: absolute;
-        right: 71px;
-        top: 0;
+        right: 1.22rem;
+        top: .05rem;
     }
     .forget form .ver span:nth-of-type(1){
         position: absolute;
-        right: 21px;
-        top: 1px;
-        font-size: 14px;
+        right: .36rem;
+        top: .05rem;
+        font-size: .24rem;
     }
     .forget form .ver span:nth-of-type(2){
         position: absolute;
-        right: 21px;
-        top: 20px;
+        right: .36rem;
+        top: .36rem;
         color: #3b95e9;
-        font-size: 14px;
+        font-size: .24rem;
     }
     .forget form .ver input{
-      width: 3.1rem;
-      color: #666;
+        width: 3.1rem;
+        color: #666;
     }
     .forget form input{
         outline: none;
         border: none;
     }
-    .forget p .btn{
-        margin-top: .17rem;
+    .forget p.btn{
+        text-align: center;
+        margin-top: .4rem;
+    }
+    .forget p.btn button{
         background: #4cd964;
         color: #fff;
         border: none;
-        border-radius: .09rem;
+        border-radius: .07rem;
         outline: none;
-        padding: .22rem 2.33rem;
+        padding: .17rem 2.33rem;
         font-size: .31rem;
     }
     .forget footer{
