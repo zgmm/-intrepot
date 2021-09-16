@@ -14,9 +14,12 @@ Vue.use(view)
 // 导入vant的插件，vant内都可以使用
 import './plugins/vant'
 import Vant from 'vant';
+import {
+    AddressEdit
+} from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
-
+Vue.use(AddressEdit)
 // 懒加载
 import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload, {
@@ -31,16 +34,13 @@ Vue.use(ElementUI)
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios, axios)
+axios.defaults.baseURL = 'http://localhost:3000'
 
 import animated from 'animate.css'
 Vue.use(animated)
-
-axios.defaults.baseURL='http://localhost:3000';
-
-
 
 new Vue({
     router,
     store,
     render: h => h(App)
-}).$mount('#app') 
+}).$mount('#app')

@@ -1,9 +1,12 @@
 <template>
     <div class="Takeaway">
+        <transition>
+            <Location @Close="positionClose()" v-show="position"></Location>
+        </transition>
         <Load v-if="loadShow"></Load>
         <header>
             <span class="iconfont icon-sousou" @click="goSearch()"></span>
-            <span>深圳市</span>
+            <span @click="Select()">{{this.$store.state.seat}}</span>
             <span class="iconfont icon-mine-active" @click="goHome()"></span>
         </header>
         <div class="swiper-container">
@@ -11,7 +14,7 @@
                 <div class="swiper-slide">
                     <ul> 
                         <li v-for="item in taHead1" :key="item.id" @click="Tahead1(item.title)">
-                            <img :src="item.cuisine" alt="">
+                            <img v-lazy="item.cuisine" alt="">
                             <p>{{item.title}}</p>
                         </li>
                     </ul>
@@ -19,7 +22,7 @@
                 <div class="swiper-slide">
                     <ul> 
                         <li v-for="item in taHead2" :key="item.id" @click="Tahead2(item.id)">
-                            <img :src="item.cuisine" alt="">
+                            <img v-lazy="item.cuisine" alt="">
                             <p>{{item.title}}</p>
                         </li>
                     </ul>
@@ -34,7 +37,7 @@
             </p>
             <ul>
                 <li v-for="t in tasection" :key="t.id" @click="Business(t.id)">
-                    <img :src="t.src" alt="">
+                    <img v-lazy="t.src" alt="">
                     <div class="brand">
                         <p>
                             <span>品牌</span>
@@ -51,7 +54,7 @@
                             <span>准时达</span>
                         </p>
                         <p>
-                            <span>¥{{t.Start}}起送 / 配送费约¥{{t.Distribution}}</span>
+                            <span>¥{{t.Start}} 起送 / 配送费约 ¥{{t.Distribution}}</span>
                             <span>
                                 <span>{{t.distance}}公里 / </span>
                                 <span>{{t.minites | Time}}</span>
@@ -70,11 +73,13 @@ import 'swiper/dist/js/swiper.min.js'
 import Star from '../components/Takeaway/Star.vue'
 import Swiper from 'swiper'
 import Load from '@/components/Load.vue';
+import Location from '../components/Takeaway/Location.vue'
 
 export default {
     components:{
         Star,
         Load,
+        Location,
     },
     filters:{
         Time(value) {
@@ -94,14 +99,20 @@ export default {
     },
     data() {
         return {
+            position: false, // 定位子组件是否显示
             taHead1: [],
             taHead2: [],
             loadShow: true,
-            // a: Number,
             tasection: [],
         }
     },
     methods: {
+        Select() {
+            this.position = true;
+        },
+        positionClose() {
+            this.position = false;
+        },
         goSearch() {
             this.$router.push("/search")
         },
@@ -137,7 +148,7 @@ export default {
         }
     },
     mounted() {
-        this.axios.get("http://localhost:3000/takeaway").then(res => {
+        this.axios.get("/takeaway").then(res => {
             this.taHead1 = res.data[0].taHead1;
             this.taHead2 = res.data[0].taHead2;
             this.tasection = res.data[0].tasection
@@ -148,34 +159,58 @@ export default {
         })
         setTimeout(()=>{
             this.loadShow = false;
-        },1000)    
+        },500)    
     }
 }
 </script>
 
 <style scoped>
-.Takeaway{
-    text-align: center;
-    /* padding: .1rem; */
-}
+    .v-enter,.v-leave-to{
+        opacity: 0;
+    }
+    .v-enter-to,.v-leave{
+        opacity: 1;
+    }
+    .v-enter-active,.v-leave-active{
+        transition: all .5s;
+    }
+    .Takeaway{
+        text-align: center;
+    }
+    .Takeaway .van-area{
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        z-index: 99;
+    }
     .Takeaway header{
         width: 100%;
         z-index: 2;
-        height: .86rem;
-        font-size: .34rem;
-        line-height: .86rem;
+        height: .9rem;
+        font-size: .3rem;
+        font-weight: bold;
+        line-height: .9rem;
         color: #fff;
         position: fixed;
         background: #3190e8;
     }
     .Takeaway header span:nth-child(1){
         position: absolute;
+        font-weight: normal;
         left: .31rem;
         top: .03rem;
         font-size: .43rem;
     }
+    .Takeaway header span:nth-child(2){
+        display: inline-block;
+        width: 3.45rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
     .Takeaway header span:nth-child(3){
         position: absolute;
+        font-weight: normal;
         right: .31rem;
         top: .03rem;
         font-size: .43rem;
@@ -183,19 +218,20 @@ export default {
     .Takeaway .swiper-container{
         position: relative;
         top: .86rem;
+        padding-top: .1rem;
         background: #fff;
         border-bottom: 1px solid #d8d8d8;
-        height: 3.19rem;       
+        height: 3.53rem;       
     }
     .Takeaway .swiper-container .swiper-wrapper .swiper-slide ul{
         overflow: hidden;
         width: 6.26rem;
-        /* margin-left: -0.55rem; */
+        margin-left: .07rem;
     }
     .Takeaway .swiper-container .swiper-wrapper .swiper-slide ul li{
         width: .86rem;
         float: left;
-        margin: 0 .34rem;
+        margin: .17rem .34rem;
     }
     .Takeaway .swiper-container .swiper-wrapper .swiper-slide ul li img{
         width: .78rem;
@@ -226,16 +262,15 @@ export default {
     .Takeaway .business ul li {
         position: relative;
         width: 6.41rem;
-        /* margin-left: -0.69rem; */
-        height: 1.81rem;
+        height: 2.26rem;
         padding-top: .34rem;
         border-bottom: 1px solid #ebebeb;
     }
     .Takeaway .business ul li img{
         width: 1.12rem;
         height: 1.12rem;
-        left: .1rem;
-        top: .48rem;
+        left: .14rem;
+        top: .53rem;
         position: absolute;
     }
     .Takeaway .business ul li .brand{
@@ -247,7 +282,7 @@ export default {
     .Takeaway .business ul li .brand p:nth-child(1){
         width: 4.83rem;
         position: relative;
-        left: .26rem;
+        left: .33rem;
     }
     .Takeaway .business ul li .brand p:nth-child(1) span:nth-child(1){
         background: #ffd930;
@@ -265,10 +300,11 @@ export default {
     .Takeaway .business ul li .brand p:nth-child(1) span:nth-child(3){
         float: right;
         margin-top: .05rem;
+        margin-right: .03rem;
     } 
     .Takeaway .business ul li .brand p:nth-child(2){
         position: relative;
-        left: .28rem;
+        left: .33rem;
         margin-top: .21rem;   
         padding-left: 1.93rem;
     }
@@ -282,34 +318,34 @@ export default {
         color: #f00;
         font-size: .28rem;
         position: relative;
-        top: -1px;
+        top: -0.07rem;
         left: 0;
     }
     .Takeaway .business ul li .brand p:nth-child(3){
-        padding-left: .26rem;
+        padding-left: .33rem;
     }
     .Takeaway .business ul li .brand p:nth-child(3) span:nth-child(2){
         position: relative;
-        left: 2.1rem;
+        left: 2.17rem;
         color: #fff;
         padding: .03rem;
         background: #3190e8;
     }
     .Takeaway .business ul li .brand p:nth-child(3) span:nth-child(3){
         position: relative;
-        left: 2.24rem;
+        left: 2.29rem;
         color: #3190e8;
         background: #fff;
         padding: .03rem;
         border: 1px solid #3190e8;
     }
     .Takeaway .business ul li .brand p:nth-child(4){
-        padding:.2rem .26rem;
+        padding:.2rem .33rem;
         position: relative;
     }
     .Takeaway .business ul li .brand p:nth-child(4)>span:nth-child(2){
         position: absolute;
-        right: -0.21rem;
+        right: -0.31rem;
     }
     .Takeaway .business ul li .brand p:nth-child(4)>span:nth-child(2) span:nth-child(1){
         color: #999;

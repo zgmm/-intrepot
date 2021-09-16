@@ -70,7 +70,7 @@ export default {
     methods:{
         // 返回我的页面
         backHome() {
-            this.$router.back(-1)
+            this.$router.back(-1);
         },
         // 切换密码是否显示
         toggle() {
@@ -134,16 +134,16 @@ export default {
                     }
                     // 从路由获取id
                     // this.$route.query.id
-            });
-                this.have = false;
+                    });
+                // this.have = false;
                 return;
             }
-            this.axios.post("http://localhost:3000/login",this.user).then(res => {
+            this.axios.post("/login",this.user).then(res => {
                 window.sessionStorage.setItem("token", res.data.id);
                 this.$router.push({
                     path: '/home',
                     query: {
-                        id: res.data.id  
+                        id: res.data.id   
                     }
                     // 从路由获取id
                     // this.$route.query.id
@@ -156,12 +156,12 @@ export default {
     },
     mounted(){
         this.refreshCode();
-        this.axios.get("http://localhost:3000/login").then(res => {
+        this.axios.get("/login").then(res => {
             this.login = res.data;
         })
         setTimeout(()=>{
             this.loadShow = false;
-        },1000)
+        },500)
     }
 }
 
@@ -176,46 +176,43 @@ export default {
     }
     header{
         background: #3190e8;
-        height: .86rem;
-        text-align: left;
+        height: .9rem;
         }
     header span:first-child{
         color: #fff;
-        font-size: .51rem;
+        font-size: .4rem;
         position: relative;
-        top: .12rem;
-        left: .06rem;
+        top: .16rem;
+        left: .1rem;
     }
     header span:nth-child(2){
         position: relative;
         color: #fff;
-        font-size: .37rem;
-        top: 0.06rem;
+        font-size: .3rem;
+        top: .09rem;
         font-weight: bold;
-        margin-left: 2rem;
+        margin-left: 2.16rem;
     }
     form{
-        margin-top: .34rem;
+        margin-top: .26rem;
     }
     .num{
-        border-bottom: 1px solid #ccc;
-        line-height: .65rem;
+        border-bottom: 1px solid #f1f1f1;
     }
     .num input{
         width: 100%;
         height: .83rem;
+        line-height: .83rem;
         box-sizing: border-box;
         padding-left: .38rem;
         border: none;
         color: #888;
-        font-size: .31rem;
+        font-size: .29rem;
         outline: none;
     }
     .pwd{
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #f1f1f1;
         line-height: .66rem;
-        text-align: left;    
-        margin-top: -0.15rem;
         background: #fff;
     }
     .pwd input{
@@ -225,30 +222,29 @@ export default {
         padding-left: .38rem;
         border: none;
         color: #888;
-        font-size: .31rem;
+        font-size: .29rem;
         outline: none;
     }
     .pwd .el-switch{
         position: relative;
         top: -0.05rem;
-        left: .38rem;
+        left: .52rem;
     }
     .ver{
         background: #fff;
-        text-align: left;
+        border-bottom: 1px solid #f1f1f1;
         position: relative;
-        margin-top: -0.15rem;
     }
     .ver span:first-of-type{
         position: absolute;
-        top: .14rem;
-        right: .47rem;
+        top: .1rem;
+        right: .41rem;
     }
     .ver span:nth-of-type(2){
         position: absolute;
-        top: .48rem;
         color: #3b95e9;
-        right: .45rem;
+        top: .43rem;
+        right: .41rem;
     }
     .ver img{
         position: relative;
@@ -262,7 +258,7 @@ export default {
         padding-left: .38rem;
         border: none;
         color: #888;
-        font-size: .31rem;
+        font-size: .29rem;
         outline: none;
     }
     .ver .get-code{
@@ -272,16 +268,19 @@ export default {
         right: 1.21rem;
     }
     .Tips{
-        text-align: left;
+        margin: .17rem 0;
         padding-left: .3rem;
         line-height: .34rem;
         color: #f00;
+    }
+    .btn{
+        text-align: center;
     }
     .btn button{
         width: 5.9rem;
         height: .83rem;
         line-height: .83rem;
-        border-radius: .09rem;
+        border-radius: .07rem;
         font-size: .36rem;
         outline: none;
         border: none;

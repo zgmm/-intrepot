@@ -53,6 +53,7 @@ export default {
     }
     
     .Spring{
+        text-align: center;
         position: absolute;
         width: 4.83rem;
         height: 3.1rem;

@@ -3,7 +3,7 @@
     <!--结构层-->
 
         <div id="star">
-            <span v-for="classn in starArrs" :class="classn" class="staritem" :key="classn.length"></span>
+            <span v-for="(classn,index) in starArrs" :class="classn" class="staritem" :key="index"></span>
             <!--<span  class="staritem onstar"></span>
             <span  class="staritem onstar"></span>
             <span  class="staritem halfstar"></span>
