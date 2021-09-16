@@ -14,7 +14,7 @@
         <div class="business" v-show="businessShow">
             <h4>商家</h4>
             <ul>
-                 <li v-for="s in searchList" :key="s.id" @click="shop(s.id)">
+                 <li v-for="s,index in searchList" :key="s.id" @click="shop(index+1)">
                     <img v-lazy="s.src" alt="">
                     <div class="content">
                         <p>{{s.title}}<span>支付</span></p>
@@ -77,12 +77,7 @@ export default {
     },
     methods: {
         shop(id) {
-            this.$router.push({
-                path: '/shop',
-                query: {
-                    id:id   
-                }
-            })
+            this.$router.push('/spxiangqing'+ id)
         },
         // 清空搜索框
         emptyText() {
