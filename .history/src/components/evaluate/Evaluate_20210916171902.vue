@@ -176,16 +176,7 @@
       <div class="hemlet">
         <div class="picbox"><img :src="src" alt="" /></div>
         <p>{{ title }}</p>
-        <p>
-          <span class="wai"
-            ><span
-              class="kuang"
-              @click="xuanzhong()"
-              :class="{ xuanzhon: xuanzhon }"
-            ></span
-          ></span>
-          匿名提交
-        </p>
+        <p><span class="kuang" @click="xuanzhong()" :class="{xuanzhon: xuanzhon}"></span>匿名提交</p>
       </div>
       <div class="star">
         <van-rate
@@ -263,9 +254,9 @@ export default {
       getinfoId: 0, //获取路由传过来的id
       test: [],
       pingId: 0,
-      title: "",
-      src: "",
-      xuanzhon: false,
+      title:'',
+      src:'',
+      xuanzhon:false,
     };
   },
   methods: {
@@ -306,43 +297,44 @@ export default {
       }
     },
     issue() {
-      if (this.value <= 0 || this.number >= 3 || this.flavour<=0 ||this.packaging<=0) {
+      if (this.value <= 0 || this.number >= 3) {
         this.$notify({
           message: "请完成评价后再提交！",
           color: "#fff",
           background: "#f00",
         });
-      } else if (this.value >= 0 || this.number <= 2 ||this.flavour>=0 ||this.packaging>=0) {
+      } else if (this.value >= 0 || this.number <= 2) {
         this.$dialog
           .alert({
             message: "评价成功，已获得40金豆",
             theme: "round-button",
           })
           .then(() => {
-            this.shiyishi();
+            this.shiyishi()
           });
       }
     },
     shiyishi() {
-      this.pingId = this.$route.query.id;
-      console.log(this.pingId);
-      for (var i = 0; i < this.getinfo.com.length; i++) {
-        if (this.getinfo.com[i].id == this.pingId) {
-          this.getinfo.com[i].result = "已完成";
-          console.log(0);
-          break;
+        this.pingId = this.$route.query.id;
+        console.log(this.pingId)
+        for (var i = 0; i < this.getinfo.com.length; i++) {
+         
+          if (this.getinfo.com[i].id == this.pingId) {
+            this.getinfo.com[i].result = "已完成";
+             console.log(0)
+             break
+          }
         }
-      }
-      this.axios.put("http://localhost:3000/indent", this.getinfo).then(() => {
-        this.$router.replace("/indent");
-      });
+        this.axios.put("http://localhost:3000/indent",this.getinfo).then(()=>{
+          this.$router.replace("/indent");
+        })
     },
     //设置跟路由id相同的图片路径
     setinfosrc(id) {
       for (var i = 0; i < this.getinfo.com.length; i++) {
         // console.log(this.getinfo[i].id);
         if (id == this.getinfo.com[i].id) {
-          this.src = this.getinfo.com[i].src;
+          this.src =  this.getinfo.com[i].src;
         }
       }
     },
@@ -350,24 +342,25 @@ export default {
     setinfotitle(id) {
       for (var i = 0; i < this.getinfo.com.length; i++) {
         if (id == this.getinfo.com[i].id) {
-          this.title = this.getinfo.com[i].title;
+          this.title =  this.getinfo.com[i].title;
         }
       }
     },
-    xuanzhong() {
-      this.xuanzhon = !this.xuanzhon;
-    },
+    xuanzhong(){
+      this.xuanzhon = !this.xuanzhon
+    }
   },
   mounted() {
     //获取com数据，并把路由id值赋予getinfoid
     this.axios.get("http://localhost:3000/indent").then((res) => {
       this.getinfo = res.data;
       this.getinfoId = this.$route.query.id;
-      //调用跟路由id相同的图片路径
+         //调用跟路由id相同的图片路径
       this.setinfosrc(this.getinfoId);
       this.setinfotitle(this.getinfoId); //调用跟路由id相同的标题
+
     });
-  },
+   },
 };
 </script>
 
@@ -619,23 +612,14 @@ textarea {
   background: #3190e8;
   border: #3190e8;
 }
-.wai{
+.kuang{
   display: inline-block;
-  width: 0.3rem;
-  height: 0.3rem;
+  width: .2rem;
+  height: .2rem;
   border: 1px solid #aaa;
   border-radius: 50%;
-  text-align: center;
 }
-.kuang {
-  display: inline-block;
-  width: 0.2rem;
-  height: 0.2rem;
-  border: 1px solid #aaa;
-  border-radius: 50%;
-  margin-top: .03rem;
-}
-.xuanzhon {
+.xuanzhon{
   border: #3190e8;
   background: #3190e8;
 }

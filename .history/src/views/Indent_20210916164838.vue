@@ -11,7 +11,7 @@
           class="iconfont icon-kefuzhongxin"
           @click="$router.push('information')"
         ></span>
-        <span class="red">{{iniflength}}</span>
+        <span class="red">22</span>
       </p>
     </header>
     <section class="recently">
@@ -438,7 +438,7 @@ export default {
       succeedList: [], //已完成的数组
       failList: [], //已取消的数组
       evaluateList: [], //待评价的数据
-      iniflength:2,
+      iniflength:0,
       img: {
         j: "/images/俏九州.jpeg",
         a: "/images/品正品.png",
@@ -474,7 +474,7 @@ export default {
     /* 获取信息数据的长度 */
     getIniflength(){
       this.axios.get('http://localhost:3000/information').then((res)=>{
-        this.iniflength += (res.data.length)
+        this.iniflength = res.data.length + 2
       })
     },
     /* 判断订单状态 */
@@ -503,7 +503,6 @@ export default {
       freeMode: true,
     });
     this.getsesucceedList();
-    this.getIniflength();
   },
 };
 </script>
