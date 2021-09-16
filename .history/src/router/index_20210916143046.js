@@ -10,7 +10,7 @@ Vue.use(VueRouter)
 
 const routes = [{
         path: '/',
-        redirect: '/home'
+        redirect: '/login'
     },
     {
         path: '/home', //一级路由我的页面
