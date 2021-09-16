@@ -503,7 +503,6 @@ export default {
       freeMode: true,
     });
     this.getsesucceedList();
-    this.getIniflength();
   },
 };
 </script>

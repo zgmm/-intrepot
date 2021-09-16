@@ -14,8 +14,8 @@
           <div class="top2-text2" v-else>
             <!-- 未登录显示 -->
             <p>
-              <router-link to="/login">登录</router-link>&ensp;/&ensp;
-              <router-link to="/login">注册</router-link>
+              <router-link to="/">登录</router-link>&ensp;/&ensp;
+              <router-link to="/">注册</router-link>
             </p>
             <p><span class="iconfont icon-shouji"></span>暂无绑定手机</p>
           </div>

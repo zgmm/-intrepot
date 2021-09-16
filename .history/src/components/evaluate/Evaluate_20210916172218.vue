@@ -306,13 +306,13 @@ export default {
       }
     },
     issue() {
-      if (this.value <= 0 || this.number >= 3 || this.flavour<=0 ||this.packaging<=0) {
+      if (this.value <= 0 || this.number >= 3) {
         this.$notify({
           message: "请完成评价后再提交！",
           color: "#fff",
           background: "#f00",
         });
-      } else if (this.value >= 0 || this.number <= 2 ||this.flavour>=0 ||this.packaging>=0) {
+      } else if (this.value >= 0 || this.number <= 2) {
         this.$dialog
           .alert({
             message: "评价成功，已获得40金豆",
@@ -619,23 +619,16 @@ textarea {
   background: #3190e8;
   border: #3190e8;
 }
-.wai{
-  display: inline-block;
-  width: 0.3rem;
-  height: 0.3rem;
-  border: 1px solid #aaa;
-  border-radius: 50%;
-  text-align: center;
-}
 .kuang {
   display: inline-block;
   width: 0.2rem;
   height: 0.2rem;
   border: 1px solid #aaa;
   border-radius: 50%;
-  margin-top: .03rem;
+  padding: 0.1rem;
 }
 .xuanzhon {
+  padding: 0.1rem;
   border: #3190e8;
   background: #3190e8;
 }
