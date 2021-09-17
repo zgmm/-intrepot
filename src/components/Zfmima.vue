@@ -43,7 +43,8 @@ export default {
             message: "支付成功！",
           }).then(() => {
               setTimeout(function(){
-                that.$router.push("/spxiangqing"+that.yeshu)
+                // that.$router.push("/spxiangqing"+that.yeshu)
+                that.$router.push("/indent")
               },500)
           });
         }

@@ -27,7 +27,7 @@
               <p>XXXX-XX-XX到期</p>
               <p>限收货手机号为 136XXXX1254</p>
             </div>
-            <p class="txt2-cc3">剩3日</p>
+            <p class="txt2-cc3">仅限指定商家可用</p>
           </div>
         </div>
         <div class="txt2">
@@ -41,7 +41,7 @@
               <p>XXXX-XX-XX到期</p>
               <p>限收货手机号为 136XXXX1254</p>
             </div>
-            <p class="txt2-cc3">剩3日</p>
+            <p class="txt2-cc3">仅限指定商家可用</p>
           </div>
         </div>
         <div class="txt2">
@@ -55,7 +55,7 @@
               <p>XXXX-XX-XX到期</p>
               <p>限收货手机号为 136XXXX1254</p>
             </div>
-            <p class="txt2-cc3">剩3日</p>
+            <p class="txt2-cc3">仅指定活动可用</p>
           </div>
           <p class="txt2-c2">
             限品类：快餐便当，特色菜系，小吃夜宵，甜品饮品，异国料理
@@ -187,9 +187,9 @@ export default {
   font-size: 0.25rem;
 }
 .txt2-cc3 {
-  width: 1.2rem;
+  width: 1.5rem;
   color: #ff5340;
-  font-size: 0.3rem;
+  font-size: 0.1rem;
   text-align: center;
   line-height: 0.4rem;
 }
