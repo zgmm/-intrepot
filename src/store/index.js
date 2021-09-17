@@ -15,6 +15,7 @@ export default new Vuex.Store({
     count: [], // 各菜品的数量
     yeshu: 0, //记录商品详情页面的页数
     avatar: '', //头像
+    xinxi:{}, // 下单成功，添加进订单的信息
   },
   mutations: { // 方法区域==methods
     getyeshu(state, sumber) { //记录商品详情页面的页数

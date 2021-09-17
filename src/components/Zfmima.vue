@@ -5,6 +5,7 @@
     </div>
     <van-password-input
       :value="value"
+      :length="6"
       info="密码为 6 位数字"
       :error-info="errorInfo"
       :focused="showKeyboard"
@@ -12,14 +13,15 @@
     />
     <!-- 数字键盘 -->
     <van-number-keyboard
-      v-model="value"
+      @input="onInput"
+      @delete="onDelete"
       :show="showKeyboard"
       @blur="showKeyboard = false"
     />
   </div>
 </template>
 <script>
-import {mapState} from "vuex"
+import { mapState } from "vuex";
 export default {
   data() {
     return {
@@ -29,12 +31,12 @@ export default {
       showCancelButton: false,
     };
   },
-  computed:{
-    ...mapState(["yeshu"])
+  computed: {
+    ...mapState(["yeshu"]),
   },
   watch: {
     value(value) {
-        let that=this
+      let that = this;
       if (value.length === 6 && value !== "123456") {
         that.errorInfo = "密码错误";
       } else {
@@ -43,11 +45,20 @@ export default {
             message: "支付成功！",
           }).then(() => {
               setTimeout(function(){
-                that.$router.push("/spxiangqing"+that.yeshu)
+                // that.$router.push("/spxiangqing"+that.yeshu)
+                that.$router.push("/indent")
               },500)
           });
         }
       }
+    },
+  },
+  methods: {
+    onInput(key) {
+      this.value = (this.value + key).slice(0, 6);
+    },
+    onDelete() {
+      this.value = this.value.slice(0, this.value.length - 1);
     },
   },
 };

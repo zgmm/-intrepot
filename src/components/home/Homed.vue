@@ -2,7 +2,7 @@
     
   <div>
     <header class="top">
-      <p class="top-con1"><span class="iconfont icon-AS"></span>我的</p>
+      <p class="top-con1"><span class="iconfont icon-AS" @click="$router.push('/takeaway')"></span>我的</p>
       <div class="top-con2">
         <router-link to="/home/acountInfo">
           <div class="top-text1"><img :src="imgsrc" alt="" /></div>

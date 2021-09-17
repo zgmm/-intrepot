@@ -76,6 +76,8 @@
  
                     function onError (data) {
                         // 定位出错
+                        // console.log("定位出错")
+                        // console.log(data);
                     }
                 })
             },
