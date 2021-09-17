@@ -151,7 +151,7 @@ export default {
         }
         this.user.password = this.password3;
         this.axios.put("/login/"+this.id,this.user).then(res => {
-            this.$router.push("/login")
+            this.$router.push("/home")
         })
       }
     },

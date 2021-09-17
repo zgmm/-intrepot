@@ -41,15 +41,14 @@ export default {
         that.errorInfo = "密码错误";
       } else {
         if (value.length == 6 && value == "123456") {
-          that.$dialog
-            .alert({
-              message: "支付成功！",
-            })
-            .then(() => {
-              setTimeout(function () {
-                that.$router.push("/spxiangqing" + that.yeshu);
-              }, 500);
-            });
+          that.$dialog.alert({
+            message: "支付成功！",
+          }).then(() => {
+              setTimeout(function(){
+                // that.$router.push("/spxiangqing"+that.yeshu)
+                that.$router.push("/indent")
+              },500)
+          });
         }
       }
     },

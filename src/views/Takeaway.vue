@@ -242,7 +242,7 @@ export default {
         background: #fff;
     }
     .Takeaway .business ul {
-        margin-bottom: .72rem;
+        margin-bottom: .93rem;
     }
     .Takeaway .business p.nearby{
         text-align: left;
