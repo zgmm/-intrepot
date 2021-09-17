@@ -99,7 +99,7 @@ export default {
         list[i].addEventListener("touchmove", function (e) {
           var move1 = e.changedTouches[0].clientX;
           move = move1 - star;
-          if (move < 1) {
+          if (move < 300) {
             box[i].style.transform = "translateX(-0.9rem)";
             box[i].style.transition = "all .5s";
           } else {

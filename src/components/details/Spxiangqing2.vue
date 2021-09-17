@@ -8,9 +8,6 @@
         <p>商家配送 / 分钟配送 / 配送费￥5</p>
         <p>公告：欢迎光临，用餐高峰请提前下单，谢谢</p>
       </div>
-      <div class="header-you-img">
-        <img src="../../../public/images/you.png" />
-      </div>
     </header>
     <div class="router">
       <div><router-link to="/spxiangqing2/shangpin">商品</router-link></div>
@@ -73,11 +70,7 @@ header .fanhui{
 .header-text > p {
   margin: 0.2rem 0;
 }
-.header-you-img {
-  position: absolute;
-  right: 0.2rem;
-  top: 0.65rem;
-}
+
 .router {
   width: 100%;
   height: 0.8rem;

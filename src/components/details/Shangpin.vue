@@ -371,6 +371,7 @@ export default {
     gozf() {
       if (this.getsum > 0) {
         this.$router.push("/zfdingdan");
+        this.$store.commit("getsum",this.sum)
       }
     },
     xianshi(sumber) {
