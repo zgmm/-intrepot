@@ -97,7 +97,6 @@ export default {
       this.active = false;
       if (this.name.length > 0) {
         this.active = true;
-        this.$store.commit("getsum", this.sum);
       }
     },
     ...mapState(["sum", "name", "jiage","count"]),

@@ -97,8 +97,8 @@
 export default {
     data() {
         return {
-            one:true,
-            two:false,
+            one:false,
+            two:true,
             list:[
                 {name:"全部(473)",active:true},
                 {name:"满意(321)",active:false},
@@ -124,10 +124,10 @@ export default {
             this.one=false;
             this.two=false;
             if(sumber%2==0){
-                this.one=true;
+                this.two=true;
             }
             if(sumber%2!=0){
-                this.two=true
+                this.one=true
             }
             
         }
