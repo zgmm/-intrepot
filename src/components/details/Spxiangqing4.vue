@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <header>
-      <div class="fanhui" @click="$router.back(-1)"><img src="../../../public/images/zuo.png"></div>
+      <div class="fanhui" @click="turnpage"><img src="../../../public/images/zuo.png"></div>
       <div class="header-img"><img src="../../../public/images/dianpu4.jpeg" /></div>
       <div class="header-text">
         <h3>美味咸鱼店</h3>
@@ -18,10 +18,32 @@
   </div>
 </template>
 <script>
+import mapState from "vuex"
 export default {
+  computed: {
+    ...mapState(["spxqRoute"]),
+  },
    mounted() {
      this.$store.commit("getyeshu",4)
    },
+    methods: {
+    turnpage() {
+      //路由的跳转方法
+      if (this.spxqRoute == "/indent") {
+        this.$router.push("/indent");
+      } else {
+        if (this.spxqRoute == "/takeaway") {
+          this.$router.push("/takeaway");
+        } else {
+          if (this.spxqRoute == "/search") {
+            this.$router.push("/search");
+          } else {
+            this.$router.push("/product");
+          }
+        }
+      }
+    },
+  },
 }
 </script>
 <style scoped>

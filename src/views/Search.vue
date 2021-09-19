@@ -54,6 +54,7 @@ export default {
             designation:'',  // 输入框内容
             newSearchList: [],
             stop: false,
+            setpath:"/search"
         }
     },
     watch:{
@@ -77,7 +78,8 @@ export default {
     },
     methods: {
         shop(id) {
-            this.$router.push('/spxiangqing'+ id)
+            this.$router.push('/spxiangqing'+ id);
+             this.$store.commit('changespxqRoute',this.setpath)//给商品详情页面传值
         },
         // 清空搜索框
         emptyText() {

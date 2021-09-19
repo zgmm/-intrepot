@@ -11,7 +11,7 @@
           class="iconfont icon-kefuzhongxin"
           @click="$router.push('information')"
         ></span>
-        <span class="red">{{iniflength}}</span>
+        <span class="red">{{ iniflength }}</span>
       </p>
     </header>
     <section class="recently">
@@ -282,7 +282,13 @@
                 </div>
               </div>
               <div class="right">
-                <button @click="$router.push({ path: 'refund', query: { id: fail.id } })">退款详情</button>
+                <button
+                  @click="
+                    $router.push({ path: 'refund', query: { id: fail.id } })
+                  "
+                >
+                  退款详情
+                </button>
                 <button @click="again()">再来一单</button>
               </div>
             </div>
@@ -377,7 +383,13 @@
                 </div>
               </div>
               <div class="right">
-                <button @click="$router.push({ path: 'refund', query: { id: fail.id } })">退款详情</button>
+                <button
+                  @click="
+                    $router.push({ path: 'refund', query: { id: fail.id } })
+                  "
+                >
+                  退款详情
+                </button>
                 <button @click="again()">再来一单</button>
               </div>
             </div>
@@ -438,7 +450,7 @@ export default {
       succeedList: [], //已完成的数组
       failList: [], //已取消的数组
       evaluateList: [], //待评价的数据
-      iniflength:2,
+      iniflength: 2,
       img: {
         j: "/images/俏九州.jpeg",
         a: "/images/品正品.png",
@@ -451,6 +463,7 @@ export default {
         h: "/images/汉阳廷.jpeg",
         i: "/images/桂小厨.jpg",
       },
+      setpath: "/indent",
     };
   },
   methods: {
@@ -462,26 +475,29 @@ export default {
     getIndent() {
       this.axios.get("http://localhost:3000/indent").then((res) => {
         this.getCom = res.data.com; //获取所有的订单
-        this.recom = res.data.recom;//获取推荐的商品
+        this.recom = res.data.recom; //获取推荐的商品
       });
     },
-    again() {//再来一单
+    again() {
+      //再来一单
       this.$router.replace("/spxiangqing1");
+      this.$store.commit("changespxqRoute", this.setpath); //给商品详情页面传值
     },
-    more() {//更多商家
+    more() {
+      //更多商家
       this.$router.push("/product");
     },
     /* 获取信息数据的长度 */
-    getIniflength(){
-      this.axios.get('http://localhost:3000/information').then((res)=>{
-        this.iniflength += (res.data.length)
-      })
+    getIniflength() {
+      this.axios.get("http://localhost:3000/information").then((res) => {
+        this.iniflength += res.data.length;
+      });
     },
     /* 判断订单状态 */
     getsesucceedList() {
       this.axios.get("http://localhost:3000/indent").then((res) => {
         var chang = res.data.com;
-        console.log(res.data.com.length)
+        //console.log(res.data.com.length);
         for (var i = 0; i < chang.length; i++) {
           if (chang[i].result == "已完成") {
             this.succeedList.push(chang[i]);

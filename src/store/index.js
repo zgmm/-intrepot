@@ -14,8 +14,8 @@ export default new Vuex.Store({
     jiage: [], // 各菜品的价格
     count: [], // 各菜品的数量
     yeshu: 0, //记录商品详情页面的页数
-    avatar: '', //头像
     xinxi:{}, // 下单成功，添加进订单的信息
+    spxqRoute:"/product",//商品详情默认路由
   },
   mutations: { // 方法区域==methods
     getyeshu(state, sumber) { //记录商品详情页面的页数
@@ -45,6 +45,9 @@ export default new Vuex.Store({
     },
     getshuliang(state, sumber) { //菜品总数量
       state.shuliang = sumber
+    },
+    changespxqRoute(state,getpath){//改变商品详情返回的路由
+      state.spxqRoute = getpath
     },
   },
   actions: {},

@@ -1,8 +1,12 @@
 <template>
   <div class="box">
     <header>
-      <div class="fanhui" @click="$router.back(-1)"><img src="../../../public/images/zuo.png"></div>
-      <div class="header-img"><img src="../../../public/images/dianpu2.jpeg" /></div>
+      <div class="fanhui" @click="turnpage">
+        <img src="../../../public/images/zuo.png" />
+      </div>
+      <div class="header-img">
+        <img src="../../../public/images/dianpu2.jpeg" />
+      </div>
       <div class="header-text">
         <h3>叫了只鸡</h3>
         <p>商家配送 / 分钟配送 / 配送费￥5</p>
@@ -14,18 +18,39 @@
       <div><router-link to="/spxiangqing2/pingjia">评价</router-link></div>
     </div>
     <router-view></router-view>
-    
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
-   mounted() {
-      this.$store.commit("getyeshu",2)
-   },
-}
+  computed: {
+    ...mapState(["spxqRoute"]),
+  },
+  mounted() {
+    this.$store.commit("getyeshu", 2);
+  },
+  methods: {
+    turnpage() {
+      //路由的跳转方法
+      if (this.spxqRoute == "/indent") {
+        this.$router.push("/indent");
+      } else {
+        if (this.spxqRoute == "/takeaway") {
+          this.$router.push("/takeaway");
+        } else {
+          if (this.spxqRoute == "/search") {
+            this.$router.push("/search");
+          } else {
+            this.$router.push("/product");
+          }
+        }
+      }
+    },
+  },
+};
 </script>
 <style scoped>
-.box{
+.box {
   text-align: center;
 }
 header {
@@ -33,14 +58,14 @@ header {
   height: 2rem;
   background-color: #adb0c2;
 }
-header .fanhui{
-  width: .4rem;
-  height: .4rem;
+header .fanhui {
+  width: 0.4rem;
+  height: 0.4rem;
   position: absolute;
   top: 0rem;
-  left: .1rem;
+  left: 0.1rem;
 }
-.fanhui img{
+.fanhui img {
   width: 100%;
   height: 100%;
 }
@@ -48,7 +73,7 @@ header .fanhui{
   width: 1.5rem;
   height: 1.5rem;
   float: left;
-  margin:.4rem .225rem 0 .225rem;
+  margin: 0.4rem 0.225rem 0 0.225rem;
 }
 .header-img img {
   width: 100%;
@@ -93,8 +118,8 @@ header .fanhui{
   display: block;
   color: gray;
 }
-.router a.router-link-active{
-     background-color:#e8f0fe;
-     color: lightseagreen;
+.router a.router-link-active {
+  background-color: #e8f0fe;
+  color: lightseagreen;
 }
 </style>
