@@ -88,7 +88,7 @@ export default {
       ctx.fillStyle = this.transparent();
       ctx.fillRect(0, 0, this.contentWidth, this.contentHeight);
       // 绘制文字
-      for (let i = 0; i < this.identifyCode.lengh; i++) {
+      for (let i = 0; i < this.identifyCode.length; i++) {
         this.drawText(ctx, this.identifyCode[i], i);
       }
       // this.drawLine(ctx)

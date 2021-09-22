@@ -95,7 +95,7 @@ export default {
                 this.paragraph = "请输入账号"
                 this.change = true
                 return;
-            }else if(/^[a-zA-Z0-9]{5,8}$/.test(this.user.username)){
+            }else if(/^[a-zA-Z0-9]{5,11}$/.test(this.user.username)){
                 this.login.forEach(item => {
                     if(item.username == this.user.username){
                         this.loginUser = item;
@@ -104,7 +104,7 @@ export default {
                     }
                 });
             }else{
-                this.paragraph = "账号应为5-8位且包含字母或者数字"
+                this.paragraph = "账号应为5-11位且包含字母或者数字"
                 this.change = true;
                 return;
             }
