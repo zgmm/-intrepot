@@ -6,7 +6,7 @@
             <span>搜索</span>
         </header>
         <p class="sub">
-            <input type="text" placeholder="请输入商家或美食名称" v-model="designation">
+            <input type="text" @focus="HistoryShow()" @blur="BusinessShow()"  placeholder="请输入商家或美食名称" v-model="designation">
             <span class="iconfont icon-chahao" v-show="chahao" @click="emptyText()"></span>
             <input type="button" @click="search()" value="提交">
         </p>
@@ -14,7 +14,7 @@
         <div class="business" v-show="businessShow">
             <h4>商家</h4>
             <ul>
-                 <li v-for="s,index in searchList" :key="s.id" @click="shop(index+1)">
+                 <li v-for="s,index in newSearchList1" :key="s.id" @click="shop(index+1)">
                     <img v-lazy="s.src" alt="">
                     <div class="content">
                         <p>{{s.title}}<span>支付</span></p>
@@ -47,12 +47,13 @@ export default {
             chahao: false,
             emptyShow: false,
             loadShow: true,
-            businessShow: false, 
+            businessShow: true, 
             historyShow: false,
             searchList: [],  // 搜索列表
             historyList: [], // 历史记录列表
             designation:'',  // 输入框内容
-            newSearchList: [],
+            newSearchList1: [],
+            newSearchList2: [],
             stop: false,
         }
     },
@@ -61,23 +62,53 @@ export default {
             if(this.designation==""){
                 this.chahao = false;
                 this.emptyShow = false;
-                this.businessShow = false;
-                this.axios.get("searchList").then(res => {
-                this.searchList = res.data;
-                    if(this.historyList==""){
-                        this.historyShow = false
-                    }else{
-                        this.historyShow = true
-                    }
+                this.businessShow = true;
+                this.axios.get("/searchList").then(res => {
+                    this.searchList = res.data
+                    this.newSearchList1 = [];
+                    res.data.forEach(item=>{
+                        if(item.id <= 4){
+                            this.newSearchList1.push(item)
+                            // console.log(this.newSearchList1)
+                        }
+                    })
                 })        
+                this.historyShow = false;
             }else{
                 this.chahao = true;
             }
-        }   
+        },
+        historyList() {
+            if(this.historyList == ''){
+                this.businessShow = true;
+                this.designation = '';
+            }
+        }
     },
     methods: {
+        // 单击商家信息跳转
         shop(id) {
             this.$router.push('/spxiangqing'+ id)
+        },
+        // 当文本框失去焦点时触发事件
+        BusinessShow() {
+            if(this.historyList != ''){
+                this.historyShow = true;
+                this.businessShow = false;
+            }else{
+                this.businessShow = true;
+                this.historyShow = false
+            }
+        },
+        // 当文本框获取焦点时触发事件
+        HistoryShow(){
+            if(this.historyList !=''){
+                this.historyShow = true;
+                this.emptyShow = false;
+            }else{
+                this.historyShow = false;
+            }
+            this.businessShow = false;
         },
         // 清空搜索框
         emptyText() {
@@ -92,22 +123,21 @@ export default {
             if(!this.designation){
                 return;
             }
-            if(this.historyList.indexOf(this.designation) != -1){
-                return;
-            }
             this.historyShow = false
-            this.historyList.unshift(this.designation);  
-            this.newSearchList = [];
+            if(this.historyList.indexOf(this.designation) == -1){
+                this.historyList.unshift(this.designation);              
+            }
+            this.newSearchList2 = [];
             this.searchList.forEach(item => {
                 if(item.title.indexOf(this.designation) == -1){
                     this.emptyShow = true;
                 }else{
-                    this.newSearchList.push(item);
+                    this.newSearchList2.push(item);
                     // console.log(this.newSearchList);
                 }
             });
-            this.searchList = this.newSearchList;
-            if(this.newSearchList.length > 0 || this.designation == ''){
+            this.newSearchList1 = this.newSearchList2;
+            if(this.newSearchList2.length > 0 || this.designation == ''){
                 this.emptyShow = false;
                 this.businessShow = true;
             }else{
@@ -157,7 +187,12 @@ export default {
     },
     mounted() {
         this.axios.get("/searchList").then(res => {
-            this.searchList = res.data;
+            this.searchList = res.data
+            res.data.forEach(item=>{
+                if(item.id <= 4){
+                    this.newSearchList1.push(item)
+                }
+            })
         })    
         setTimeout(()=>{
             this.loadShow = false;
@@ -279,7 +314,7 @@ export default {
     .Search .business ul{
         background: #fff;
         text-align: left;
-        margin-bottom: .72rem;
+        margin-bottom: .93rem;
     }
     .Search .business ul li{
         border-bottom: 1px solid #e4e4e4;

@@ -80,8 +80,8 @@ const routes = [{
                 component: packetplain
             }, //红包说明
             {
-                path:'download',
-                component:download
+                path: 'download',
+                component: download
             }
         ],
     },

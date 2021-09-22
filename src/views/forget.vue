@@ -10,13 +10,31 @@
         <input type="text" placeholder="账号" v-model="user.username">
       </p>
       <p>
-        <input type="password" placeholder="旧密码" v-model="password1">
+        <input :type="type1" placeholder="旧密码" v-model="password1">
+        <el-switch
+          @click.native="toggle1()"
+          v-model="value1"
+          active-color="#13ce66"
+          inactive-color="#ff4949">
+        </el-switch>
       </p>
       <p>
-        <input type="password" placeholder="请输入新密码" v-model="password2">
+        <input :type="type2" placeholder="请输入新密码" v-model="password2">
+        <el-switch
+          @click.native="toggle2()"
+          v-model="value2"
+          active-color="#13ce66"
+          inactive-color="#ff4949">
+        </el-switch>
       </p>
       <p>
-        <input type="password" placeholder="请确认密码" v-model="password3">
+        <input :type="type3" placeholder="请确认密码" v-model="password3">
+        <el-switch
+          @click.native="toggle3()"
+          v-model="value3"
+          active-color="#13ce66"
+          inactive-color="#ff4949">
+        </el-switch>
       </p>
       <div class="ver">
         <input type="text" maxlength="4" placeholder="验证码" v-model="code">
@@ -52,7 +70,15 @@ export default {
           user: {
               username: '',
               password: '',
+              profile: "",
+              integral: 1
           },
+          value1: false,
+          type1: "password",
+          value2: false,
+          type2: "password",
+          value3: false,
+          type3: "password",
           loadShow: true,
           a:Boolean,
           id: '',
@@ -70,6 +96,28 @@ export default {
       }
     },
     methods: {
+      // 切换密码是否显示
+      toggle1() {
+        if(this.value1){
+            this.type1 = "text"
+        }else{
+            this.type1 = "password"
+        }
+      },
+      toggle2() {
+        if(this.value2){
+            this.type2 = "text"
+        }else{
+            this.type2 = "password"
+        }
+      },
+      toggle3() {
+        if(this.value3){
+            this.type3 = "text"
+        }else{
+            this.type3 = "password"
+        }
+      },
       // 返回登录页面
       backLogin() {
         this.$router.back(-1);
@@ -91,40 +139,55 @@ export default {
             this.paragraph = "请输入账号"
             this.change = true
             return;
-        }else{
+        }else if(/^[a-zA-Z0-9]{5,8}$/.test(this.user.username)){
           this.login.forEach(item => {
               if(item.username == this.user.username){
                 this.id = item.id;
                 this.loginUser = item;
                 this.have = true;
+                this.user.profile = item.profile;
+                this.user.integral = item.integral;
               }
           });
           if(!this.have){
-              this.paragraph = "账号不存在"
+              this.paragraph = "账号或密码输入错误"
               this.change = true
               return;
           }
           this.have = false;
+        }else{
+            this.paragraph = "账号应为5-8位且包含字母或者数字"
+            this.change = true;
+            return;
         }
         if(this.password1 == ""){
             this.paragraph = "请输入旧密码"
             this.change = true
             return;
-        }else{
+        }else if(/^[a-zA-Z0-9]{8,12}$/.test(this.password1)){
             if(this.password1 != this.loginUser.password){
-                this.paragraph = "账号密码输入错误"
+                this.paragraph = "账号或密码输入错误"
                 this.change = true
                 return;
             }
+        }else{
+            this.paragraph = "密码应为8-12位且包含字母或者数字"
+            this.change = true;
+            return;
         }
         if(this.password2 == ""){
             this.paragraph = "请输入新密码"
             this.change = true
             return;
-        }
-        if(this.password2 == this.password1){
-            this.paragraph = "新密码不能和旧密码相同"
-            this.change = true
+        }else if(/^[a-zA-Z0-9]{8,12}$/.test(this.password2)){
+          if(this.password2 == this.password1){
+              this.paragraph = "新密码不能和旧密码相同"
+              this.change = true
+              return;
+          }
+        }else{
+            this.paragraph = "密码应为8-12位且包含字母或者数字"
+            this.change = true;
             return;
         }
         if(this.password3 == ""){
@@ -190,6 +253,9 @@ export default {
         width: 100%;
         margin-top: .26rem;
         background: #fff;
+    }
+    .forget form p .el-switch{
+        margin-left: 1.68rem;
     }
     .forget form p:nth-child(1){
         text-align: left;
