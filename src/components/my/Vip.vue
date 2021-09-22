@@ -12,7 +12,7 @@
       <ul class="con2">
         <li class="txt1">
           <p>会员特权</p>
-          <p>会员说明<span class="iconfont icon-right"></span></p>
+          <p @click="zwkt">会员说明<span class="iconfont icon-right"></span></p>
         </li>
         <li class="txt2">
           <p>省</p>
@@ -29,14 +29,14 @@
         <li>开通会员</li>
         <li>
           <p>1个月<span>￥20</span></p>
-          <p>购买</p>
+          <p @click="zwkt">购买</p>
         </li>
       </ul>
-      <ul class="con4">
+      <ul class="con4" @click="zwkt">
         <li>兑换会员</li>
         <li>使用卡号卡密<span class="iconfont icon-right"></span></li>
       </ul>
-      <ul class="con4">
+      <ul class="con4" @click="zwkt">
         <li>购买记录</li>
         <li>开发票<span class="iconfont icon-right"></span></li>
       </ul>
@@ -65,6 +65,12 @@ export default {
           this.login = res.data;
           console.log(this.login);
         });
+    },
+    zwkt() {
+      this.$dialog.alert({
+        title: "系统提示",
+        message: "暂时未开通此功能",
+      });
     },
   },
   computed: {},
