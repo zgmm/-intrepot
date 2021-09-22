@@ -2,7 +2,10 @@
   <div id="#app">
     <!-- 头部 -->
     <header>
-      <span class="iconfont icon-AS" @click="turnpage"></span>
+      <span
+        class="iconfont icon-AS"
+        @click="$router.back(-1)"
+      ></span>
       <p>{{ page }}</p>
     </header>
     <!-- 下拉菜单 -->
@@ -562,19 +565,17 @@ export default {
       counts: 0,
       categoryIndex: 7,
       page: "",
-      setpath: "/product",
-      jiesourouter:""
     };
   },
 
   computed: {},
   methods: {
     getRouterData() {
-      console.log(this.$route.query.title);
+      console.log(this.$route.query.title)
       if (this.$route.query.title != undefined) {
         this.page = this.$route.query.title;
-      } else {
-        this.page = "商品列表";
+      } else{
+        this.page = '商品列表'
       }
     },
     clickli(index) {
@@ -632,21 +633,24 @@ export default {
     //进入商家
     enterShop() {
       this.$router.replace("/spxiangqing1");
-      this.$store.commit("changespxqRoute", this.setpath); //给商品详情页面传值
     },
     //销量最高
     sales() {
       this.loading();
-      this.axios.get("/protuctList?_order=desc&_sort=num").then((res) => {
-        this.list = res.data;
-      });
+      this.axios
+        .get("/protuctList?_order=desc&_sort=num")
+        .then((res) => {
+          this.list = res.data;
+        });
     },
     //评分最高
     grade() {
       this.loading();
-      this.axios.get("/protuctList?_order=desc&_sort=grade").then((res) => {
-        this.list = res.data;
-      });
+      this.axios
+        .get("/protuctList?_order=desc&_sort=grade")
+        .then((res) => {
+          this.list = res.data;
+        });
     },
     //智能排序
     sorting() {
@@ -658,19 +662,20 @@ export default {
     //速度最快
     speed() {
       this.loading();
-      this.axios.get("/protuctList?_order=asc&_sort=house").then((res) => {
-        this.list = res.data;
-      });
+      this.axios
+        .get("/protuctList?_order=asc&_sort=house")
+        .then((res) => {
+          this.list = res.data;
+        });
     },
     //距离最近
     recently() {
       this.loading();
-      this.axios.get("/protuctList?_order=asc&_sort=distance").then((res) => {
-        this.list = res.data;
-      });
-    },
-    turnpage() {
-        this.$router.push("takeaway");
+      this.axios
+        .get("/protuctList?_order=asc&_sort=distance")
+        .then((res) => {
+          this.list = res.data;
+        });
     },
   },
   mounted() {

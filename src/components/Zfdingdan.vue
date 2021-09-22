@@ -122,7 +122,7 @@ export default {
       this.show = false;
     },
     fanhui() {
-      this.$router.push("/spxiangqing1");
+      this.$router.replace("/spxiangqing1");
     },
     xuanze(sumber) {
       this.$router.push({ path: "/xuandizhi", query: { id: sumber } });

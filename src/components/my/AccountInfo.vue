@@ -24,7 +24,7 @@
                   @change="freshImg"
                 />
                 <div class="border" @click="uploadIMg">
-                  <img :src="imgsrc" class="imgDiv" />
+                  <img :src="login.profile" class="imgDiv" />
                 </div>
               </div>
               <span class="iconfont icon-right"></span>
@@ -35,7 +35,7 @@
           <li>
             <p>用户名</p>
             <div class="right">
-              <span class="font">{{ login.username }}</span>
+              <span class="font">{{ login.nickname }}</span>
               <span class="iconfont icon-right"></span>
             </div>
           </li>
@@ -85,10 +85,16 @@ export default {
   name: "",
   data() {
     return {
-      imgsrc: require("../../../public/images/login.png"), //用户没有上传图片的默认头像
+      // imgsrc: "/images/login.png", //用户没有上传图片的默认头像
       alertPhone: false,
       alertEexit: false,
-      login: {},
+      login: {
+        username: "",
+        password: "",
+        nickname: "",
+        profile: "",
+        integral: 1,
+      },
     };
   },
   methods: {
@@ -103,7 +109,7 @@ export default {
       let fr = new FileReader(); //异步读取存储在用户计算机上的文件（或原始数据缓冲区）的内容
       fr.onload = function () {
         //在读取操作完成时触发
-        _this.imgsrc = fr.result; // 图片文件赋值给图片标签路径
+        _this.login.profile = fr.result; // 图片文件赋值给图片标签路径
       };
       fr.readAsDataURL(_this.imgObj); //将读取到的文件编码成Data URL
     },
@@ -139,8 +145,8 @@ export default {
         })
         .then(() => {
           this.$router.replace("/home/homed");
-          window.sessionStorage.removeItem("token")
-          window.sessionStorage.removeItem("rtoken")
+          window.sessionStorage.removeItem("token");
+          window.sessionStorage.removeItem("rtoken");
         })
         .catch(() => {
           this.$dialog.close();
@@ -149,12 +155,9 @@ export default {
     // 显示用户名
     showUsername() {
       this.loginId = window.sessionStorage.getItem("token");
-      this.axios
-        .get("/login/" + this.loginId)
-        .then((res) => {
-          this.login = res.data;
-          // console.log(this.login);
-        });
+      this.axios.get("/login/" + this.loginId).then((res) => {
+        this.login = res.data;
+      });
     },
   },
   mounted() {
@@ -162,11 +165,12 @@ export default {
     if (window.sessionStorage.getItem("rtoken") == null) {
       return;
     } else {
-      this.imgsrc = window.sessionStorage.getItem("rtoken");
+      this.login.profile = window.sessionStorage.getItem("rtoken");
     }
   },
   updated() {
-    window.sessionStorage.setItem("rtoken", this.imgsrc);
+    window.sessionStorage.setItem("rtoken", this.login.profile);
+    this.axios.put("/login/" + this.loginId, this.login);
   },
 };
 </script>
