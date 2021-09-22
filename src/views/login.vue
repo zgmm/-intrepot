@@ -53,7 +53,6 @@ export default {
             user: {
                 username: '',
                 password: '',
-                nickname:'new123',
                 profile:'/images/login.png',
                 integral:1
             },

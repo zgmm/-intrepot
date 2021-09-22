@@ -10,7 +10,7 @@
       ></span>
     </Header>
     <section class="sec">
-      <input type="text" v-model="login.nickname" />
+      <input type="text" v-model="login.username" />
       <span>用户名长度在4-20位之间</span>
       <button @click="verify">确认修改</button>
       <!-- <input type="hidden" v-model="login.password" :value="kblogin.password"> -->
@@ -29,52 +29,64 @@ export default {
       login: {
         username: "",
         password: "",
-        nickname:"",
-        profile:"",
-        integral:1
+        profile: "",
+        integral: 1,
       },
       save: false,
       loginid: 1,
       kblogin: {},
+      getLogin: [],
+      bool: true,
     };
   },
   methods: {
     verify() {
+      this.bool = true;
       let reg = /^\w{4,20}$/;
 
       let span = document.querySelector(".sec span");
       let btn = document.querySelector("button");
-      this.login.username = this.kblogin.username;
       this.login.password = this.kblogin.password;
       this.login.integral = this.kblogin.integral;
-      
+
       // 验证正则表达式是否为真，用户名必须4-20位
-      if (!reg.test(this.login.nickname)) {
-        span.setAttribute("style", "color:red");
+      if (!reg.test(this.login.username)) {
+        span.style.color="red";
         btn.style.backgroundColor = "#1fa7ff";
         btn.style.color = "#a6d3f5";
+        span.innerHTML = "用户名长度在4-20位之间";
         return;
       } else {
         span.setAttribute("style", "color:#000");
         btn.style.backgroundColor = "#3190e8";
         btn.style.color = "#fff";
-        this.axios
-          .put("/login/" + this.loginid, this.login)
-          .then((res) => {
+
+        for (let i = 0; i < this.getLogin.length; i++) {
+          if (this.getLogin[i].username == this.login.username) {
+            this.bool = false;
+          }
+        }
+        if (!this.bool) {
+          span.innerHTML = "此用户名已存在";
+          span.style.color = "red";
+        } else {
+          this.axios.put("/login/" + this.loginid, this.login).then((res) => {
             this.$router.replace("/home/acountInfo");
           });
+        }
       }
     },
   },
   computed: {},
   mounted() {
-    this.loginid = window.sessionStorage.getItem("token");
+    this.loginid = window.sessionStorage.getItem("token"); //获取到登录的id值
     this.login.profile = window.sessionStorage.getItem("rtoken");
-    this.axios
-      .get("/login/" + this.loginid)
-      .then((res) => {
-        this.kblogin = res.data;
-      });
+    this.axios.get("/login/" + this.loginid).then((res) => {
+      this.kblogin = res.data;
+    });
+    this.axios.get("/login").then((res) => {
+      this.getLogin = res.data;
+    });
   },
 };
 </script>

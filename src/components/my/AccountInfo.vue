@@ -35,7 +35,7 @@
           <li>
             <p>用户名</p>
             <div class="right">
-              <span class="font">{{ login.nickname }}</span>
+              <span class="font">{{ login.username }}</span>
               <span class="iconfont icon-right"></span>
             </div>
           </li>
@@ -91,7 +91,6 @@ export default {
       login: {
         username: "",
         password: "",
-        nickname: "",
         profile: "",
         integral: 1,
       },
@@ -164,11 +163,11 @@ export default {
     this.showUsername();
     if (window.sessionStorage.getItem("rtoken") == null) {
       return;
-    } else {
+    } else {//给头像赋值
       this.login.profile = window.sessionStorage.getItem("rtoken");
     }
   },
-  updated() {
+  updated() {//渲染后保存头像的值
     window.sessionStorage.setItem("rtoken", this.login.profile);
     this.axios.put("/login/" + this.loginId, this.login);
   },
