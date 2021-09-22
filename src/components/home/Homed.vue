@@ -66,14 +66,14 @@
       </ul>
       <ul class="sec-con3">
         <li>
-          <router-link to="">
+          <router-link to="home/service">
             <span class="iconfont icon-fuwuzhongxin"></span>
             服务中心
             <span class="iconfont icon-right"></span>
           </router-link>
         </li>
         <li>
-          <router-link to="">
+          <router-link to="/home/downLoad">
             <span class="iconfont icon-eliaomo"></span>
             下载APP
             <span class="iconfont icon-right"></span>
