@@ -172,7 +172,7 @@
                 </div>
                 <span class="fulfill">{{ com.result }}</span>
               </div>
-              <div class="center">
+              <div class="center" @click="$router.push({ path: 'detailsOrder', query: { id: com.id }})">
                 <div class="one">
                   <div class="pic">
                     <img v-lazy="com.cuisine" />
@@ -223,7 +223,7 @@
                 </div>
                 <span class="fulfill">{{ coms.result }}</span>
               </div>
-              <div class="center">
+              <div class="center"  @click="$router.push({ path: 'detailsOrder', query: { id: coms.id }})">
                 <div class="one">
                   <div class="pic">
                     <img v-lazy="coms.cuisine" />
@@ -263,7 +263,7 @@
                 </div>
                 <span class="fulfill">已取消</span>
               </div>
-              <div class="center">
+              <div class="center" @click="$router.push({ path: 'refund', query: { id: fail.id } })">
                 <div class="one">
                   <div class="pic">
                     <img :src="fail.cuisine" alt="" />
@@ -316,7 +316,7 @@
                 </div>
                 <span class="fulfill">{{ com.result }}</span>
               </div>
-              <div class="center">
+              <div class="center" @click="$router.push({ path: 'detailsOrder', query: { id: com.id }})">
                 <div class="one">
                   <div class="pic">
                     <img v-lazy="com.cuisine" />

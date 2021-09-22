@@ -35,7 +35,7 @@
           </p>
           <p class="gengduo" v-if="show">更多热销新品，敬请期待</p>
           <ul class="nav-text-cd">
-            <li v-for="(val, index) in cdlist" :key="val.id">
+            <li v-for="(val, index) in cdlist" :key="val.id" @click="goimg(activeKey,val.id)">
               <div class="cd-img"><img :src="val.src" /></div>
               <div class="cd-text">
                 <h3>{{ val.name }}<span>特色</span></h3>
@@ -66,25 +66,25 @@
           </p>
           <p class="gengduo" v-if="show">更多折扣新品，敬请期待</p>
           <ul class="nav-text-cd">
-            <li v-for="(vla, sumber) in cdlist_two" :key="vla.id">
-              <div class="cd-img"><img :src="vla.src" /></div>
+            <li v-for="(val, sumber) in cdlist_two" :key="val.id" @click="goimg(activeKey,val.id)">
+              <div class="cd-img"><img :src="val.src" /></div>
               <div class="cd-text">
-                <h3>{{ vla.name }}<span>特色</span></h3>
-                <p class="cd-caixi">{{ vla.caixi }}</p>
+                <h3>{{ val.name }}<span>特色</span></h3>
+                <p class="cd-caixi">{{ val.caixi }}</p>
                 <p class="cd-xiaoliang">
-                  月售{{ vla.xiaoliang }}份 好评率{{ vla.pingjia }}%
+                  月售{{ val.xiaoliang }}份 好评率{{ val.pingjia }}%
                 </p>
                 <p class="cd-biaoqian"><span>小炒</span></p>
                 <p class="cd-jiage">
-                  <span>￥{{ vla.jiage }}</span
+                  <span>￥{{ val.jiage }}</span
                   >起
                 </p>
-                <p class="cd-zengjia" v-if="vla.jia" @click="zjtwo(sumber)">
+                <p class="cd-zengjia" v-if="val.jia" @click="zjtwo(sumber)">
                   +
                 </p>
-                <p class="cd-guige" v-if="vla.guige">
+                <p class="cd-guige" v-if="val.guige">
                   <span class="guige-jian" @click="jstwo(sumber)">-</span
-                  >{{ vla.sumber
+                  >{{ val.sumber
                   }}<span class="guige-btn" @click="zjtwo(sumber)">+</span>
                 </p>
               </div>
@@ -99,7 +99,7 @@
           </p>
           <p class="gengduo" v-if="show">更多好吃新品，敬请期待</p>
           <ul class="nav-text-cd">
-            <li v-for="(val, index) in cdlist_three" :key="val.id">
+            <li v-for="(val, index) in cdlist_three" :key="val.id" @click="goimg(activeKey,val.id)">
               <div class="cd-img"><img :src="val.src" /></div>
               <div class="cd-text">
                 <h3>{{ val.name }}<span>特色</span></h3>
@@ -132,7 +132,7 @@
           </p>
           <p class="gengduo" v-if="show">更多招牌新品，敬请期待</p>
           <ul class="nav-text-cd">
-            <li v-for="(val, index) in cdlist_four" :key="val.id">
+            <li v-for="(val, index) in cdlist_four" :key="val.id" @click="goimg(activeKey,val.id)">
               <div class="cd-img"><img :src="val.src" /></div>
               <div class="cd-text">
                 <h3>{{ val.name }}<span>特色</span></h3>
@@ -165,7 +165,7 @@
           </p>
           <p class="gengduo" v-if="show">更多米饭新品，敬请期待</p>
           <ul class="nav-text-cd">
-            <li v-for="(val, index) in cdlist_five" :key="val.id">
+            <li v-for="(val, index) in cdlist_five" :key="val.id" @click="goimg(activeKey,val.id)">
               <div class="cd-img"><img :src="val.src" /></div>
               <div class="cd-text">
                 <h3>{{ val.name }}<span>特色</span></h3>
@@ -198,13 +198,25 @@
         <p class="by-ps">配送费￥5</p>
       </div>
       <div class="by-right" @click="gozf">去结算</div>
-      <div class="by-cat">
+      <div class="by-cat" @click="active">
         <img src="../../../public/images/gwc.png" />
         <div
           class="cat-sumber"
           v-if="getsum > 0 ? (zongshu = true) : (zongshu = false)"
         >
           {{ shuliang }}
+        </div>
+      </div>
+      <div class="buycat-name" v-if="activediv">
+        <p>已选商品</p>
+        <div class="buycat-name-xinxi">
+          <ul>
+            <li v-for="(i,index) in dingdan" :key="i.id">
+              <div class="bycat-name">{{ i.name }}</div>
+              <div class="bycat-jiage">￥{{ i.jiage }}</div>
+              <div class="bycat-sumber"><button @click="bycatjian(index)">-</button>{{ i.sumber }}<button class="buycat-jia" @click="bycatjia(index)">+</button></div>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -233,6 +245,7 @@ export default {
       zhaopai: false,
       mifan: false,
       zongshu: false,
+      activediv: false,
       rx: 0,
       zk: 0,
       hc: 0,
@@ -243,138 +256,91 @@ export default {
   },
   computed: {
     getsum() {
-      return this.shuliang;
+      return this.shuliang; // 购物车数量
     },
-    ...mapState(["shuliang", "sum"]),
-    getshuliang() {
-      // 商品数量
-      let shuliang = [];
+    ...mapState(["shuliang", "sum", "dingdan"]),
+    vuex() {
+      // 保存菜名，数量，单价
+      let dingdan = [];
+      let obj;
       for (let i = 0; i < this.cdlist.length; i++) {
+        obj = {};
         if (this.cdlist[i].sumber > 0) {
-          shuliang.push({ sumber: +this.cdlist[i].sumber });
+          obj.sumber = this.cdlist[i].sumber;
+          obj.name = this.cdlist[i].name;
+          obj.jiage = this.cdlist[i].jiage;
+          dingdan.push(obj);
         }
       }
       for (let i = 0; i < this.cdlist_two.length; i++) {
+        obj = {};
         if (this.cdlist_two[i].sumber > 0) {
-          shuliang.push({ sumber: +this.cdlist_two[i].sumber });
+          obj.sumber = this.cdlist_two[i].sumber;
+          obj.name = this.cdlist_two[i].name;
+          obj.jiage = this.cdlist_two[i].jiage;
+          dingdan.push(obj);
         }
       }
       for (let i = 0; i < this.cdlist_three.length; i++) {
+        obj = {};
         if (this.cdlist_three[i].sumber > 0) {
-          shuliang.push({ sumber: +this.cdlist_three[i].sumber });
+          obj.sumber = this.cdlist_three[i].sumber;
+          obj.name = this.cdlist_three[i].name;
+          obj.jiage = this.cdlist_three[i].jiage;
+          dingdan.push(obj);
         }
       }
       for (let i = 0; i < this.cdlist_four.length; i++) {
+        obj = {};
         if (this.cdlist_four[i].sumber > 0) {
-          shuliang.push({ sumber: +this.cdlist_four[i].sumber });
+          obj.sumber = this.cdlist_four[i].sumber;
+          obj.name = this.cdlist_four[i].name;
+          obj.jiage = this.cdlist_four[i].jiage;
+          dingdan.push(obj);
         }
       }
       for (let i = 0; i < this.cdlist_five.length; i++) {
+        obj = {};
         if (this.cdlist_five[i].sumber > 0) {
-          shuliang.push({ sumber: +this.cdlist_five[i].sumber });
+          obj.sumber = this.cdlist_five[i].sumber;
+          obj.name = this.cdlist_five[i].name;
+          obj.jiage = this.cdlist_five[i].jiage;
+          dingdan.push(obj);
         }
       }
-      return shuliang;
-    },
-    getdanjia() {
-      // 商品单价
-      let jiage = [];
-      for (let i = 0; i < this.cdlist.length; i++) {
-        if (this.cdlist[i].sumber > 0) {
-          jiage.push({ sumber: +this.cdlist[i].jiage });
-        }
-      }
-      for (let i = 0; i < this.cdlist_two.length; i++) {
-        if (this.cdlist_two[i].sumber > 0) {
-          jiage.push({ sumber: +this.cdlist_two[i].jiage });
-        }
-      }
-      for (let i = 0; i < this.cdlist_three.length; i++) {
-        if (this.cdlist_three[i].sumber > 0) {
-          jiage.push({ sumber: +this.cdlist_three[i].jiage });
-        }
-      }
-      for (let i = 0; i < this.cdlist_four.length; i++) {
-        if (this.cdlist_four[i].sumber > 0) {
-          jiage.push({ sumber: +this.cdlist_four[i].jiage });
-        }
-      }
-      for (let i = 0; i < this.cdlist_five.length; i++) {
-        if (this.cdlist_five[i].sumber > 0) {
-          jiage.push({ sumber: +this.cdlist_five[i].jiage });
-        }
-      }
-      return jiage;
+      console.log(dingdan);
+      return dingdan;
     },
     getzongjia() {
       // 商品总价
       let zongjia = 0;
-      for (let i = 0; i < this.cdlist.length; i++) {
-        if (this.cdlist[i].sumber > 0) {
-          zongjia += this.cdlist[i].jiage * this.cdlist[i].sumber;
-        }
-      }
-      for (let i = 0; i < this.cdlist_two.length; i++) {
-        if (this.cdlist_two[i].sumber > 0) {
-          zongjia += this.cdlist_two[i].jiage * this.cdlist_two[i].sumber;
-        }
-      }
-      for (let i = 0; i < this.cdlist_three.length; i++) {
-        if (this.cdlist_three[i].sumber > 0) {
-          zongjia += this.cdlist_three[i].jiage * this.cdlist_three[i].sumber;
-        }
-      }
-      for (let i = 0; i < this.cdlist_four.length; i++) {
-        if (this.cdlist_four[i].sumber > 0) {
-          zongjia += this.cdlist_four[i].jiage * this.cdlist_four[i].sumber;
-        }
-      }
-      for (let i = 0; i < this.cdlist_five.length; i++) {
-        if (this.cdlist_five[i].sumber > 0) {
-          zongjia += this.cdlist_five[i].jiage * this.cdlist_five[i].sumber;
-        }
+      for (let i = 0; i < this.vuex.length; i++) {
+        zongjia += this.vuex[i].jiage * this.vuex[i].sumber;
       }
       return zongjia;
     },
-    getname() {
-      // 商品名称
-      let name = [];
-      for (let i = 0; i < this.cdlist.length; i++) {
-        if (this.cdlist[i].sumber > 0) {
-          name.push({ name: this.cdlist[i].name });
-        }
-      }
-      for (let i = 0; i < this.cdlist_two.length; i++) {
-        if (this.cdlist_two[i].sumber > 0) {
-          name.push({ name: this.cdlist_two[i].name });
-        }
-      }
-      for (let i = 0; i < this.cdlist_three.length; i++) {
-        if (this.cdlist_three[i].sumber > 0) {
-          name.push({ name: this.cdlist_three[i].name });
-        }
-      }
-      for (let i = 0; i < this.cdlist_four.length; i++) {
-        if (this.cdlist_four[i].sumber > 0) {
-          name.push({ name: this.cdlist_four[i].name });
-        }
-      }
-      for (let i = 0; i < this.cdlist_five.length; i++) {
-        if (this.cdlist_five[i].sumber > 0) {
-          name.push({ name: this.cdlist_five[i].name });
-        }
-      }
-      return name;
-    },
   },
   methods: {
-    gozf() {
-      if (this.getsum > 0) {
-        this.$router.push("/zfdingdan");
-        this.$store.commit("getsum",this.sum)
+    goimg(index,id){ //菜品详情传值
+      this.$store.commit("index",index)
+      this.$store.commit("ID",id)
+    },
+    bycatjian(index){ // 购物车商品-减少
+      this.dingdan[index].sumber--;
+      if(this.dingdan[index].sumber==0){
+        this.dingdan.splice(index,1) // 商品数量为0时，删除商品
       }
     },
-    xianshi(sumber) {
+    active() {
+      this.activediv = !this.activediv; // 购物车展示商品
+    },
+    gozf() {
+      if (this.getsum > 0) {  // 结算跳转支付
+        this.$router.push("/zfdingdan");
+        this.$store.commit("getsum", this.getzongjia);
+      }
+    },
+    xianshi(sumber) { // 左侧tab栏切换
       this.one = false;
       this.two = false;
       this.three = false;
@@ -402,9 +368,7 @@ export default {
       this.cdlist[index].sumber++;
       this.$store.commit("add");
       this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getname", this.getname);
-      this.$store.commit("getjiage", this.getdanjia);
-      this.$store.commit("getcount",this.getshuliang);
+      this.$store.commit("getdingdan", this.vuex);
       this.rx++;
     },
     jsone(index) {
@@ -412,10 +376,8 @@ export default {
       this.cdlist[index].sumber--;
       this.rx--;
       this.$store.commit("jian");
-      this.$store.commit("getjiage", this.getdanjia);
-      this.$store.commit("getname", this.getname);
       this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getcount",this.getshuliang);
+      this.$store.commit("getdingdan", this.vuex);
       if (this.cdlist[index].sumber == 0) {
         this.cdlist[index].guige = false;
       }
@@ -426,18 +388,14 @@ export default {
       this.zk++;
       this.$store.commit("add");
       this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getname", this.getname);
-      this.$store.commit("getjiage", this.getdanjia);
-      this.$store.commit("getcount",this.getshuliang);
+      this.$store.commit("getdingdan", this.vuex);
     },
     jstwo(index) {
       this.zk--;
       this.cdlist_two[index].sumber--;
       this.$store.commit("jian");
       this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getname", this.getname);
-      this.$store.commit("getjiage", this.getdanjia);
-      this.$store.commit("getcount",this.getshuliang);
+      this.$store.commit("getdingdan", this.vuex);
       if (this.cdlist_two[index].sumber == 0) {
         this.cdlist_two[index].guige = false;
       }
@@ -448,18 +406,14 @@ export default {
       this.hc++;
       this.$store.commit("add");
       this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getname", this.getname);
-      this.$store.commit("getjiage", this.getdanjia);
-      this.$store.commit("getcount",this.getshuliang);
+      this.$store.commit("getdingdan", this.vuex);
     },
     jsthree(index) {
       this.hc--;
       this.cdlist_three[index].sumber--;
       this.$store.commit("jian");
       this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getname", this.getname);
-      this.$store.commit("getjiage", this.getdanjia);
-      this.$store.commit("getcount",this.getshuliang);
+      this.$store.commit("getdingdan", this.vuex);
       if (this.cdlist_three[index].sumber == 0) {
         this.cdlist_three[index].guige = false;
       }
@@ -470,18 +424,14 @@ export default {
       this.zp++;
       this.$store.commit("add");
       this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getname", this.getname);
-      this.$store.commit("getjiage", this.getdanjia);
-      this.$store.commit("getcount",this.getshuliang);
+      this.$store.commit("getdingdan", this.vuex);
     },
     jsfour(index) {
       this.zp--;
       this.cdlist_four[index].sumber--;
       this.$store.commit("jian");
       this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getname", this.getname);
-      this.$store.commit("getjiage", this.getdanjia);
-      this.$store.commit("getcount",this.getshuliang);
+      this.$store.commit("getdingdan", this.vuex);
       if (this.cdlist_four[index].sumber == 0) {
         this.cdlist_four[index].guige = false;
       }
@@ -492,23 +442,19 @@ export default {
       this.mf++;
       this.$store.commit("add");
       this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getname", this.getname);
-      this.$store.commit("getjiage", this.getdanjia);
-      this.$store.commit("getcount",this.getshuliang);
+      this.$store.commit("getdingdan", this.vuex);
     },
     jsfive(index) {
       this.mf--;
       this.cdlist_five[index].sumber--;
       this.$store.commit("jian");
       this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getname", this.getname);
-      this.$store.commit("getjiage", this.getdanjia);
-      this.$store.commit("getcount",this.getshuliang);
+      this.$store.commit("getdingdan", this.vuex);
       if (this.cdlist_five[index].sumber == 0) {
         this.cdlist_five[index].guige = false;
       }
     },
-    genguo() {
+    genguo() { // 更多显示提示
       this.show = true;
       let that = this;
       setTimeout(function () {
@@ -532,8 +478,6 @@ export default {
     this.axios.get("/deta-five").then((res) => {
       this.cdlist_five = res.data;
     });
-    this.$store.commit("getshuliang",0)
-    this.$store.commit("zongjia",0)
   },
 };
 </script>
@@ -788,6 +732,7 @@ export default {
   top: -0.3rem;
   border: 4px solid #444444;
   background-color: #3190e8;
+  z-index: 12;
 }
 .by-cat img {
   width: 70%;
@@ -805,5 +750,65 @@ export default {
   top: -0.1rem;
   line-height: 0.4rem;
   text-align: center;
+}
+.buycat-name {
+  width: 100%;
+  overflow: hidden;
+  background-color: white;
+  position: fixed;
+  bottom: 1rem;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.buycat-name > p {
+  color: black;
+  height: 0.5rem;
+  background-color: #adb0c2;
+  line-height: 0.5rem;
+}
+.buycat-name-xinxi {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  margin-bottom: 0.3rem;
+  font-size: .23rem;
+}
+.buycat-name-xinxi>ul{
+  width: 90%;
+  overflow: hidden;
+  margin-left: 5%;
+  margin-top: .2rem;
+}
+.buycat-name-xinxi>ul>li{
+  display: flex;
+  height: .6rem;
+  line-height: .6rem;
+  color: black;
+}
+.bycat-name{
+  width: 35%;
+  height: 100%;
+}
+.bycat-jiage{
+  width: 35%;
+  height: 100%;
+  color: #ff6600;
+}
+.bycat-sumber{
+  width: 40%;
+  height: 100%;
+}
+.bycat-sumber button {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 100%;
+  line-height: 0.25rem;
+  margin: 0 .2rem;
+  border: 1px solid gray;
+}
+.bycat-sumber .buycat-jia {
+  background-color: #3190e8;
+  color: white;
+  border: none;
 }
 </style>

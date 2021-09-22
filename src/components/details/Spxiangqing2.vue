@@ -55,15 +55,15 @@ export default {
 }
 header {
   width: 100%;
-  height: 2rem;
+  height: 2.3rem;
   background-color: #adb0c2;
 }
 header .fanhui {
   width: 0.4rem;
   height: 0.4rem;
   position: absolute;
-  top: 0rem;
-  left: 0.1rem;
+  top: .05rem;
+  left: .1rem;
 }
 .fanhui img {
   width: 100%;
@@ -73,7 +73,7 @@ header .fanhui {
   width: 1.5rem;
   height: 1.5rem;
   float: left;
-  margin: 0.4rem 0.225rem 0 0.225rem;
+  margin:.5rem .225rem 0 .225rem;
 }
 .header-img img {
   width: 100%;
@@ -83,7 +83,7 @@ header .fanhui {
   width: 65%;
   height: 1.5rem;
   float: left;
-  margin-top: 0.225rem;
+  margin-top: 0.35rem;
   text-align: left;
   color: white;
   position: relative;
