@@ -68,4 +68,7 @@ mounted() {
         color: #666666;
         font-size: .2rem;
     }
+    a .iconfont{
+        font-size: .2rem;
+    }
 </style>

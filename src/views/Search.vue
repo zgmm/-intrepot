@@ -55,6 +55,7 @@ export default {
             newSearchList1: [],
             newSearchList2: [],
             stop: false,
+            setpath:"/search"
         }
     },
     watch:{
@@ -88,7 +89,8 @@ export default {
     methods: {
         // 单击商家信息跳转
         shop(id) {
-            this.$router.push('/spxiangqing'+ id)
+            this.$router.push('/spxiangqing'+ id);
+             this.$store.commit('changespxqRoute',this.setpath)//给商品详情页面传值
         },
         // 当文本框失去焦点时触发事件
         BusinessShow() {

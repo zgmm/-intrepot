@@ -6,6 +6,10 @@ import store from './store'
 import 'normalize.css/normalize.css'
 import '../public/font_6f8ftcxawn/iconfont.css'
 
+// 导入setrem
+import setRem from '../public/js/setRem'
+Vue.use(setRem)
+
 // 导入视图插件
 import view from "view-design"
 import 'view-design/dist/styles/iview.css'

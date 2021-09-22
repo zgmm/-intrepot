@@ -19,6 +19,7 @@ export default {
 body,
 html {
   background: #f5f5f5;
+  max-width: 420px;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -29,6 +30,7 @@ html {
   font-size: 0.15rem;
   min-height: 100%;
   background: #f1f1f1;
+
 }
 /*
   #nav {

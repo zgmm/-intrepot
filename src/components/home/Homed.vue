@@ -2,10 +2,13 @@
     
   <div>
     <header class="top">
-      <p class="top-con1"><span class="iconfont icon-AS" @click="$router.push('/takeaway')"></span>我的</p>
+      <p class="top-con1">
+        <span class="iconfont icon-AS" @click="$router.push('/takeaway')"></span
+        >我的
+      </p>
       <div class="top-con2">
         <router-link to="/home/acountInfo">
-          <div class="top-text1"><img :src="imgsrc" alt="" /></div>
+          <div class="top-text1"><img :src="login.profile" alt="" /></div>
           <div class="top1-text2" v-if="isLogin">
             <!-- 接收登录数据 -->
             <p>{{ login.username }}</p>
@@ -63,14 +66,14 @@
       </ul>
       <ul class="sec-con3">
         <li>
-          <router-link to="">
+          <router-link to="home/service">
             <span class="iconfont icon-fuwuzhongxin"></span>
             服务中心
             <span class="iconfont icon-right"></span>
           </router-link>
         </li>
         <li>
-          <router-link to="">
+          <router-link to="/home/downLoad">
             <span class="iconfont icon-eliaomo"></span>
             下载APP
             <span class="iconfont icon-right"></span>
@@ -90,7 +93,6 @@ export default {
     return {
       login: {},
       loginId: 1,
-      imgsrc: require("../../../public/images/login.png"),
       isLogin: false,
     };
   },
@@ -109,6 +111,7 @@ export default {
     },
 
     showUsername() {
+      //查看是否登录
       if (window.sessionStorage.getItem("token") == null) {
         this.isLogin = false;
         return;
@@ -123,12 +126,12 @@ export default {
   },
   computed: {},
   mounted() {
-    
     this.showUsername();
     if (window.sessionStorage.getItem("rtoken") == null) {
+      this.login.profile = '/images/login.png'
       return;
     } else {
-      this.imgsrc = window.sessionStorage.getItem("rtoken");
+      this.login.profile = window.sessionStorage.getItem("rtoken");
     }
   },
 };
