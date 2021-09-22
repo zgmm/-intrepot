@@ -80,7 +80,7 @@
     </div>
     <!-- 订单详情 -->
     <div class="content">
-      <div class="biaoti" @click="$router.push('spxiangqing1')">
+      <div class="biaoti" @click="zailaiyidan">
         <p>{{ shangping.title }}<van-icon name="arrow" /></p>
         <span class="add"><van-icon name="bill" />再来一单</span>
       </div>
@@ -170,6 +170,7 @@ export default {
       getId: 0, //获取订单传过来的id
       shangping: [], //获取当前点击的商品信息
       state: "", //订单状态
+      setpath: "/detailsOrder",
     };
   },
   methods: {
@@ -210,6 +211,10 @@ export default {
         this.$notify({ type: 'primary', message: '订单已经评价过啦！' });
       }
     },
+    zailaiyidan(){
+      this.$store.commit("changespxqRoute", this.setpath); //给商品详情页面传值
+      this.$router.push('spxiangqing1')
+    }
   },
   mounted() {
     this.axios.get("http://localhost:3000/indent").then((res) => {
