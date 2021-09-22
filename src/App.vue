@@ -29,7 +29,7 @@ html {
   color: #666666;
   font-size: 0.15rem;
   min-height: 100%;
-  background: #f1f1f1;
+  background: #f5f5f5;
 
 }
 /*
