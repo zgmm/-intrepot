@@ -38,7 +38,11 @@ export default {
           if (this.spxqRoute == "/search") {
             this.$router.push("/search");
           } else {
+             if(this.spxqRoute == "/detailsOrder"){
+              this.$router.push("/detailsOrder")
+            }else{
             this.$router.push("/product");
+            }
           }
         }
       }

@@ -41,9 +41,13 @@ export default new Vuex.Store({
     },
     index(state,sumber){  // tap切换栏下标
       state.value.index=sumber+1
+      console.log(state.value.index)
+      window.sessionStorage.setItem("stateIndex",JSON.stringify(sumber+1))
     },
     ID(state,sumber){ //mock数据表id
       state.value.id=sumber
+      console.log(state.value.id)
+      window.sessionStorage.setItem("stateId",JSON.stringify(sumber))
     },
     changespxqRoute(state,getpath){//改变商品详情返回的路由
       state.spxqRoute = getpath
