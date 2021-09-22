@@ -10,7 +10,7 @@
       ></span>
     </Header>
     <section class="sec">
-      <input type="text" v-model="login.username" />
+      <input type="text" v-model="login.nickname" />
       <span>用户名长度在4-20位之间</span>
       <button @click="verify">确认修改</button>
       <!-- <input type="hidden" v-model="login.password" :value="kblogin.password"> -->
@@ -29,6 +29,9 @@ export default {
       login: {
         username: "",
         password: "",
+        nickname:"",
+        profile:"",
+        integral:1
       },
       save: false,
       loginid: 1,
@@ -41,11 +44,12 @@ export default {
 
       let span = document.querySelector(".sec span");
       let btn = document.querySelector("button");
-
+      this.login.username = this.kblogin.username;
       this.login.password = this.kblogin.password;
+      this.login.integral = this.kblogin.integral;
       
       // 验证正则表达式是否为真，用户名必须4-20位
-      if (!reg.test(this.login.username)) {
+      if (!reg.test(this.login.nickname)) {
         span.setAttribute("style", "color:red");
         btn.style.backgroundColor = "#1fa7ff";
         btn.style.color = "#a6d3f5";
@@ -65,6 +69,7 @@ export default {
   computed: {},
   mounted() {
     this.loginid = window.sessionStorage.getItem("token");
+    this.login.profile = window.sessionStorage.getItem("rtoken");
     this.axios
       .get("/login/" + this.loginid)
       .then((res) => {

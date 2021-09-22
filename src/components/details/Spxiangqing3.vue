@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <header>
-      <div class="fanhui" @click="$router.back(-1)"><img src="../../../public/images/zuo.png"></div>
+      <div class="fanhui" @click="turnpage"><img src="../../../public/images/zuo.png"></div>
       <div class="header-img"><img src="../../../public/images/dianpu3.jpeg" /></div>
       <div class="header-text">
         <h3>有亿点点好吃</h3>
@@ -18,10 +18,32 @@
   </div>
 </template>
 <script>
+import { mapState } from "vuex";
 export default {
+  computed: {
+    ...mapState(["spxqRoute"]),
+  },
    mounted() {
      this.$store.commit("getyeshu",3)
    },
+    methods: {
+    turnpage() {
+      //路由的跳转方法
+      if (this.spxqRoute == "/indent") {
+        this.$router.push("/indent");
+      } else {
+        if (this.spxqRoute == "/takeaway") {
+          this.$router.push("/takeaway");
+        } else {
+          if (this.spxqRoute == "/search") {
+            this.$router.push("/search");
+          } else {
+            this.$router.push("/product");
+          }
+        }
+      }
+    },
+  },
 }
 </script>
 <style scoped>
@@ -30,14 +52,14 @@ export default {
 }
 header {
   width: 100%;
-  height: 2rem;
+  height: 2.3rem;
   background-color: #adb0c2;
 }
 header .fanhui{
   width: .4rem;
   height: .4rem;
   position: absolute;
-  top: 0rem;
+  top: .05rem;
   left: .1rem;
 }
 .fanhui img{
@@ -48,7 +70,7 @@ header .fanhui{
   width: 1.5rem;
   height: 1.5rem;
   float: left;
-  margin:.4rem .225rem 0 .225rem;
+  margin:.5rem .225rem 0 .225rem;
 }
 .header-img img {
   width: 100%;
@@ -58,7 +80,7 @@ header .fanhui{
   width: 65%;
   height: 1.5rem;
   float: left;
-  margin-top: 0.225rem;
+  margin-top: 0.35rem;
   text-align: left;
   color: white;
   position: relative;
@@ -70,6 +92,7 @@ header .fanhui{
 .header-text > p {
   margin: 0.2rem 0;
 }
+
 .router {
   width: 100%;
   height: 0.8rem;

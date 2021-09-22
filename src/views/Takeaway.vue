@@ -104,6 +104,7 @@ export default {
             taHead2: [],
             loadShow: true,
             tasection: [],
+            setpath:"/takeaway",//路由传值
         }
     },
     methods: {
@@ -140,11 +141,12 @@ export default {
         },
         Business(id) {
              this.$router.push({
-                path: '/product',
+                path: '/spxiangqing1',
                 query: {
                     id:id
                 }
             })
+             this.$store.commit('changespxqRoute',this.setpath)//给商品详情页面传值
         }
     },
     mounted() {

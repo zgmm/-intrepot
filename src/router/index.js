@@ -6,7 +6,8 @@ import chitplain from '../components/explain/Chitplain.vue' //代金券说明
 import integralplain from '../components/explain/Integralplain.vue' //积分说明
 import packetplain from '../components/explain/Packetplain.vue' //红包说明
 import download from '../components/my/Download.vue' //下载
-
+import varietydetails from '../components/details/Varietydetails.vue' //彩品详情
+import service from '../components/my/Servise.vue'
 
 Vue.use(VueRouter)
 
@@ -86,6 +87,9 @@ const routes = [{
             {
                 path: 'download',
                 component: download
+            }, {
+                path: 'service',
+                component: service
             }
         ],
     },
@@ -291,6 +295,10 @@ const routes = [{
         meta: {
             islogin: true
         }
+    },
+    {
+        path: '/varietydetails',
+        component: varietydetails
     }
 ]
 
