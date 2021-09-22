@@ -53,13 +53,8 @@ export default {
             user: {
                 username: '',
                 password: '',
-<<<<<<< HEAD
-                profile: '/images/login.png',
-                integral: 1
-=======
                 profile:'/images/login.png',
                 integral:1
->>>>>>> 66125901e400f965ecb4bc0ba7c44a81de3199df
             },
             loadShow: true,
             value: false,
