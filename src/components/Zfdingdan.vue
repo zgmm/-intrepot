@@ -1,7 +1,7 @@
 <template>
   <div class="box">
     <header>
-      <div class="fh iconfont icon-AS" @click="fanhui" ></div>
+      <div class="fh iconfont icon-AS" @click="fanhui"></div>
       <p>支付订单</p>
       <div id="wode">
         <img src="../../public/images/wode.png" @click="my" />
@@ -39,19 +39,15 @@
     <div class="gmsp">下单的商品</div>
     <div class="by">
       <div class="by-left">
-        <p v-for="i in name" :key="i.id">{{ i.name }}</p>
-        <p v-if="active">餐盒</p>
-        <p v-if="active">配送费</p>
-      </div>
-      <div class="by-center">
-        <p v-for="int in count" :key="int.id">x {{int.sumber}}</p>
-      </div>
-      <div class="by-right">
-        <p v-for="val in jiage" :key="val.id" class="shuliang">
-          <span id="jiage">￥{{ val.sumber }}</span>
-        </p>
-        <p v-if="active"><span id="jiage">￥3</span></p>
-        <p v-if="active"><span id="jiage">￥5</span></p>
+        <ul>
+          <li v-for="i in dingdan" :key="i.id">
+            <div class="by-left-name">{{i.name}}</div>
+            <div class="by-left-sumber">x {{i.sumber}}</div>
+            <div class="by-left-jiage">￥{{i.jiage}}</div>
+          </li>
+        </ul>
+        <p v-if="active">餐盒<span>￥3</span></p>
+        <p v-if="active">配送费<span>￥5</span></p>
       </div>
     </div>
     <div class="sum">
@@ -71,7 +67,13 @@
           />
         </p>
         <p>
-          在线支付<input @click="zxzf" type="checkbox" v-model="nan" value="在线支付" id="alght-inp" />
+          在线支付<input
+            @click="zxzf"
+            type="checkbox"
+            v-model="nan"
+            value="在线支付"
+            id="alght-inp"
+          />
         </p>
       </div>
     </div>
@@ -95,23 +97,25 @@ export default {
   computed: {
     getshow() {
       this.active = false;
-      if (this.name.length > 0) {
+      if (this.dingdan.length > 0) {
         this.active = true;
       }
     },
-    ...mapState(["sum", "name", "jiage","count"]),
+    ...mapState(["sum", "dingdan"]),
   },
   methods: {
     xianshi() {
-      let that=this
-      if(Object.keys(that.dizhi).length==0){
-        that.$dialog.alert({
-          message:"请选择地址"
-        }).then(()=>{
-          return
-        })
-      }else{
-        that.show=true
+      let that = this;
+      if (Object.keys(that.dizhi).length == 0) {
+        that.$dialog
+          .alert({
+            message: "请选择地址",
+          })
+          .then(() => {
+            return;
+          });
+      } else {
+        that.show = true;
       }
     },
     yincang() {
@@ -121,24 +125,24 @@ export default {
       this.$router.push("/spxiangqing1");
     },
     xuanze(sumber) {
-      this.$router.push({path:"/xuandizhi",query:{id:sumber}});
-      console.log({query:{id:sumber}});
+      this.$router.push({ path: "/xuandizhi", query: { id: sumber } });
+      console.log({ query: { id: sumber } });
     },
     my() {
       this.$router.push("/homed");
     },
-    zxzf(){
-      this.$router.push("/zfmima")
-    }
+    zxzf() {
+      this.$router.push("/zfmima");
+    },
   },
   mounted() {
     this.getshow;
-    this.axios
-      .get("http://localhost:3000/dizhi/" + this.$route.query.id)
-      .then((res) => {
-        this.dizhi = res.data;
-      });
-    if (this.$route.query.id > 1) {
+    if (this.$route.query.id > 0) {
+      this.axios
+        .get("http://localhost:3000/dizhi/" + this.$route.query.id)
+        .then((res) => {
+          this.dizhi = res.data;
+        });
       this.dizhi_two = true;
       this.dizhi_one = false;
     } else {
@@ -350,32 +354,43 @@ header #wode {
   margin-top: 0.1rem;
 }
 .by-left {
-  width: 60%;
+  width: 100%;
   overflow: hidden;
 }
-.by-left > p {
+.by-left>ul{
+  overflow: hidden;
+  width: 90%;
   margin-left: 5%;
 }
-.by-center{
-  width: 20%;
-  overflow: hidden;
+.by-left>ul>li{
+  display: flex;
+  height: .6rem;
+  line-height: .6rem;
 }
-.by-center>p{
+.by-left-name{
+  width: 35%;
+  height: 100%;
+}
+.by-left-sumber{
+  width: 30%;
+  height: 100%;
+  text-align: center;
   color: #ff6600;
 }
-.by-right {
-  width: 20%;
-  overflow: hidden;
-  margin-bottom: 1rem;
+.by-left-jiage{
+  width: 35%;
+  height: 100%;
+  text-align: center;
 }
-.by-right > p > span {
-  color: #666666;
+.by-left>p{
+  line-height: .6rem;
+  height: .6rem;
+  text-indent: 5%;
 }
-.by-right > p > span {
+.by-left>p>span{
   float: right;
-  margin-right: .25rem;
+  margin-right: 19%;
 }
-
 .sum {
   position: fixed;
   bottom: 0;
@@ -451,5 +466,4 @@ header #wode {
 #alght #alght-inp:checked {
   background-color: #4cd964;
 }
-
 </style>
