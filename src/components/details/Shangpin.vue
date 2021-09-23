@@ -324,6 +324,7 @@ export default {
     goimg(index,id){ //菜品详情传值
       this.$store.commit("index",index)
       this.$store.commit("ID",id)
+      this.$router.push("/varietydetails")
     },
     bycatjian(index){ // 购物车商品-减少
       this.dingdan[index].sumber--;
@@ -463,19 +464,19 @@ export default {
     },
   },
   mounted() {
-    this.axios.get("/deta").then((res) => {
+    this.axios.get("/deta1").then((res) => {
       this.cdlist = res.data;
     });
-    this.axios.get("/deta-two").then((res) => {
+    this.axios.get("/deta2").then((res) => {
       this.cdlist_two = res.data;
     });
-    this.axios.get("/deta-three").then((res) => {
+    this.axios.get("/deta3").then((res) => {
       this.cdlist_three = res.data;
     });
-    this.axios.get("/deta-four").then((res) => {
+    this.axios.get("/deta4").then((res) => {
       this.cdlist_four = res.data;
     });
-    this.axios.get("/deta-five").then((res) => {
+    this.axios.get("/deta5").then((res) => {
       this.cdlist_five = res.data;
     });
   },
