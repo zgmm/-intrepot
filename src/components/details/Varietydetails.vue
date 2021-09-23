@@ -129,7 +129,6 @@ export default {
         backTop.style.backgroundColor = '#fff';
         backTop.style.top = '0';
         backTop.style.left = '0';
-
       } else{
         backTop.style.position = 'relative';
         backTop.style.backgroundColor = '#f1f1f1';

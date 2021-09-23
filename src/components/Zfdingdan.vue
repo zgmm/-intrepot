@@ -33,7 +33,7 @@
       </div>
     </div>
     <div class="zf">
-      <p class="zf-fs">支付方式 <span>在线支付&nbsp;&nbsp;></span></p>
+      <p class="zf-fs">支付方式 <span>在线支付</span></p>
       <p class="zf-hb">红包<span>暂时只支持在饿了么APP使用</span></p>
     </div>
     <div class="gmsp">下单的商品</div>

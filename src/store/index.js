@@ -15,8 +15,28 @@ export default new Vuex.Store({
     xinxi:{}, // 下单成功，添加进订单的信息
     value:{},  // tap切换栏下标/mock数据表id
     spxqRoute:"/product",//商品详情默认路由
+    rex:0,  //热销
+    zhek:0, //折扣
+    haoc:0, //好吃
+    zhaop:0,  //招牌
+    mif:0 //米饭
   },
   mutations: { // 方法区域==methods
+    rx(state,sumber){ //热销
+      state.rex=sumber
+    },
+    zk(state,sumber){ //折扣
+      state.zhek=sumber
+    },
+    hc(state,sumber){ //好吃
+      state.haoc=sumber
+    },
+    zp(state,sumber){ //招牌
+      state.zhaop=sumber
+    },
+    mf(state,sumber){ //米饭
+      state.mif=sumber
+    },
     getyeshu(state, sumber) { //记录商品详情页面的页数
       state.yeshu = sumber
       console.log("第" + state.yeshu + "页");
@@ -29,9 +49,6 @@ export default new Vuex.Store({
     },
     zongjia(state, index) { //菜品总价
       state.sum = index;
-    },
-    getsum(state, sumber) { //菜品总价+配送费+餐盒费
-      state.sum = sumber + 8
     },
     getdingdan(state, sumber) { //下单的信息-菜名、数量、单价
       state.dingdan = sumber
