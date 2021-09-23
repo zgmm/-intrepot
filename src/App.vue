@@ -30,7 +30,6 @@ html {
   font-size: 0.15rem;
   min-height: 100%;
   background: #f5f5f5;
-
 }
 /*
   #nav {

@@ -123,11 +123,14 @@ export default {
         return;
       }
       this.axios.post("/dizhi", this.dizhi).then((res) => {});
-      this.$router.replace("/xuandizhi");
+      this.$router.push({path:"/xuandizhi",query:{id:this.$route.query.id}});
     },
     yincang() {
       this.show = false;
     },
+  },
+  mounted() {
+    console.log(this.$route.query.id);
   },
 };
 </script>

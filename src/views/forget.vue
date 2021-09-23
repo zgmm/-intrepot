@@ -255,7 +255,7 @@ export default {
         background: #fff;
     }
     .forget form p .el-switch{
-        margin-left: 1.68rem;
+        margin-left: 1.52rem;
     }
     .forget form p:nth-child(1){
         text-align: left;
