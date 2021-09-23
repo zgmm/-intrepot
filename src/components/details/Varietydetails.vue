@@ -29,16 +29,16 @@
         </div>
       </div>
       <ul class="con2 backTop">
-        <li>详情</li>
-        <li>评价</li>
+        <li><a href="#con3">详情</a> </li>
+        <li><a href="#con4">评价</a> </li>
       </ul>
       <div class="con3">
-        <h2>商品详情</h2>
+        <h2 id="con3">商品详情</h2>
         <p><span>产品描述</span>好</p>
         <p><span>口味</span>粤菜</p>
       </div>
       <div class="con4">
-        <h2>商品评价</h2>
+        <h2 id="con4">商品评价</h2>
         <ul>
           <li class="pl-box">
             <div class="pl-tx">
@@ -138,6 +138,7 @@ export default {
     handleScroll() {
       //吸顶
       var backTop = document.querySelector(".backTop");
+      if(!backTop) return;//window对象是指同一窗口，在使用时先进性判断
       if (window.pageYOffset >= 389) {
         backTop.style.position = "fixed";
         backTop.style.backgroundColor = "#fff";
@@ -147,7 +148,7 @@ export default {
         backTop.style.position = "relative";
         backTop.style.backgroundColor = "#f1f1f1";
       }
-    },
+    }
   },
   computed: {},
   mounted() {
@@ -176,7 +177,18 @@ export default {
   top: 0.1rem;
   left: 0.1rem;
   font-size: 0.3rem;
-  color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: .2rem;
+  width: .5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, .3);
+  display: inline-block;
+}
+.icon-AS:before{
+  position: relative;
+  top: -.16rem;
+  left: -.1rem;
 }
 .top-img {
   width: 100%;
@@ -262,6 +274,11 @@ export default {
   width: 100%;
   height: 0.6rem;
   line-height: 0.6rem;
+}
+.con2 a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
 }
 .con3 {
   background: #fff;
