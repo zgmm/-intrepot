@@ -19,19 +19,15 @@ export default new Vuex.Store({
   mutations: { // 方法区域==methods
     getyeshu(state, sumber) { //记录商品详情页面的页数
       state.yeshu = sumber
-      console.log("第" + state.yeshu + "页");
     },
-    add(state, index) { //菜品总数量 增加
+    add(state) { //菜品总数量 增加
       state.shuliang++;
     },
-    jian(state, index) { //菜品总数量 减少
+    jian(state) { //菜品总数量 减少
       state.shuliang--;
     },
     zongjia(state, index) { //菜品总价
       state.sum = index;
-    },
-    getsum(state, sumber) { //菜品总价+配送费+餐盒费
-      state.sum = sumber + 8
     },
     getdingdan(state, sumber) { //下单的信息-菜名、数量、单价
       state.dingdan = sumber
@@ -41,12 +37,10 @@ export default new Vuex.Store({
     },
     index(state,sumber){  // tap切换栏下标
       state.value.index=sumber+1
-      console.log(state.value.index)
       window.sessionStorage.setItem("stateIndex",JSON.stringify(sumber+1))
     },
     ID(state,sumber){ //mock数据表id
       state.value.id=sumber
-      console.log(state.value.id)
       window.sessionStorage.setItem("stateId",JSON.stringify(sumber))
     },
     changespxqRoute(state,getpath){//改变商品详情返回的路由

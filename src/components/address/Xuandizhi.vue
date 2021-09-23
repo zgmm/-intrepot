@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     add() {
-      this.$router.push("/tiandizhi");
+      this.$router.push({path:"/tiandizhi",query:{id:this.$route.query.id}});
     },
     getID(id) {
       if(this.$route.query.id==7){
