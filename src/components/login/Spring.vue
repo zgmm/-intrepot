@@ -57,15 +57,18 @@ export default {
         position: absolute;
         width: 4.83rem;
         height: 3.1rem;
-        top: 1.47rem;
+        top: 2.22rem;
         transform: translateX(-50%);
         left: 50%;
         background: #fdfdfd;
         animation: show 0.5s;
     }
     .paragraph{
-        color: #000;
+        color: #464646;
         font-size: .29rem;
+        padding: 0 .34rem;
+        margin-top: -0.05rem;
+        margin-bottom: .14rem;
     }
     .confirm{
         background: #4cd964;

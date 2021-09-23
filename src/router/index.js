@@ -40,19 +40,23 @@ const routes = [{
             },
             {
                 path: 'acountInfo',
-                component: () => import('../components/my/AccountInfo.vue')
+                component: () =>
+                    import('../components/my/AccountInfo.vue')
             }, //账户信息
             {
                 path: 'balance',
-                component: () => import('../components/my/Balance.vue')
+                component: () =>
+                    import('../components/my/Balance.vue')
             }, //我的余额
             {
                 path: 'integral',
-                component: () => import('../components/my/Integral.vue')
+                component: () =>
+                    import('../components/my/Integral.vue')
             }, //我的积分
             {
                 path: 'discounts',
-                component: () => import('../components/my/Discounts.vue')
+                component: () =>
+                    import('../components/my/Discounts.vue')
             }, //我的优惠
             {
                 path: 'midifyUser',
@@ -81,17 +85,18 @@ const routes = [{
                 component: packetplain
             }, //红包说明
             {
-                path:'download',
-                component:download
-            },{
-                path:'service',
-                component:service
+                path: 'download',
+                component: download
+            }, {
+                path: 'service',
+                component: service
             }
         ],
     },
     {
         path: '/product',
-        component: () => import('../components/product/ProductList.vue')
+        component: () =>
+            import('../components/product/ProductList.vue')
     }, //产品列表
     {
         path: '/search',
@@ -119,6 +124,11 @@ const routes = [{
             isturn: true,
             islogin: true
         }
+    },
+    {
+        path: '/detailsOrder',
+        component: () =>
+            import('../components/detailsOrder/DetailsOrder.vue')
     },
     {
         path: '/xuandizhi',
@@ -287,7 +297,8 @@ const routes = [{
         }
     },
     {
-        path:'/varietydetails',component:varietydetails
+        path: '/varietydetails',
+        component: varietydetails
     }
 ]
 

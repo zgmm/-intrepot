@@ -15,36 +15,15 @@ export default new Vuex.Store({
     xinxi:{}, // 下单成功，添加进订单的信息
     value:{},  // tap切换栏下标/mock数据表id
     spxqRoute:"/product",//商品详情默认路由
-    rex:0,  //热销
-    zhek:0, //折扣
-    haoc:0, //好吃
-    zhaop:0,  //招牌
-    mif:0 //米饭
   },
   mutations: { // 方法区域==methods
-    rx(state,sumber){ //热销
-      state.rex=sumber
-    },
-    zk(state,sumber){ //折扣
-      state.zhek=sumber
-    },
-    hc(state,sumber){ //好吃
-      state.haoc=sumber
-    },
-    zp(state,sumber){ //招牌
-      state.zhaop=sumber
-    },
-    mf(state,sumber){ //米饭
-      state.mif=sumber
-    },
     getyeshu(state, sumber) { //记录商品详情页面的页数
       state.yeshu = sumber
-      console.log("第" + state.yeshu + "页");
     },
-    add(state, index) { //菜品总数量 增加
+    add(state) { //菜品总数量 增加
       state.shuliang++;
     },
-    jian(state, index) { //菜品总数量 减少
+    jian(state) { //菜品总数量 减少
       state.shuliang--;
     },
     zongjia(state, index) { //菜品总价
@@ -58,9 +37,11 @@ export default new Vuex.Store({
     },
     index(state,sumber){  // tap切换栏下标
       state.value.index=sumber+1
+      window.sessionStorage.setItem("stateIndex",JSON.stringify(sumber+1))
     },
     ID(state,sumber){ //mock数据表id
       state.value.id=sumber
+      window.sessionStorage.setItem("stateId",JSON.stringify(sumber))
     },
     changespxqRoute(state,getpath){//改变商品详情返回的路由
       state.spxqRoute = getpath

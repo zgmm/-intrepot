@@ -11,7 +11,7 @@
           <div class="top-text1"><img :src="login.profile" alt="" /></div>
           <div class="top1-text2" v-if="isLogin">
             <!-- 接收登录数据 -->
-            <p>{{ login.nickname }}</p>
+            <p>{{ login.username }}</p>
             <p><span class="iconfont icon-shouji"></span>暂无绑定手机</p>
           </div>
           <div class="top2-text2" v-else>

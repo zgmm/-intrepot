@@ -28,13 +28,13 @@
     <div class="time">
       <div class="time-lf">送达时间</div>
       <div class="time-rh">
-        <p class="rh1">尽快送达 | 预计 06:29</p>
+        <p class="rh1">尽快送达 | 预计 {{getCurrentTime()}}</p>
         <p class="rh2"><span>蜂鸟专送</span></p>
       </div>
     </div>
     <div class="zf">
       <p class="zf-fs">支付方式 <span>在线支付</span></p>
-      <p class="zf-hb">红包<span>暂时只支持在饿了么APP使用</span></p>
+      <p class="zf-hb">红包<span>暂时只支持在APP使用</span></p>
     </div>
     <div class="gmsp">下单的商品</div>
     <div class="by">
@@ -104,6 +104,14 @@ export default {
     ...mapState(["sum", "dingdan"]),
   },
   methods: {
+     getCurrentTime() {
+        //获取当前时间并打印
+        var _this = this;
+    　　let hh = new Date().getHours();
+    　　let mf = new Date().getMinutes()<10 ? '0'+new Date().getMinutes() : new Date().getMinutes();
+    　　let ss = new Date().getSeconds()<10 ? '0'+new Date().getSeconds() : new Date().getSeconds();
+    　　return _this.gettime =hh+':'+(10+mf)+':'+ss;
+    },
     xianshi() {
       let that = this;
       if (Object.keys(that.dizhi).length == 0) {
@@ -136,6 +144,7 @@ export default {
     },
   },
   mounted() {
+    this.getCurrentTime()
     this.getshow;
     if (this.$route.query.id > 0) {
       this.axios
