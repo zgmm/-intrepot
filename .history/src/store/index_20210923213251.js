@@ -50,7 +50,7 @@ export default new Vuex.Store({
             state.spxqRoute = getpath
         },
         getDetails(state, getdetails) { //获取
-            state.detailsId = getdetails
+            this.detailsId = getdetails
         }
     },
     actions: {},

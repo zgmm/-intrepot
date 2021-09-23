@@ -481,8 +481,9 @@ export default {
     },
     again() {
       //再来一单
-      this.$router.push("/spxiangqing1");
+      this.$router.replace("/spxiangqing1");
       this.$store.commit("changespxqRoute", this.setpath); //给商品详情页面传值
+      this.$store.commit("getDetails", this.test); //给订单详情传值
     },
     more() {
       //更多商家

@@ -49,8 +49,8 @@ export default new Vuex.Store({
         changespxqRoute(state, getpath) { //改变商品详情返回的路由
             state.spxqRoute = getpath
         },
-        getDetails(state, getdetails) { //获取
-            state.detailsId = getdetails
+        getDetails(state, ) {
+
         }
     },
     actions: {},

@@ -160,7 +160,9 @@
 <script>
 export default {
   name: "",
-  computed: {},
+  computed: {
+    mapState(['detailsId'])
+  },
   props: [],
   data() {
     return {
@@ -207,17 +209,14 @@ export default {
           path: "evaluate",
           query: { id: this.shangping.id },
         });
-      } else if (this.shangping.result == "已完成") {
-        this.$notify({ type: "primary", message: "订单已经评价过啦！" });
+      }else if(this.shangping.result == "已完成"){
+        this.$notify({ type: 'primary', message: '订单已经评价过啦！' });
       }
     },
-    zailaiyidan() {
+    zailaiyidan(){
       this.$store.commit("changespxqRoute", this.setpath); //给商品详情页面传值
-      this.$router.push({
-        path: "spxiangqing1",
-        query: { id: this.shangping.id },
-      });
-    },
+      this.$router.push('spxiangqing1')
+    }
   },
   mounted() {
     this.axios.get("http://localhost:3000/indent").then((res) => {

@@ -316,7 +316,7 @@
                 </div>
                 <span class="fulfill">{{ com.result }}</span>
               </div>
-              <div class="center" @click="$router.push({ path: 'detailsOrder', query: { id: com.id }})">
+              <div class="center" @click="details()">
                 <div class="one">
                   <div class="pic">
                     <img v-lazy="com.cuisine" />
@@ -451,7 +451,6 @@ export default {
       failList: [], //已取消的数组
       evaluateList: [], //待评价的数据
       iniflength: 2,
-      test:1,
       img: {
         j: "/images/俏九州.jpeg",
         a: "/images/品正品.png",
@@ -468,6 +467,9 @@ export default {
     };
   },
   methods: {
+    details(){
+      this.$router.push({ path: 'detailsOrder', query: { id: com.id }})
+    },
     /* 切换订单状态 */
     change(index) {
       this.number = index;
@@ -481,7 +483,7 @@ export default {
     },
     again() {
       //再来一单
-      this.$router.push("/spxiangqing1");
+      this.$router.replace("/spxiangqing1");
       this.$store.commit("changespxqRoute", this.setpath); //给商品详情页面传值
     },
     more() {

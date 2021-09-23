@@ -25,6 +25,7 @@ import { mapState } from "vuex";
 export default {
   computed: {
     ...mapState(["spxqRoute"]),
+    ...mapState(['detailsId']),
   },
   mounted() {
     this.$store.commit("getyeshu", 1);
@@ -41,13 +42,10 @@ export default {
           if (this.spxqRoute == "/search") {
             this.$router.push("/search");
           } else {
-            if (this.spxqRoute == "/detailsOrder") {
-              this.$router.push({
-                path: "detailsOrder",
-                query: { id: this.$route.query.id },
-              });
-            } else {
-              this.$router.push("/product");
+            if(this.spxqRoute == "/detailsOrder"){
+              this.$router.push({ path: 'detailsOrder', query: { id : this.detailsid } })
+            }else{
+            this.$router.push("/product");
             }
           }
         }
@@ -69,8 +67,8 @@ header .fanhui {
   width: 0.4rem;
   height: 0.4rem;
   position: absolute;
-  top: 0.05rem;
-  left: 0.1rem;
+  top: .05rem;
+  left: .1rem;
 }
 .fanhui img {
   width: 100%;
@@ -80,7 +78,7 @@ header .fanhui {
   width: 1.5rem;
   height: 1.5rem;
   float: left;
-  margin: 0.5rem 0.225rem 0 0.225rem;
+  margin:.5rem .225rem 0 .225rem;
 }
 .header-img img {
   width: 100%;
