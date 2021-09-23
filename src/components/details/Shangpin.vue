@@ -7,36 +7,19 @@
         <van-sidebar-item @click="xianshi(3)" title="好吃的" />
         <van-sidebar-item @click="xianshi(4)" title="招牌" />
         <van-sidebar-item @click="xianshi(5)" title="米饭" />
-        <div class="erxiao" v-if="rx > 0 ? (rexiao = true) : (rexiao = false)">
-          {{ rx }}
-        </div>
-        <div class="zhekou" v-if="zk > 0 ? (zhekou = true) : (rexiao = false)">
-          {{ zk }}
-        </div>
-        <div class="haochi" v-if="hc > 0 ? (haochi = true) : (rexiao = false)">
-          {{ hc }}
-        </div>
-        <div
-          class="zhaopai"
-          v-if="zp > 0 ? (zhaopai = true) : (rexiao = false)"
-        >
-          {{ zp }}
-        </div>
-        <div class="mifan" v-if="mf > 0 ? (mifan = true) : (rexiao = false)">
-          {{ mf }}
-        </div>
       </van-sidebar>
       <div class="nav-text">
-        <!-- 热销榜 -->
-        <div class="nav-text-div" id="one" v-if="one">
+        <div class="nav-text-div">
           <p>
             热销榜<span class="span1">热销来袭~</span
             ><span class="span2" @click="genguo">···</span>
           </p>
           <p class="gengduo" v-if="show">更多热销新品，敬请期待</p>
           <ul class="nav-text-cd">
-            <li v-for="(val, index) in cdlist" :key="val.id" @click="goimg(activeKey,val.id)">
-              <div class="cd-img"><img :src="val.src" /></div>
+            <li v-for="(val, index) in cdlist" :key="val.id">
+              <div class="cd-img" @click="goimg(activeKey, val.id)">
+                <img :src="val.src" />
+              </div>
               <div class="cd-text">
                 <h3>{{ val.name }}<span>特色</span></h3>
                 <p class="cd-caixi">{{ val.caixi }}</p>
@@ -58,140 +41,9 @@
             </li>
           </ul>
         </div>
-        <!-- 折扣榜 -->
-        <div class="nav-text-div" id="two" v-if="two">
-          <p>
-            折扣榜<span class="span1">折扣来袭~</span
-            ><span class="span2" @click="genguo">···</span>
-          </p>
-          <p class="gengduo" v-if="show">更多折扣新品，敬请期待</p>
-          <ul class="nav-text-cd">
-            <li v-for="(val, sumber) in cdlist_two" :key="val.id" @click="goimg(activeKey,val.id)">
-              <div class="cd-img"><img :src="val.src" /></div>
-              <div class="cd-text">
-                <h3>{{ val.name }}<span>特色</span></h3>
-                <p class="cd-caixi">{{ val.caixi }}</p>
-                <p class="cd-xiaoliang">
-                  月售{{ val.xiaoliang }}份 好评率{{ val.pingjia }}%
-                </p>
-                <p class="cd-biaoqian"><span>小炒</span></p>
-                <p class="cd-jiage">
-                  <span>￥{{ val.jiage }}</span
-                  >起
-                </p>
-                <p class="cd-zengjia" v-if="val.jia" @click="zjtwo(sumber)">
-                  +
-                </p>
-                <p class="cd-guige" v-if="val.guige">
-                  <span class="guige-jian" @click="jstwo(sumber)">-</span
-                  >{{ val.sumber
-                  }}<span class="guige-btn" @click="zjtwo(sumber)">+</span>
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <!-- 好吃的 -->
-        <div class="nav-text-div" id="three" v-if="three">
-          <p>
-            好吃的<span class="span1">好吃的来袭~</span
-            ><span class="span2" @click="genguo">···</span>
-          </p>
-          <p class="gengduo" v-if="show">更多好吃新品，敬请期待</p>
-          <ul class="nav-text-cd">
-            <li v-for="(val, index) in cdlist_three" :key="val.id" @click="goimg(activeKey,val.id)">
-              <div class="cd-img"><img :src="val.src" /></div>
-              <div class="cd-text">
-                <h3>{{ val.name }}<span>特色</span></h3>
-                <p class="cd-caixi">{{ val.caixi }}</p>
-                <p class="cd-xiaoliang">
-                  月售{{ val.xiaoliang }}份 好评率{{ val.pingjia }}%
-                </p>
-                <p class="cd-biaoqian"><span>小炒</span></p>
-                <p class="cd-jiage">
-                  <span>￥{{ val.jiage }}</span
-                  >起
-                </p>
-                <p class="cd-zengjia" v-if="val.jia" @click="zjthree(index)">
-                  +
-                </p>
-                <p class="cd-guige" v-if="val.guige">
-                  <span class="guige-jian" @click="jsthree(index)">-</span
-                  >{{ val.sumber
-                  }}<span class="guige-btn" @click="zjthree(index)">+</span>
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <!-- 招牌 -->
-        <div class="nav-text-div" v-if="four">
-          <p>
-            招牌<span class="span1">招牌来袭~</span
-            ><span class="span2" @click="genguo">···</span>
-          </p>
-          <p class="gengduo" v-if="show">更多招牌新品，敬请期待</p>
-          <ul class="nav-text-cd">
-            <li v-for="(val, index) in cdlist_four" :key="val.id" @click="goimg(activeKey,val.id)">
-              <div class="cd-img"><img :src="val.src" /></div>
-              <div class="cd-text">
-                <h3>{{ val.name }}<span>特色</span></h3>
-                <p class="cd-caixi">{{ val.caixi }}</p>
-                <p class="cd-xiaoliang">
-                  月售{{ val.xiaoliang }}份 好评率{{ val.pingjia }}%
-                </p>
-                <p class="cd-biaoqian"><span>小炒</span></p>
-                <p class="cd-jiage">
-                  <span>￥{{ val.jiage }}</span
-                  >起
-                </p>
-                <p class="cd-zengjia" v-if="val.jia" @click="zjfour(index)">
-                  +
-                </p>
-                <p class="cd-guige" v-if="val.guige">
-                  <span class="guige-jian" @click="jsfour(index)">-</span
-                  >{{ val.sumber
-                  }}<span class="guige-btn" @click="zjfour(index)">+</span>
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <!-- 米饭 -->
-        <div class="nav-text-div" id="five" v-if="five">
-          <p>
-            米饭<span class="span1">米饭来袭~</span
-            ><span class="span2" @click="genguo">···</span>
-          </p>
-          <p class="gengduo" v-if="show">更多米饭新品，敬请期待</p>
-          <ul class="nav-text-cd">
-            <li v-for="(val, index) in cdlist_five" :key="val.id" @click="goimg(activeKey,val.id)">
-              <div class="cd-img"><img :src="val.src" /></div>
-              <div class="cd-text">
-                <h3>{{ val.name }}<span>特色</span></h3>
-                <p class="cd-caixi">{{ val.caixi }}</p>
-                <p class="cd-xiaoliang">
-                  月售{{ val.xiaoliang }}份 好评率{{ val.pingjia }}%
-                </p>
-                <p class="cd-biaoqian"><span>小炒</span></p>
-                <p class="cd-jiage">
-                  <span>￥{{ val.jiage }}</span
-                  >起
-                </p>
-                <p class="cd-zengjia" v-if="val.jia" @click="zjfive(index)">
-                  +
-                </p>
-                <p class="cd-guige" v-if="val.guige">
-                  <span class="guige-jian" @click="jsfive(index)">-</span
-                  >{{ val.sumber
-                  }}<span class="guige-btn" @click="zjfive(index)">+</span>
-                </p>
-              </div>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
+    <!-- 购物车 -->
     <div class="buycat">
       <div class="by-left">
         <p class="by-jg">￥{{ sum }}</p>
@@ -211,10 +63,18 @@
         <p>已选商品</p>
         <div class="buycat-name-xinxi">
           <ul>
-            <li v-for="(i,index) in dingdan" :key="i.id">
+            <li v-for="(i, index) in dingdan" :key="i.id">
               <div class="bycat-name">{{ i.name }}</div>
               <div class="bycat-jiage">￥{{ i.jiage }}</div>
-              <div class="bycat-sumber"><button @click="bycatjian(index)">-</button>{{ i.sumber }}<button class="buycat-jia" @click="bycatjia(index)">+</button></div>
+              <div class="bycat-sumber">
+                <button @click="bycatjian(index)">-</button>{{ i.sumber
+                }}<button class="buycat-jia" @click="bycatjia(index)">+</button>
+              </div>
+            </li>
+            <li>
+              <div class="bycat-name">餐盒</div>
+              <div class="bycat-jiage">￥3</div>
+              <div class="bycat-sumber"></div>
             </li>
           </ul>
         </div>
@@ -229,16 +89,7 @@ export default {
     return {
       activeKey: 0,
       cdlist: [],
-      cdlist_two: [],
-      cdlist_three: [],
-      cdlist_four: [],
-      cdlist_five: [],
       show: false,
-      one: true,
-      two: false,
-      three: false,
-      four: false,
-      five: false,
       rexiao: false,
       zhekou: false,
       haochi: false,
@@ -246,238 +97,198 @@ export default {
       mifan: false,
       zongshu: false,
       activediv: false,
-      rx: 0,
-      zk: 0,
-      hc: 0,
-      zp: 0,
-      mf: 0,
-      xxx: 0,
     };
   },
   computed: {
     getsum() {
       return this.shuliang; // 购物车数量
     },
-    ...mapState(["shuliang", "sum", "dingdan"]),
+    ...mapState([
+      "shuliang",
+      "sum",
+      "dingdan",
+      "rex",
+      "zhek",
+      "haoc",
+      "zhaop",
+      "mif",
+    ]),
     vuex() {
       // 保存菜名，数量，单价
       let dingdan = [];
-      let obj;
       for (let i = 0; i < this.cdlist.length; i++) {
-        obj = {};
         if (this.cdlist[i].sumber > 0) {
-          obj.sumber = this.cdlist[i].sumber;
-          obj.name = this.cdlist[i].name;
-          obj.jiage = this.cdlist[i].jiage;
-          dingdan.push(obj);
+          dingdan.push(this.cdlist[i]);
         }
       }
-      for (let i = 0; i < this.cdlist_two.length; i++) {
-        obj = {};
-        if (this.cdlist_two[i].sumber > 0) {
-          obj.sumber = this.cdlist_two[i].sumber;
-          obj.name = this.cdlist_two[i].name;
-          obj.jiage = this.cdlist_two[i].jiage;
-          dingdan.push(obj);
-        }
-      }
-      for (let i = 0; i < this.cdlist_three.length; i++) {
-        obj = {};
-        if (this.cdlist_three[i].sumber > 0) {
-          obj.sumber = this.cdlist_three[i].sumber;
-          obj.name = this.cdlist_three[i].name;
-          obj.jiage = this.cdlist_three[i].jiage;
-          dingdan.push(obj);
-        }
-      }
-      for (let i = 0; i < this.cdlist_four.length; i++) {
-        obj = {};
-        if (this.cdlist_four[i].sumber > 0) {
-          obj.sumber = this.cdlist_four[i].sumber;
-          obj.name = this.cdlist_four[i].name;
-          obj.jiage = this.cdlist_four[i].jiage;
-          dingdan.push(obj);
-        }
-      }
-      for (let i = 0; i < this.cdlist_five.length; i++) {
-        obj = {};
-        if (this.cdlist_five[i].sumber > 0) {
-          obj.sumber = this.cdlist_five[i].sumber;
-          obj.name = this.cdlist_five[i].name;
-          obj.jiage = this.cdlist_five[i].jiage;
-          dingdan.push(obj);
-        }
-      }
-      console.log(dingdan);
       return dingdan;
     },
     getzongjia() {
       // 商品总价
       let zongjia = 0;
-      for (let i = 0; i < this.vuex.length; i++) {
-        zongjia += this.vuex[i].jiage * this.vuex[i].sumber;
+      for (let i = 0; i < this.$store.state.dingdan.length; i++) {
+        zongjia +=
+          this.$store.state.dingdan[i].jiage *
+          this.$store.state.dingdan[i].sumber;
       }
       return zongjia;
     },
   },
   methods: {
-    goimg(index,id){ //菜品详情传值
-      this.$store.commit("index",index)
-      this.$store.commit("ID",id)
+    goimg(index, id) {
+      //菜品详情传值
+      this.$store.commit("index", index);
+      this.$store.commit("ID", id);
+      this.$router.push("/varietydetails");
     },
-    bycatjian(index){ // 购物车商品-减少
-      this.dingdan[index].sumber--;
-      if(this.dingdan[index].sumber==0){
-        this.dingdan.splice(index,1) // 商品数量为0时，删除商品
+    bycatjian(index) {
+      // 购物车商品数量-减少
+      this.$store.state.dingdan[index].sumber--;
+      this.$store.commit("jian");
+      this.$store.commit("zongjia", this.getzongjia);
+      this.getfromvuex();
+      if (this.dingdan[index].sumber == 0) {
+        this.dingdan.splice(index, 1); // 商品数量为0时，删除商品
+      }
+      for (let i = 0; i < this.cdlist.length; i++) {
+        if (this.cdlist[i].sumber == 0) {
+          this.cdlist[i].guige = false;
+        }
       }
     },
+    bycatjia(index) {
+      // 购物车商品数量-增加
+      this.$store.state.dingdan[index].sumber++;
+      this.$store.commit("add");
+      this.$store.commit("zongjia", this.getzongjia);
+      this.getfromvuex();
+    },
     active() {
+      if (this.dingdan.length < 1) {
+        return;
+      }
       this.activediv = !this.activediv; // 购物车展示商品
     },
     gozf() {
-      if (this.getsum > 0) {  // 结算跳转支付
+      if (this.getsum > 0) {
+        // 结算跳转支付
         this.$router.push("/zfdingdan");
-        this.$store.commit("getsum", this.getzongjia);
       }
     },
-    xianshi(sumber) { // 左侧tab栏切换
-      this.one = false;
-      this.two = false;
-      this.three = false;
-      this.four = false;
-      this.five = false;
-      if (sumber == 1) {
-        this.one = true;
+    xianshi(sumber) {
+      // 左侧tab栏切换
+      let query = "rexiao";
+      switch (sumber) {
+        case 1:
+          query = "rexiao";
+          break;
+        case 2:
+          query = "zekou";
+          break;
+        case 3:
+          query = "haochi";
+          break;
+        case 4:
+          query = "zhaopai";
+          break;
+        case 5:
+          query = "mifan";
+          break;
       }
-      if (sumber == 2) {
-        this.two = true;
+      this.axios.get("/deta?" + query + "=true").then((res) => {
+        this.cdlist = res.data;
+        this.getfromvuex();
+        for (let i = 0; i < this.cdlist.length; i++) {
+        if (this.cdlist[i].sumber > 0) {
+          this.cdlist[i].guige = true;
+        }
       }
-      if (sumber == 3) {
-        this.three = true;
-      }
-      if (sumber == 4) {
-        this.four = true;
-      }
-      if (sumber == 5) {
-        this.five = true;
-      }
+      });
     },
     zjone(index) {
       //商品数量+1
       this.cdlist[index].guige = true;
       this.cdlist[index].sumber++;
       this.$store.commit("add");
+      let vxdingdan = this.$store.state.dingdan;
+      let exists = false;
+      for (let i = 0; i < vxdingdan.length; i++) {  // 判断vuex是否存在
+        if(vxdingdan[i].id == this.cdlist[index].id){
+          vxdingdan[i].sumber = this.cdlist[index].sumber;
+          exists = true;
+          break;
+        }
+      }
+      if(!exists){
+        vxdingdan.push(this.cdlist[index]);
+      }
+      this.$store.commit("getdingdan", vxdingdan);
       this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getdingdan", this.vuex);
-      this.rx++;
     },
     jsone(index) {
       //商品数量-1
       this.cdlist[index].sumber--;
-      this.rx--;
       this.$store.commit("jian");
+       let vxdingdan = this.$store.state.dingdan;
+      let exists = false;
+      for (let i = 0; i < vxdingdan.length; i++) {  // 判断vuex是否存在
+        if(vxdingdan[i].id == this.cdlist[index].id){
+          vxdingdan[i].sumber = this.cdlist[index].sumber;
+          exists = true;
+          break;
+        }
+      }
+      this.$store.commit("getdingdan", vxdingdan);
       this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getdingdan", this.vuex);
       if (this.cdlist[index].sumber == 0) {
         this.cdlist[index].guige = false;
       }
     },
-    zjtwo(index) {
-      this.cdlist_two[index].guige = true;
-      this.cdlist_two[index].sumber++;
-      this.zk++;
-      this.$store.commit("add");
-      this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getdingdan", this.vuex);
-    },
-    jstwo(index) {
-      this.zk--;
-      this.cdlist_two[index].sumber--;
-      this.$store.commit("jian");
-      this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getdingdan", this.vuex);
-      if (this.cdlist_two[index].sumber == 0) {
-        this.cdlist_two[index].guige = false;
+    getfromvuex() {
+      // 把vuex中商品的数量赋予cdlist
+      let dingdan = this.$store.state.dingdan;
+      for (let i = 0; i < this.cdlist.length; i++) {
+        for (let j = 0; j < dingdan.length; j++) {
+          if (this.cdlist[i].id == dingdan[j].id) {
+            this.cdlist[i].sumber = dingdan[j].sumber;
+            break;
+          }
+        }
       }
     },
-    zjthree(index) {
-      this.cdlist_three[index].sumber++;
-      this.cdlist_three[index].guige = true;
-      this.hc++;
-      this.$store.commit("add");
-      this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getdingdan", this.vuex);
-    },
-    jsthree(index) {
-      this.hc--;
-      this.cdlist_three[index].sumber--;
-      this.$store.commit("jian");
-      this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getdingdan", this.vuex);
-      if (this.cdlist_three[index].sumber == 0) {
-        this.cdlist_three[index].guige = false;
-      }
-    },
-    zjfour(index) {
-      this.cdlist_four[index].sumber++;
-      this.cdlist_four[index].guige = true;
-      this.zp++;
-      this.$store.commit("add");
-      this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getdingdan", this.vuex);
-    },
-    jsfour(index) {
-      this.zp--;
-      this.cdlist_four[index].sumber--;
-      this.$store.commit("jian");
-      this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getdingdan", this.vuex);
-      if (this.cdlist_four[index].sumber == 0) {
-        this.cdlist_four[index].guige = false;
-      }
-    },
-    zjfive(index) {
-      this.cdlist_five[index].sumber++;
-      this.cdlist_five[index].guige = true;
-      this.mf++;
-      this.$store.commit("add");
-      this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getdingdan", this.vuex);
-    },
-    jsfive(index) {
-      this.mf--;
-      this.cdlist_five[index].sumber--;
-      this.$store.commit("jian");
-      this.$store.commit("zongjia", this.getzongjia);
-      this.$store.commit("getdingdan", this.vuex);
-      if (this.cdlist_five[index].sumber == 0) {
-        this.cdlist_five[index].guige = false;
-      }
-    },
-    genguo() { // 更多显示提示
+    genguo() {
+      // 更多显示提示
       this.show = true;
       let that = this;
       setTimeout(function () {
         that.show = false;
       }, 2000);
     },
+
   },
   mounted() {
-    this.axios.get("/deta").then((res) => {
+    this.axios.get("/deta?rexiao=true").then((res) => {
       this.cdlist = res.data;
+      this.getfromvuex();
+      for (let i = 0; i < this.cdlist.length; i++) {
+        if (this.cdlist[i].sumber > 0) {
+          this.cdlist[i].guige = true;
+        }
+      }
     });
-    this.axios.get("/deta-two").then((res) => {
-      this.cdlist_two = res.data;
-    });
-    this.axios.get("/deta-three").then((res) => {
-      this.cdlist_three = res.data;
-    });
-    this.axios.get("/deta-four").then((res) => {
-      this.cdlist_four = res.data;
-    });
-    this.axios.get("/deta-five").then((res) => {
-      this.cdlist_five = res.data;
-    });
+  },
+  watch: {
+    dingdan: {
+      handler(newName, oldName) {
+        if (this.dingdan.length <= 0) {
+          // 商品为0时，隐藏购物车商品展示
+          this.activediv = false;
+          this.$store.state.sum = 0;
+        }else{
+          this.$store.state.sum+=8
+        }
+      },
+    },
   },
 };
 </script>
@@ -771,30 +582,30 @@ export default {
   overflow: hidden;
   display: flex;
   margin-bottom: 0.3rem;
-  font-size: .23rem;
+  font-size: 0.23rem;
 }
-.buycat-name-xinxi>ul{
+.buycat-name-xinxi > ul {
   width: 90%;
   overflow: hidden;
   margin-left: 5%;
-  margin-top: .2rem;
+  margin-top: 0.2rem;
 }
-.buycat-name-xinxi>ul>li{
+.buycat-name-xinxi > ul > li {
   display: flex;
-  height: .6rem;
-  line-height: .6rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
   color: black;
 }
-.bycat-name{
+.bycat-name {
   width: 35%;
   height: 100%;
 }
-.bycat-jiage{
+.bycat-jiage {
   width: 35%;
   height: 100%;
   color: #ff6600;
 }
-.bycat-sumber{
+.bycat-sumber {
   width: 40%;
   height: 100%;
 }
@@ -803,7 +614,7 @@ export default {
   height: 0.35rem;
   border-radius: 100%;
   line-height: 0.25rem;
-  margin: 0 .2rem;
+  margin: 0 0.2rem;
   border: 1px solid gray;
 }
 .bycat-sumber .buycat-jia {

@@ -63,7 +63,7 @@
           </div>
         </div>
       </div>
-      <p><button class="btn" @click="yz" :type="type">确定</button></p>
+      <p><button class="btn" @click="yz" type="button">确定</button></p>
     </form>
     <div class="ts" v-if="show">
       <div class="tishi">
@@ -88,12 +88,10 @@ export default {
       },
       show: false,
       text: "",
-      type: "button",
     };
   },
   methods: {
     yz() {
-      this.type = "button";
       if (this.dizhi.name == "") {
         this.text = "请输入联系人！";
         this.show = true;
@@ -124,13 +122,15 @@ export default {
         this.show = true;
         return;
       }
-      this.type = "submit";
       this.axios.post("/dizhi", this.dizhi).then((res) => {});
-      this.$router.replace("/xuandizhi");
+      this.$router.push({path:"/xuandizhi",query:{id:this.$route.query.id}});
     },
     yincang() {
       this.show = false;
     },
+  },
+  mounted() {
+    console.log(this.$route.query.id);
   },
 };
 </script>

@@ -92,27 +92,37 @@ export default {
         // 对登录表单进行验证
         Sign() { 
             if(this.user.username == ''){
-                this.paragraph = "请输入手机号/邮箱/用户名"
+                this.paragraph = "请输入账号"
                 this.change = true
                 return;
-            }else{
+            }else if(/^[a-zA-Z0-9]{5,11}$/.test(this.user.username)){
                 this.login.forEach(item => {
                     if(item.username == this.user.username){
                         this.loginUser = item;
                         this.have = true;
+                        this.integral = item.integral;
                     }
                 });
+            }else{
+                this.paragraph = "账号应为5-11位且包含字母或者数字"
+                this.change = true;
+                return;
             }
             if(this.user.password == ''){
                 this.paragraph = "请输入密码"
                 this.change = true
                 return;
-            }else{
+            }else if(/^[a-zA-Z0-9]{8,12}$/.test(this.user.password)) {
                 if(this.have && this.user.password != this.loginUser.password ){
-                    this.paragraph = "账号密码输入错误"
+                    this.paragraph = "账号密码输入错误或者账号已存在"
                     this.change = true
+                    this.have = false;
                     return;
                 }
+            }else{
+                this.paragraph = "密码应为8-12位且包含字母或者数字"
+                this.change = true;
+                return;
             }
             if(this.code == ''){
                 this.paragraph = "请输入验证码"
@@ -129,27 +139,12 @@ export default {
             }
             if(this.have){
                 window.sessionStorage.setItem("token", this.loginUser.id);
-                this.$router.push({
-                    path: '/home',
-                    query: {
-                        id:this.loginUser.id
-                    }
-                    // 从路由获取id
-                    // this.$route.query.id
-                    });
-                // this.have = false;
+                this.$router.push('/takeaway');
                 return;
             }
             this.axios.post("/login",this.user).then(res => {
                 window.sessionStorage.setItem("token", res.data.id);
-                this.$router.push({
-                    path: '/home',
-                    query: {
-                        id: res.data.id   
-                    }
-                    // 从路由获取id
-                    // this.$route.query.id
-                });
+                this.$router.push('/takeaway');
             })
         },
         Change() {

@@ -1,22 +1,26 @@
 <template>
   <div class="variety">
-    <span class="iconfont icon-AS" @click="$router.replace('/spxiangqing1')"></span>
-    <div class="top-img"><img :src="variety.imgsrc" alt="" /></div>
+    <transition>
+      <span
+        class="iconfont icon-AS"
+        @click="$router.replace('/spxiangqing1')"
+      ></span>
+    </transition>
+
+    <div class="top-img"><img :src="variety.src" alt="" /></div>
     <section class="sec">
       <div class="con1">
         <h1 class="con1-txt1">{{ variety.name }}</h1>
         <p class="con1-txt2">好评率26%</p>
-        <p class="con1-txt2">月销 {{ variety.yuexiao }}</p>
+        <p class="con1-txt2">月销 {{ variety.xiaoliang }}</p>
         <p class="con1-txt3">0.91折 | 限1份</p>
         <div class="con1-txt4">
           <p>
-            ￥<span>{{ variety.price }}</span>
+            ￥<span>{{ variety.jiage }}</span>
           </p>
-          <p>￥{{ variety.price + 2 }}</p>
+          <p>￥{{ variety.jiage + 2 }}</p>
           <!-- <p>包装费￥1/份</p> -->
-          <p v-if="isCart" @click="addCart()" class="cartinit">
-            +加入购物车
-          </p>
+          <p v-if="isCart" @click="addCart()" class="cartinit">+加入购物车</p>
           <p v-else class="shuliang">
             <span class="jian" @click="jianNum">-</span>
             <span>{{ num }}</span>
@@ -25,16 +29,16 @@
         </div>
       </div>
       <ul class="con2 backTop">
-        <li>详情</li>
-        <li>评价</li>
+        <li><a href="#con3">详情</a> </li>
+        <li><a href="#con4">评价</a> </li>
       </ul>
       <div class="con3">
-        <h2>商品详情</h2>
+        <h2 id="con3">商品详情</h2>
         <p><span>产品描述</span>好</p>
         <p><span>口味</span>粤菜</p>
       </div>
       <div class="con4">
-        <h2>商品评价</h2>
+        <h2 id="con4">商品评价</h2>
         <ul>
           <li class="pl-box">
             <div class="pl-tx">
@@ -91,58 +95,78 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
-  name: "",
   data() {
     return {
       variety: {
         name: "豆腐花",
-        price: 23,
-        imgsrc: "/images/fuzhu.jpg",
-        yuexiao: "194",
+        jiage: 23,
+        src: "",
+        xiaoliang: "",
+        caixi: "",
       },
       isCart: true,
-      num:0,
+      num: 0,
+      state: {},
+      stateIndex: 1,
     };
   },
+  computed: {
+    ...mapState(["value"]),
+  },
   methods: {
-    jianNum() {//减数量
+    jianNum() {
+      //减数量
       if (this.num <= 1) {
         this.isCart = true;
-        this.num = 0
+        this.num = 0;
         return;
       } else {
         this.num--;
       }
     },
-    jiaNum() {//加数量
+    jiaNum() {
+      //加数量
       this.num++;
+      // console.log(this.value)
     },
-    addCart(){
+    addCart() {
       this.isCart = false;
       this.num++;
     },
-    handleScroll() {//吸顶
+    handleScroll() {
+      //吸顶
       var backTop = document.querySelector(".backTop");
+      if(!backTop) return;//window对象是指同一窗口，在使用时先进性判断
       if (window.pageYOffset >= 389) {
-        backTop.style.position = 'fixed';
-        backTop.style.backgroundColor = '#fff';
-        backTop.style.top = '0';
-        backTop.style.left = '0';
-
-      } else{
-        backTop.style.position = 'relative';
-        backTop.style.backgroundColor = '#f1f1f1';
+        backTop.style.position = "fixed";
+        backTop.style.backgroundColor = "#fff";
+        backTop.style.top = "0";
+        backTop.style.left = "0";
+      } else {
+        backTop.style.position = "relative";
+        backTop.style.backgroundColor = "#f1f1f1";
       }
-    },
+    }
   },
   computed: {},
   mounted() {
+    // console.log(this.value);
     //滚动条的获取
     window.addEventListener("scroll", this.handleScroll, true);
-     if(this.num>=1){
-        this.isCart = false;
-      }
+    if (this.num >= 1) {
+      this.isCart = false;
+    }
+    this.state.id = window.sessionStorage.getItem("stateId");
+    this.state.index = window.sessionStorage.getItem("stateIndex");
+    console.log(this.state.index);
+    // this.stateIndex.join();
+    this.axios
+      .get("/deta" + this.state.index + "/" + this.state.id)
+      .then((res) => {
+        this.variety = res.data;
+      });
   },
 };
 </script>
@@ -153,7 +177,18 @@ export default {
   top: 0.1rem;
   left: 0.1rem;
   font-size: 0.3rem;
-  color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: .2rem;
+  width: .5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, .3);
+  display: inline-block;
+}
+.icon-AS:before{
+  position: relative;
+  top: -.16rem;
+  left: -.1rem;
 }
 .top-img {
   width: 100%;
@@ -237,8 +272,13 @@ export default {
   justify-content: space-around;
   font-size: 0.25rem;
   width: 100%;
-  height: .6rem;
-  line-height: .6rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
+}
+.con2 a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
 }
 .con3 {
   background: #fff;
@@ -335,5 +375,17 @@ export default {
 }
 .hp-neirong {
   background: #ebf5ff;
+}
+
+.v-enter-active {
+  transition: all 0.3s ease;
+}
+.v-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+.v-enter,
+.v-leave-to {
+  transform: translateX(10px);
+  opacity: 0;
 }
 </style>

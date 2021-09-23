@@ -16,14 +16,9 @@ import 'view-design/dist/styles/iview.css'
 Vue.use(view)
 
 // 导入vant的插件，vant内都可以使用
-import './plugins/vant'
 import Vant from 'vant';
-import {
-    AddressEdit
-} from 'vant';
 import 'vant/lib/index.css';
 Vue.use(Vant);
-Vue.use(AddressEdit)
 // 懒加载
 import VueLazyload from 'vue-lazyload'
 Vue.use(VueLazyload, {
