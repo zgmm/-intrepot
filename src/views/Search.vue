@@ -83,6 +83,7 @@ export default {
             if(this.historyList == ''){
                 this.businessShow = true;
                 this.designation = '';
+                this.historyShow = false;
             }
         }
     },
@@ -150,15 +151,11 @@ export default {
         // 清空搜索历史
         clear() {
             this.historyList = [];
-            this.historyShow = false;
         },
         // 单击 X 号 删除对应的历史记录
         Delete(i) {
             this.stop = true;
             this.historyList.splice(i,1);
-            if(this.historyList == ""){
-                this.historyShow = false;
-            }
         },
         // 单击历史记录实现搜索
         hunt(str) {
@@ -167,18 +164,18 @@ export default {
             }
             this.designation = str;
             this.historyShow = false;
-            this.newSearchList = [];
+            this.newSearchList2 = [];
             this.searchList.forEach(item => {
                 if(item.title.indexOf(this.designation) == -1){
                     this.emptyShow = true;
                 }else if(this.designation == ''){
                     return;
                 }else{
-                    this.newSearchList.push(item);
-                    this.searchList = this.newSearchList;
+                    this.newSearchList2.push(item);
                 }
             });
-            if(this.newSearchList.length > 0 || this.designation == ''){
+            this.newSearchList1 = this.newSearchList2;
+            if(this.newSearchList2.length > 0 || this.designation == ''){
                 this.emptyShow = false;
                 this.businessShow = true;
             }else{
