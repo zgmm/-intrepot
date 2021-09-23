@@ -83,6 +83,7 @@ export default {
             if(this.historyList == ''){
                 this.businessShow = true;
                 this.designation = '';
+                this.historyShow = false;
             }
         }
     },
@@ -150,15 +151,11 @@ export default {
         // 清空搜索历史
         clear() {
             this.historyList = [];
-            this.historyShow = false;
         },
         // 单击 X 号 删除对应的历史记录
         Delete(i) {
             this.stop = true;
             this.historyList.splice(i,1);
-            if(this.historyList == ""){
-                this.historyShow = false;
-            }
         },
         // 单击历史记录实现搜索
         hunt(str) {
