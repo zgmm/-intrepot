@@ -167,18 +167,18 @@ export default {
             }
             this.designation = str;
             this.historyShow = false;
-            this.newSearchList = [];
+            this.newSearchList2 = [];
             this.searchList.forEach(item => {
                 if(item.title.indexOf(this.designation) == -1){
                     this.emptyShow = true;
                 }else if(this.designation == ''){
                     return;
                 }else{
-                    this.newSearchList.push(item);
-                    this.searchList = this.newSearchList;
+                    this.newSearchList2.push(item);
                 }
             });
-            if(this.newSearchList.length > 0 || this.designation == ''){
+            this.newSearchList1 = this.newSearchList2;
+            if(this.newSearchList2.length > 0 || this.designation == ''){
                 this.emptyShow = false;
                 this.businessShow = true;
             }else{
