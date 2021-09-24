@@ -162,7 +162,7 @@ export default {
     console.log(this.state.index);
     // this.stateIndex.join();
     this.axios
-      .get("/deta" + this.state.index + "/" + this.state.id)
+      .get("/deta/" + this.state.id)
       .then((res) => {
         this.variety = res.data;
       });

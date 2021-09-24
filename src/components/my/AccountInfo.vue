@@ -160,6 +160,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit("sumber",2)
     this.showUsername();
     if (window.sessionStorage.getItem("rtoken") == null) {
       return;

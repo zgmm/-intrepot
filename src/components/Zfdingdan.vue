@@ -10,25 +10,28 @@
     <div class="dizhi">
       <div class="dizhi-one" v-if="dizhi_one" @click="xuanze(7)">
         <p>
-          <img src="../../public/images/dingwei.png" />请添加一个收货地址<span
-            >></span
+          <img src="../../public/images/dingwei.png" />请添加一个收货地址<span class="iconfont icon-right"></span
           >
         </p>
         <div class="dizhi-bottom"><img src="../../public/images/bg.jpg" /></div>
       </div>
       <div class="dizhi-two" v-if="dizhi_two">
-        <p class="two-dz">{{ dizhi.address }}</p>
-        <p class="two-name">
-          {{ dizhi.name }} ({{ dizhi.sex }})<span>{{ dizhi.phone }}</span>
-        </p>
-        <span class="xuanze" @click="xuanze(7)">></span>
-        <div class="dizhi-bottom"><img src="../../public/images/bg.jpg" /></div>
+        <div v-for="val in dizhi" :key="val.id" class="dizhi-two-div">
+          <p class="two-dz">{{ val.address }}</p>
+          <p class="two-name">
+            {{ val.name }} ({{ val.sex }})<span>{{ val.phone }}</span>
+          </p>
+          <span class="xuanze iconfont icon-right" @click="xuanze(7)"></span>
+          <div class="dizhi-bottom">
+            <img src="../../public/images/bg.jpg" />
+          </div>
+        </div>
       </div>
     </div>
     <div class="time">
       <div class="time-lf">送达时间</div>
       <div class="time-rh">
-        <p class="rh1">尽快送达 | 预计 {{getCurrentTime()}}</p>
+        <p class="rh1">尽快送达 | 预计 {{ getCurrentTime() }}</p>
         <p class="rh2"><span>蜂鸟专送</span></p>
       </div>
     </div>
@@ -41,9 +44,9 @@
       <div class="by-left">
         <ul>
           <li v-for="i in dingdan" :key="i.id">
-            <div class="by-left-name">{{i.name}}</div>
-            <div class="by-left-sumber">x {{i.sumber}}</div>
-            <div class="by-left-jiage">￥{{i.jiage}}</div>
+            <div class="by-left-name">{{ i.name }}</div>
+            <div class="by-left-sumber">x {{ i.sumber }}</div>
+            <div class="by-left-jiage">￥{{ i.jiage }}</div>
           </li>
         </ul>
         <p v-if="active">餐盒<span>￥3</span></p>
@@ -87,7 +90,7 @@ export default {
   data() {
     return {
       nan: "",
-      dizhi: {},
+      dizhi: [],
       show: false,
       active: false,
       dizhi_one: true,
@@ -104,13 +107,18 @@ export default {
     ...mapState(["sum", "dingdan"]),
   },
   methods: {
-     getCurrentTime() {
-        //获取当前时间并打印
-        var _this = this;
-    　　let hh = new Date().getHours();
-    　　let mf = new Date().getMinutes()<10 ? '0'+new Date().getMinutes() : new Date().getMinutes();
-    　　let ss = new Date().getSeconds()<10 ? '0'+new Date().getSeconds() : new Date().getSeconds();
-    　　return _this.gettime =hh+':'+(10+mf)+':'+ss;
+    getCurrentTime() {
+      var day = new Date();
+
+      //获取当前时间并打印
+      var _this = this;
+      let hh = day.getHours() + 1;
+      hh = hh >= 24 ? "00" : hh;
+      let mf = day.getMinutes();
+      mf = mf < 10 ? "0" + mf : mf;
+      let ss = day.getSeconds();
+      ss = ss < 10 ? "0" + ss : ss;
+      return (_this.gettime = hh + ":" + mf + ":" + ss);
     },
     xianshi() {
       let that = this;
@@ -130,11 +138,18 @@ export default {
       this.show = false;
     },
     fanhui() {
+      switch (index) {
+        case value:
+          
+          break;
+      
+        default:
+          break;
+      }
       this.$router.replace("/spxiangqing1");
     },
     xuanze(sumber) {
       this.$router.push({ path: "/xuandizhi", query: { id: sumber } });
-      console.log({ query: { id: sumber } });
     },
     my() {
       this.$router.push("/homed");
@@ -144,13 +159,15 @@ export default {
     },
   },
   mounted() {
-    this.getCurrentTime()
-    this.getshow;
     if (this.$route.query.id > 0) {
       this.axios
-        .get("http://localhost:3000/dizhi/" + this.$route.query.id)
+        .get("http://localhost:3000/dizhi?id=" + this.$route.query.id)
         .then((res) => {
           this.dizhi = res.data;
+          if (res.data.length == 0) {
+            this.dizhi_two = false;
+            this.dizhi_one = true;
+          }
         });
       this.dizhi_two = true;
       this.dizhi_one = false;
@@ -158,6 +175,9 @@ export default {
       this.dizhi_two = false;
       this.dizhi_one = true;
     }
+    this.getCurrentTime();
+    this.getshow;
+    this.$store.commit("sumber",1)
   },
 };
 </script>
@@ -242,6 +262,10 @@ header #wode {
   position: 0;
   top: 0;
   left: 0;
+}
+.dizhi-two-div {
+  width: 100%;
+  height: 100%;
 }
 .dizhi-two p {
   text-indent: 20px;
@@ -356,6 +380,7 @@ header #wode {
   overflow: hidden;
   text-align: left;
   font-size: 0.25rem;
+  margin-bottom: 1rem;
 }
 .by p {
   height: 0.5rem;
@@ -366,37 +391,39 @@ header #wode {
   width: 100%;
   overflow: hidden;
 }
-.by-left>ul{
+.by-left > ul {
   overflow: hidden;
   width: 90%;
   margin-left: 5%;
 }
-.by-left>ul>li{
+.by-left > ul > li {
   display: flex;
-  height: .6rem;
-  line-height: .6rem;
+  height: 0.6rem;
+  line-height: 0.6rem;
 }
-.by-left-name{
+.by-left-name {
   width: 35%;
   height: 100%;
 }
-.by-left-sumber{
+.by-left-sumber {
   width: 30%;
   height: 100%;
   text-align: center;
   color: #ff6600;
 }
-.by-left-jiage{
+.by-left-jiage {
   width: 35%;
   height: 100%;
-  text-align: center;
+  text-align: left;
+  text-indent: 50px;
 }
-.by-left>p{
-  line-height: .6rem;
-  height: .6rem;
+.by-left > p {
+  line-height: 0.6rem;
+  height: 0.6rem;
   text-indent: 5%;
+  margin: 0;
 }
-.by-left>p>span{
+.by-left > p > span {
   float: right;
   margin-right: 19%;
 }

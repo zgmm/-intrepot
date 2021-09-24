@@ -124,14 +124,17 @@ export default {
         return;
       }
       this.axios.post("/dizhi", this.dizhi).then((res) => {});
-      this.$router.push({path:"/xuandizhi",query:{id:this.$route.query.id}});
+      let that=this
+      setTimeout(function () {
+        that.$router.push({
+          path: "/xuandizhi",
+          query: { id: that.$route.query.id },
+        });
+      }, 200);
     },
     yincang() {
       this.show = false;
     },
-  },
-  mounted() {
-    console.log(this.$route.query.id);
   },
 };
 </script>

@@ -17,7 +17,7 @@
           <p class="gengduo" v-if="show">更多热销新品，敬请期待</p>
           <ul class="nav-text-cd">
             <li v-for="(val, index) in cdlist" :key="val.id">
-              <div class="cd-img" @click="goimg(activeKey, val.id)">
+              <div class="cd-img" @click="goimg(val.id)">
                 <img :src="val.src" />
               </div>
               <div class="cd-text">
@@ -97,6 +97,23 @@ export default {
       mifan: false,
       zongshu: false,
       activediv: false,
+      ddxx: {
+        title: "", //店名
+        src: "", // 店铺头像
+        cuisine: "/images/lsf.jpg",
+        cuisines: "/images/麻辣烫.jpeg",
+        ssows: "20满减5|50满减20",
+        huobao: "4元无门槛红包",
+        discount: "3.5折起",
+        comtitle: "广西螺蛳粉",
+        comtitles: "麻辣烫",
+        result: "待评价", //状态
+        price: 0, //总价
+        remark: "原味 温度/热 正常辣",
+        remarks: "大份 微辣 含餐具",
+        cause: "点多了",
+        time: this.setTime(new Date())
+      },
     };
   },
   computed: {
@@ -112,6 +129,7 @@ export default {
       "haoc",
       "zhaop",
       "mif",
+      "yeshu",
     ]),
     vuex() {
       // 保存菜名，数量，单价
@@ -135,9 +153,14 @@ export default {
     },
   },
   methods: {
-    goimg(index, id) {
+    setTime(time){
+      let str = '';
+      str += time.getFullYear() + '-' + (time.getMonth()+1) + '-' + time.getDate() + ' ';
+      str += time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds();
+      return str;
+    },
+    goimg(id) {
       //菜品详情传值
-      this.$store.commit("index", index);
       this.$store.commit("ID", id);
       this.$router.push("/varietydetails");
     },
@@ -173,6 +196,26 @@ export default {
       if (this.getsum > 0) {
         // 结算跳转支付
         this.$router.push("/zfdingdan");
+        switch (this.$store.state.yeshu) {
+          case 1:
+            this.ddxx.title = "美味小吃店";
+            this.ddxx.src = "/images/dianpu.jpg";
+            break;
+          case 2:
+            this.ddxx.title = "叫了只鸡";
+            this.ddxx.src = "/images/dianpu2.jpeg";
+            break;
+          case 3:
+            this.ddxx.title = "有亿点点好吃";
+            this.ddxx.src = "/images/dianpu3.jpeg";
+            break;
+          case 4:
+            this.ddxx.title = "美味咸鱼店";
+            this.ddxx.src = "/images/dianpu4.jpeg";
+            break;
+        }
+        this.ddxx.sum=this.$store.state.sum
+        this.$store.commit("dingdanxinxi",this.ddxx)
       }
     },
     xianshi(sumber) {
@@ -199,10 +242,10 @@ export default {
         this.cdlist = res.data;
         this.getfromvuex();
         for (let i = 0; i < this.cdlist.length; i++) {
-        if (this.cdlist[i].sumber > 0) {
-          this.cdlist[i].guige = true;
+          if (this.cdlist[i].sumber > 0) {
+            this.cdlist[i].guige = true;
+          }
         }
-      }
       });
     },
     zjone(index) {
@@ -212,14 +255,15 @@ export default {
       this.$store.commit("add");
       let vxdingdan = this.$store.state.dingdan;
       let exists = false;
-      for (let i = 0; i < vxdingdan.length; i++) {  // 判断vuex是否存在
-        if(vxdingdan[i].id == this.cdlist[index].id){
+      for (let i = 0; i < vxdingdan.length; i++) {
+        // 判断vuex是否存在
+        if (vxdingdan[i].id == this.cdlist[index].id) {
           vxdingdan[i].sumber = this.cdlist[index].sumber;
           exists = true;
           break;
         }
       }
-      if(!exists){
+      if (!exists) {
         vxdingdan.push(this.cdlist[index]);
       }
       this.$store.commit("getdingdan", vxdingdan);
@@ -229,10 +273,11 @@ export default {
       //商品数量-1
       this.cdlist[index].sumber--;
       this.$store.commit("jian");
-       let vxdingdan = this.$store.state.dingdan;
+      let vxdingdan = this.$store.state.dingdan;
       let exists = false;
-      for (let i = 0; i < vxdingdan.length; i++) {  // 判断vuex是否存在
-        if(vxdingdan[i].id == this.cdlist[index].id){
+      for (let i = 0; i < vxdingdan.length; i++) {
+        // 判断vuex是否存在
+        if (vxdingdan[i].id == this.cdlist[index].id) {
           vxdingdan[i].sumber = this.cdlist[index].sumber;
           exists = true;
           break;
@@ -264,7 +309,6 @@ export default {
         that.show = false;
       }, 2000);
     },
-
   },
   mounted() {
     this.axios.get("/deta?rexiao=true").then((res) => {
@@ -276,6 +320,7 @@ export default {
         }
       }
     });
+    console.log(this.dingdan);
   },
   watch: {
     dingdan: {
@@ -284,8 +329,8 @@ export default {
           // 商品为0时，隐藏购物车商品展示
           this.activediv = false;
           this.$store.state.sum = 0;
-        }else{
-          this.$store.state.sum+=8
+        } else {
+          this.$store.state.sum += 8;
         }
       },
     },
@@ -464,8 +509,8 @@ export default {
 }
 .cd-text .cd-zengjia {
   position: absolute;
-  width: 0.35rem;
-  height: 0.35rem;
+  width: 0.34rem;
+  height: 0.34rem;
   background-color: #3190e8;
   font-size: 0.3rem;
   text-align: center;
@@ -495,12 +540,12 @@ export default {
   margin-right: 0.35rem;
 }
 .cd-guige .guige-btn {
-  width: 0.35rem;
-  height: 0.35rem;
+  width: 0.36rem;
+  height: 0.36rem;
   font-size: 0.3rem;
   line-height: 0.35rem;
   float: right;
-  background-color: #3190e8;
+  background-color: red;
   color: white;
   border-radius: 100%;
   text-align: center;

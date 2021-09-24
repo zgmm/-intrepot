@@ -1,13 +1,13 @@
 <template>
   <div class="box">
     <header>
-      <div @click="$router.back(-1)" class="iconfont icon-AS"></div>
+      <div @click="gorouter" class="iconfont icon-AS"></div>
       <p>选择地址</p>
     </header>
     <div class="text" v-if="active">
       <ul>
         <li v-for="val in dizhi" :key="val.id" class="text-li">
-          <div v-if="val.show" @click="getID(val.id)" class="text-xinxi">
+          <div @click="getID(val.id)" class="text-xinxi">
             <p class="name">
               {{ val.name }}<span>({{ val.sex }})</span
               ><span>{{ val.phone }}</span>
@@ -32,6 +32,7 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex';
 export default {
   data() {
     return {
@@ -40,7 +41,20 @@ export default {
       show: true,
     };
   },
+  computed:{
+    ...mapState(["sumber"])
+  },
   methods: {
+    gorouter(){ // 判断跳转到支付页面还是我的页面
+      switch (this.sumber) {
+        case 1:
+          this.$router.push("/zfdingdan")
+          break;
+        case 2:
+          this.$router.push("/home/acountInfo")
+          break;
+      }
+    } ,
     add() {
       this.$router.push({path:"/tiandizhi",query:{id:this.$route.query.id}});
     },
@@ -56,7 +70,7 @@ export default {
   mounted() {
     this.axios.get("/dizhi").then((res) => {
       this.dizhi = res.data;
-      if (this.dizhi.length > 1) {
+      if (this.dizhi.length > 0) {
         this.show = false;
         this.active = true;
       } else {

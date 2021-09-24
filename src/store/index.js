@@ -13,10 +13,18 @@ export default new Vuex.Store({
     dingdan:[], // /下单的信息-菜名、数量、单价
     yeshu: 0, //记录商品详情页面的页数
     xinxi:{}, // 下单成功，添加进订单的信息
-    value:{},  // tap切换栏下标/mock数据表id
+    value:0,  // mock数据表id
     spxqRoute:"/product",//商品详情默认路由
+    ddxx:{},  //记录 订单信息
+    sumber:0  // 选地址的路由判断
   },
   mutations: { // 方法区域==methods
+    sumber(state,index){  // 选地址的路由判断
+      state.sumber=index
+    },
+    dingdanxinxi(state,obj){ //记录 订单信息
+      state.ddxx=obj
+    },
     getyeshu(state, sumber) { //记录商品详情页面的页数
       state.yeshu = sumber
     },
@@ -35,17 +43,14 @@ export default new Vuex.Store({
     getshuliang(state, sumber) { //菜品总数量
       state.shuliang = sumber
     },
-    index(state,sumber){  // tap切换栏下标
-      state.value.index=sumber+1
-      window.sessionStorage.setItem("stateIndex",JSON.stringify(sumber+1))
-    },
     ID(state,sumber){ //mock数据表id
-      state.value.id=sumber
+      state.value=sumber
       window.sessionStorage.setItem("stateId",JSON.stringify(sumber))
     },
     changespxqRoute(state,getpath){//改变商品详情返回的路由
       state.spxqRoute = getpath
     },
+    
   },
   actions: {},
   modules: {}

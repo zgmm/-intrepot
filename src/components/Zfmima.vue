@@ -29,10 +29,12 @@ export default {
       errorInfo: "",
       showKeyboard: true,
       showCancelButton: false,
+      getCom:[],
+      getIndent:{}
     };
   },
   computed: {
-    ...mapState(["yeshu"]),
+    ...mapState(["yeshu","ddxx","dingdan","sum","shuliang"]),
   },
   watch: {
     value(value) {
@@ -42,12 +44,19 @@ export default {
       } else {
         if (value.length == 6 && value == "123456") {
           that.$dialog.alert({
-            message: "支付成功！",
+            message: "支付成功！"
           }).then(() => {
+            that.getIndent.com.push(this.ddxx)
+            that.$store.state.dingdan=[];
+            that.$store.state.sum=0;
+            that.$store.state.shuliang=0;
+            console.log(that.$store.state.dingdan);
+            that.axios.put("/indent",this.getIndent).then((res)=>{  // 修改订单页面MOCK数据 
+            })
               setTimeout(function(){
                 // that.$router.push("/spxiangqing"+that.yeshu)
                 that.$router.push("/indent")
-              },500)
+            },500);
           });
         }
       }
@@ -60,6 +69,11 @@ export default {
     onDelete() {
       this.value = this.value.slice(0, this.value.length - 1);
     },
+  },
+  mounted() {
+    this.axios.get("/indent").then((res)=>{
+      this.getIndent = res.data
+    })
   },
 };
 </script>
