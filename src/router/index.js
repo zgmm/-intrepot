@@ -1,25 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import login from '../views/login.vue'
+import login from '../views/login.vue'//登录页面
 import blanceexplain from '../components/explain/Blanceexplain.vue' //余额说明
 import chitplain from '../components/explain/Chitplain.vue' //代金券说明
 import integralplain from '../components/explain/Integralplain.vue' //积分说明
 import packetplain from '../components/explain/Packetplain.vue' //红包说明
 import download from '../components/my/Download.vue' //下载
 import varietydetails from '../components/details/Varietydetails.vue' //彩品详情
-import service from '../components/my/Servise.vue'
+import service from '../components/my/Servise.vue' //客服页面
+import home from '../views/Home.vue' //我的页面
 
 Vue.use(VueRouter)
 
-const routes = [{
-        path: '/',
-        redirect: '/home'
-    },
+const routes = [
+    {path: '/',redirect: '/home'},
     {
-        path: '/home', //一级路由我的页面
-        component: () =>
-
-            import('../views/Home.vue'),
+        path: '/home',component:home, //一级路由我的页面
         children: [{ //二级路由
                 path: '',
                 component: () =>
@@ -121,8 +117,7 @@ const routes = [{
         component: () =>
             import('../views/Indent.vue'),
         meta: {
-            isturn: true,
-            islogin: true
+            isturn: true
         }
     },
     {

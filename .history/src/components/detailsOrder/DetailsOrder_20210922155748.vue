@@ -1,7 +1,7 @@
 <template>
   <div class="details">
     <header>
-      <span class="iconfont icon-AS" @click="$router.replace('/indent')"></span>
+      <span class="iconfont icon-AS" @click="$router.back(-1)"></span>
       <div class="service">
         <van-icon name="service" />
         <p>客服</p>
@@ -207,23 +207,21 @@ export default {
           path: "evaluate",
           query: { id: this.shangping.id },
         });
-      } else if (this.shangping.result == "已完成") {
-        this.$notify({ type: "primary", message: "订单已经评价过啦！" });
+      }else if(this.shangping.result == "已完成"){
+        this.$notify({ type: 'primary', message: '订单已经评价过啦！' });
       }
     },
-    zailaiyidan() {
+    zailaiyidan(){
       this.$store.commit("changespxqRoute", this.setpath); //给商品详情页面传值
-      this.$router.push({
-        path: "spxiangqing1",
-        query: { id: this.shangping.id },
-      });
-    },
+      this.$router.push('spxiangqing1')
+    }
   },
   mounted() {
     this.axios.get("http://localhost:3000/indent").then((res) => {
       this.getId = this.$route.query.id;
       this.dataList = res.data.com;
       this.getinfotitle(this.getId);
+      this.pingjiaye();
     });
   },
 };

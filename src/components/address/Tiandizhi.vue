@@ -88,7 +88,6 @@ export default {
       },
       show: false,
       text: "",
-      type: "button",
     };
   },
   methods: {

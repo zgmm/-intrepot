@@ -161,7 +161,7 @@
               <div class="tou">
                 <img v-lazy="com.src" />
                 <div class="orderInfo">
-                  <p @click="again()">{{ com.title }}{{com.time}}></p>
+                  <p @click="again()">{{ com.title }}></p>
                   <div class="discounts">
                     <div>
                       <span>{{ com.ssows }}</span>
@@ -481,8 +481,9 @@ export default {
     },
     again() {
       //再来一单
-      this.$router.push("/spxiangqing1");
+      this.$router.replace("/spxiangqing1");
       this.$store.commit("changespxqRoute", this.setpath); //给商品详情页面传值
+      this.$store.commit("getDetails", this.test); //给订单详情传值
     },
     more() {
       //更多商家
@@ -521,9 +522,6 @@ export default {
     });
     this.getsesucceedList();
     this.getIniflength();
-    this.evaluateList.sort(function(q,b){
-      return b.time - a.time
-    })
   },
 };
 </script>

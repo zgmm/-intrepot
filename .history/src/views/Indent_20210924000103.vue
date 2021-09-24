@@ -161,7 +161,7 @@
               <div class="tou">
                 <img v-lazy="com.src" />
                 <div class="orderInfo">
-                  <p @click="again()">{{ com.title }}{{com.time}}></p>
+                  <p @click="again()">{{ com.title }}></p>
                   <div class="discounts">
                     <div>
                       <span>{{ com.ssows }}</span>
@@ -521,9 +521,6 @@ export default {
     });
     this.getsesucceedList();
     this.getIniflength();
-    this.evaluateList.sort(function(q,b){
-      return b.time - a.time
-    })
   },
 };
 </script>
